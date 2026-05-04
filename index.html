@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ORDO GROUP</title>
+<title>ORDO GROUP — единая среда AI-работы для компании</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -108,6 +108,14 @@
   .footer-logo { font-family: var(--ff-display); font-weight: 800; font-size: 15px; letter-spacing: 0.12em; color: var(--text); }
   .footer-logo span { color: var(--accent); }
   footer p { font-size: 12px; color: var(--muted); }
+
+  .audience-section { background: var(--white); border-top: 0.5px solid var(--border-dark); }
+  .audience-intro { margin-top: 20px; font-size: 15px; color: var(--muted); line-height: 1.75; max-width: 720px; }
+  .audience-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--border-dark); border: 1px solid var(--border-dark); }
+  .audience-card { background: var(--off-white); padding: 28px 24px; }
+  .audience-role { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent2); margin-bottom: 12px; }
+  .audience-title { font-family: var(--ff-display); font-weight: 700; font-size: 16px; margin-bottom: 10px; color: var(--text); }
+  .audience-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
 </style>
 </head>
 <body>
@@ -116,6 +124,7 @@
   <div class="logo">ORDO<span>.</span>GROUP</div>
   <div class="nav-links">
     <a href="#features">Платформа</a>
+    <a href="#audience">Для кого</a>
     <a href="#models">Модели</a>
     <a href="#how">Как это работает</a>
     <a href="#contact">Контакты</a>
@@ -127,55 +136,83 @@
   <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
-  <div class="hero-label">AI АГЕНТНАЯ ПЛАТФОРМА ДЛЯ БИЗНЕСА</div>
-  <h1>Создавайте и<br/>запускайте <em>ИИ-агентов</em><br/>в масштабе.</h1>
-  <p class="hero-sub">ORDO GROUP — платформа, которая даёт вашей компании десятки AI-моделей, кастомные граф-агенты, анонимизацию корпоративных данных и корпоративные коннекторы в одном решении.</p>
+  <div class="hero-label">ЕДИНАЯ СРЕДА AI-РАБОТЫ ДЛЯ КОМПАНИИ</div>
+  <h1>Одна среда для людей<br/>и <em>ИИ</em> — без хаоса<br/>и лишних чатов.</h1>
+  <p class="hero-sub">ORDO GROUP — это не «корпоративный ChatGPT каждому». Это управляемая AI-среда: десятки моделей, коннекторы к вашим системам, анонимизация данных и визуальные цепочки агентов — чтобы сотрудники снимали рутину, а IT и бизнес сохраняли контроль.</p>
   <div class="hero-actions">
     <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">НАЧАТЬ →</button>
     <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">Как это работает</button>
   </div>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-num">50<span>+</span></div><div class="stat-label">AI МОДЕЛЕЙ</div></div>
+    <div class="stat"><div class="stat-num">50<span>+</span></div><div class="stat-label">МОДЕЛЕЙ В КАТАЛОГЕ</div></div>
     <div class="stat-divider"></div>
-    <div class="stat"><div class="stat-num">100<span>%</span></div><div class="stat-label">ЗАЩИТА ДАННЫХ</div></div>
+    <div class="stat"><div class="stat-num">1</div><div class="stat-label">СРЕДА ДЛЯ КОМПАНИИ</div></div>
     <div class="stat-divider"></div>
-    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">ЦЕПОЧКИ АГЕНТОВ</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">СЦЕНАРИИ В ГРАФАХ</div></div>
   </div>
 </section>
 
 <section id="features">
   <div class="section-label">// ВОЗМОЖНОСТИ</div>
-  <div class="section-title">Всё необходимое для работы<br/>с ИИ на уровне предприятия.</div>
+  <div class="section-title">Инфраструктура, контекст<br/>и процессы — в одном контуре.</div>
   <div class="features-grid">
     <div class="feat-card">
       <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-      <div class="feat-title">Корпоративные коннекторы</div>
-      <div class="feat-desc">Подключайтесь к CRM, ERP, хранилищам данных и API через готовые интеграции — запуск за считанные минуты без технических сложностей.</div>
+      <div class="feat-title">Единая точка входа к системам</div>
+      <div class="feat-desc">CRM, ERP, хранилища и внутренние API — одна среда для команды, без разрозненных «чатов с AI» и теневых сервисов.</div>
     </div>
     <div class="feat-card">
       <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
-      <div class="feat-title">Более 50 AI-моделей</div>
-      <div class="feat-desc">GPT, Claude, Gemini, Mistral, LLaMA и другие — выбирайте оптимальную модель под каждый проект из единой библиотеки.</div>
+      <div class="feat-title">Модели под задачу и политику</div>
+      <div class="feat-desc">Десятки моделей в одной библиотеке: качество, скорость и стоимость — без привязки к одному вендору и без ручного «зоопарка» подписок.</div>
     </div>
     <div class="feat-card">
       <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
-      <div class="feat-title">Анонимизация данных</div>
-      <div class="feat-desc">Корпоративные данные остаются под вашим контролем. Слой анонимизации ORDO удаляет персональные данные до того, как модель их обработает.</div>
+      <div class="feat-title">Данные под контролем контура</div>
+      <div class="feat-desc">Персональные и чувствительные поля уходят в модель уже после анонимизации — политика задаётся один раз для всей среды, а не для каждого чата отдельно.</div>
     </div>
     <div class="feat-card">
       <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-      <div class="feat-title">Обучение и навыки</div>
-      <div class="feat-desc">Структурированные учебные треки, интерактивные гайды и модули навыков для быстрого онбординга всей команды.</div>
+      <div class="feat-title">Скиллы и онбординг команды</div>
+      <div class="feat-desc">Готовые шаблоны и собственные навыки под повторяющиеся задачи, плюс материалы, чтобы люди быстро перешли от «спросить AI» к рабочим сценариям.</div>
     </div>
     <div class="feat-card">
       <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M5 8v3a7 7 0 0014 0V8M12 16v-5"/></svg></div>
-      <div class="feat-title">Граф-агенты</div>
-      <div class="feat-desc">Визуально проектируйте мульти-агентные пайплайны. Связывайте специализированных агентов, задавайте логику — без единой строки кода.</div>
+      <div class="feat-title">Процессы, а не только ответы</div>
+      <div class="feat-desc">Визуально собирайте цепочки: несколько шагов, роли агентов, проверки — чтобы автоматизировать поток работы, а не получать разовый текст в чате.</div>
     </div>
     <div class="feat-card">
       <div class="feat-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-      <div class="feat-title">Мониторинг и аналитика</div>
-      <div class="feat-desc">Отслеживайте каждый запуск агента, потребление токенов, задержки и качество ответов в режиме реального времени с полными журналами аудита.</div>
+      <div class="feat-title">Аудит и контроль для enterprise</div>
+      <div class="feat-desc">Запуски, токены, задержки и качество — в одном месте. Прозрачность для IT и руководства: что делает AI, с какими данными и в каком контуре.</div>
+    </div>
+  </div>
+</section>
+
+<section class="audience-section" id="audience">
+  <div class="section-label">// ДЛЯ КОГО</div>
+  <div class="section-title">Один продукт — разные<br/>обещания для ролей.</div>
+  <p class="audience-intro">Технически ORDO — единая AI-среда. Для сотрудника это снятие рутины, для IT — контроль и интеграции, для руководителя — видимость эффекта, для собственника — снижение издержек без «вечного пилота».</p>
+  <div class="audience-grid">
+    <div class="audience-card">
+      <div class="audience-role">СОТРУДНИК</div>
+      <div class="audience-title">Меньше рутины</div>
+      <div class="audience-desc">Письма, задачи, отчёты, поиск по данным компании — в одной среде. Фокус на «что снять с себя», а не на жаргон про агентов.</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-role">РУКОВОДИТЕЛЬ</div>
+      <div class="audience-title">Управляемый эффект</div>
+      <div class="audience-desc">Понятно, что запущено, сколько стоит и где AI реально разгружает команду — без догадок и Excel вокруг пилота.</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-role">IT</div>
+      <div class="audience-title">Безопасность и порядок</div>
+      <div class="audience-desc">Один контур вместо десятки теневых чат-ботов: доступы, данные, модели, логи и политика — в одной управляемой плоскости.</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-role">СОБСТВЕННИК</div>
+      <div class="audience-title">Механизм, а не фейерверк</div>
+      <div class="audience-desc">AI встраивается в ежедневную работу: измеримый эффект, масштабирование сценариев, а не разовая демонстрация модели.</div>
     </div>
   </div>
 </section>
@@ -224,27 +261,27 @@
 
 <section class="how-section" id="how">
   <div class="section-label">// КАК ЭТО РАБОТАЕТ</div>
-  <div class="section-title">От подключения до автономных<br/>агентов — 4 шага.</div>
+  <div class="section-title">Первый эффект, потом<br/>масштаб — 4 шага.</div>
   <div class="steps">
     <div class="step">
       <div class="step-num">01</div>
-      <div class="step-title">Подключите систему</div>
-      <div class="step-desc">Используйте готовые коннекторы для интеграции с вашей CRM, ERP, базами данных и внутренними API без прерывания рабочих процессов.</div>
+      <div class="step-title">Подключите контекст</div>
+      <div class="step-desc">CRM, ERP, базы и API — через коннекторы. Сотрудники работают с теми же системами, но через единую AI-среду вместо разрозненных инструментов.</div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
-      <div class="step-title">Настройте и анонимизируйте</div>
-      <div class="step-desc">Задайте политики данных один раз. ORDO автоматически анонимизирует корпоративные данные перед отправкой в любую AI-модель.</div>
+      <div class="step-title">Задайте политики данных</div>
+      <div class="step-desc">Один раз настройте правила: анонимизация перед любой моделью, границы данных и ответственность — чтобы IT был спокоен за контур.</div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
-      <div class="step-title">Выберите модели и навыки</div>
-      <div class="step-desc">Подберите нужную модель для каждой задачи из библиотеки. Назначьте навыки и обучите команду с помощью встроенных образовательных модулей.</div>
+      <div class="step-title">Получите быструю победу</div>
+      <div class="step-desc">Готовый сценарий или первый скилл под вашу рутину — чтобы люди увидели пользу за дни, а не «изучали платформу» неделями.</div>
     </div>
     <div class="step">
       <div class="step-num">04</div>
-      <div class="step-title">Запустите граф-агентов</div>
-      <div class="step-desc">Создавайте мульти-агентные пайплайны визуально и запускайте их в продакшн. Мониторинг, итерации и масштабирование — в одном месте.</div>
+      <div class="step-title">Соберите процессы в графы</div>
+      <div class="step-desc">Когда сценарии повторяются, визуально связывайте шаги и агентов, запускайте в прод, смотрите метрики и итерируйте — без кода и без хаоса.</div>
     </div>
   </div>
 </section>
@@ -252,8 +289,8 @@
 <section class="cta-section" id="contact">
   <div class="cta-inner">
     <div class="section-label">// СВЯЖИТЕСЬ С НАМИ</div>
-    <div class="cta-title">Готовы внедрить<br/><em>ИИ-агентов</em> в вашу компанию?</div>
-    <p style="margin-top: 20px; font-size: 15px; color: var(--muted); line-height: 1.7;">Оставьте корпоративный email — наша команда свяжется для персонального демо.</p>
+    <div class="cta-title">Готовы к единой<br/><em>AI-среде</em> в компании?</div>
+    <p style="margin-top: 20px; font-size: 15px; color: var(--muted); line-height: 1.7;">Оставьте корпоративный email — обсудим ваш контур, роли и первый сценарий с эффектом, а не «просто демо модели».</p>
     <div class="cta-form">
       <input class="cta-input" type="email" placeholder="вы@компания.ru" id="lead-email"/>
       <button class="cta-submit" onclick="handleSubmit()">ЗАПРОСИТЬ ДЕМО</button>
@@ -266,7 +303,7 @@
 <footer>
   <div class="footer-logo">ORDO<span>.</span>GROUP</div>
   <p>© 2026 Ordo Group. Все права защищены.</p>
-  <p style="font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--accent);">AI АГЕНТНАЯ ПЛАТФОРМА</p>
+  <p style="font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--accent);">ЕДИНАЯ СРЕДА AI-РАБОТЫ</p>
 </footer>
 
 <script>
