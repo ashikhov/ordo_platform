@@ -1,9 +1,9 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ORDO GROUP — единая среда AI-работы для компании</title>
+<title>CoreAI Platform — единая корпоративная AI-среда</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -116,17 +116,35 @@
   .audience-role { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent2); margin-bottom: 12px; }
   .audience-title { font-family: var(--ff-display); font-weight: 700; font-size: 16px; margin-bottom: 10px; color: var(--text); }
   .audience-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+  .long-section { border-top: 0.5px solid var(--border-dark); background: var(--white); }
+  .long-intro { margin-top: 20px; max-width: 820px; font-size: 16px; line-height: 1.8; color: var(--muted); }
+  .long-grid { margin-top: 42px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--border-dark); border: 1px solid var(--border-dark); }
+  .long-card { background: var(--off-white); padding: 26px 22px; }
+  .long-card h3 { font-family: var(--ff-display); font-size: 18px; margin-bottom: 12px; }
+  .long-card p { font-size: 14px; line-height: 1.7; color: var(--muted); }
+  .formula-box { margin-top: 40px; border: 1px solid var(--border-dark); background: var(--off-white); padding: 28px; }
+  .formula-chain { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.03em; line-height: 1.9; color: var(--text); }
+  .check-list { margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .check-item { padding: 12px 14px; border: 0.5px solid var(--border-dark); background: var(--white); font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .faq-list { margin-top: 34px; display: grid; gap: 1px; background: var(--border-dark); border: 1px solid var(--border-dark); }
+  .faq-item { background: var(--white); padding: 24px; }
+  .faq-q { font-family: var(--ff-display); font-size: 18px; margin-bottom: 8px; }
+  .faq-a { font-size: 14px; line-height: 1.75; color: var(--muted); max-width: 980px; }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">ORDO<span>.</span>GROUP</div>
+  <div class="logo">CORE<span>.</span>AI</div>
   <div class="nav-links">
-    <a href="#features">Платформа</a>
+    <a href="#problem">Проблема</a>
+    <a href="#features">Среда CoreAI</a>
     <a href="#audience">Для кого</a>
+    <a href="#value">Ценность</a>
     <a href="#models">Модели</a>
     <a href="#how">Как это работает</a>
+    <a href="#faq">FAQ</a>
     <a href="#contact">Контакты</a>
   </div>
   <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Запросить демо</button>
@@ -136,9 +154,9 @@
   <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
-  <div class="hero-label">ЕДИНАЯ СРЕДА AI-РАБОТЫ ДЛЯ КОМПАНИИ</div>
-  <h1>Одна среда для людей<br/>и <em>ИИ</em> — без хаоса<br/>и лишних чатов.</h1>
-  <p class="hero-sub">ORDO GROUP — это не «корпоративный ChatGPT каждому». Это управляемая AI-среда: десятки моделей, коннекторы к вашим системам, анонимизация данных и визуальные цепочки агентов — чтобы сотрудники снимали рутину, а IT и бизнес сохраняли контроль.</p>
+  <div class="hero-label">COREAI PLATFORM — ЕДИНАЯ КОРПОРАТИВНАЯ AI-СРЕДА</div>
+  <h1>Личный AI-помощник<br/>для каждого сотрудника<br/>в <em>едином контуре</em> компании.</h1>
+  <p class="hero-sub">CoreAI Platform — это не «купить AI каждому» и не корпоративный чат. Это рабочая среда, где сотрудники снимают рутину через скиллы, агентов и графы, а IT и бизнес сохраняют контроль над доступами, данными, моделями и интеграциями.</p>
   <div class="hero-actions">
     <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">НАЧАТЬ →</button>
     <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">Как это работает</button>
@@ -148,78 +166,132 @@
     <div class="stat-divider"></div>
     <div class="stat"><div class="stat-num">1</div><div class="stat-label">СРЕДА ДЛЯ КОМПАНИИ</div></div>
     <div class="stat-divider"></div>
-    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">СЦЕНАРИИ В ГРАФАХ</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">АВТОМАТИЗАЦИЙ В ГРАФАХ</div></div>
+  </div>
+</section>
+
+<section class="long-section" id="problem">
+  <div class="section-label">// ПРОБЛЕМА, КОТОРУЮ РЕШАЕТ COREAI</div>
+  <div class="section-title">Данные уже есть в компании,<br/>но ценность теряется в ручной рутине.</div>
+  <p class="long-intro">Почта, CRM, 1С, документы, задачи и знания живут в разных системах. Сотрудники делают повторяющиеся операции вручную, руководство получает эффект от AI фрагментарно, а IT борется с теневыми чатами. CoreAI собирает это в единую рабочую среду, где AI работает внутри корпоративного контекста и под правилами компании.</p>
+  <div class="long-grid">
+    <div class="long-card">
+      <h3>Разрозненные инструменты</h3>
+      <p>Когда каждый отдел использует свой AI-инструмент, теряются стандарты качества, растут риски утечки данных и исчезает общая картина внедрения.</p>
+    </div>
+    <div class="long-card">
+      <h3>Ручная повторяемость</h3>
+      <p>Одни и те же действия повторяются в почте, задачах и документах. Без системного подхода сотрудники перегружены рутиной и не успевают фокусироваться на важном.</p>
+    </div>
+    <div class="long-card">
+      <h3>Пилоты без масштаба</h3>
+      <p>Большинство AI-инициатив остаются локальными экспериментами, потому что нет механизма, который переводит единичный успех в корпоративный стандарт.</p>
+    </div>
   </div>
 </section>
 
 <section id="features">
   <div class="section-label">// ВОЗМОЖНОСТИ</div>
-  <div class="section-title">Инфраструктура, контекст<br/>и процессы — в одном контуре.</div>
+  <div class="section-title">Second Brain компании:<br/>контекст, действия и контроль.</div>
   <div class="features-grid">
     <div class="feat-card">
       <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-      <div class="feat-title">Единая точка входа к системам</div>
-      <div class="feat-desc">CRM, ERP, хранилища и внутренние API — одна среда для команды, без разрозненных «чатов с AI» и теневых сервисов.</div>
+      <div class="feat-title">Единая AI-среда поверх систем</div>
+      <div class="feat-desc">Почта, CRM, 1С/ERP, таск-трекеры, документы и базы знаний — в одном рабочем контуре без теневых AI-инструментов.</div>
     </div>
     <div class="feat-card">
       <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
-      <div class="feat-title">Модели под задачу и политику</div>
-      <div class="feat-desc">Десятки моделей в одной библиотеке: качество, скорость и стоимость — без привязки к одному вендору и без ручного «зоопарка» подписок.</div>
+      <div class="feat-title">Личный AI-помощник сотрудника</div>
+      <div class="feat-desc">Персональный AI-слой для писем, задач, документов и знаний. Помогает быстрее работать и постепенно передавать рутину в автоматизацию.</div>
     </div>
     <div class="feat-card">
       <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
-      <div class="feat-title">Данные под контролем контура</div>
-      <div class="feat-desc">Персональные и чувствительные поля уходят в модель уже после анонимизации — политика задаётся один раз для всей среды, а не для каждого чата отдельно.</div>
+      <div class="feat-title">Скиллы: повторяемые AI-навыки</div>
+      <div class="feat-desc">Резюме писем, извлечение задач, подготовка ответов, проверка по чек-листу и другие навыки из библиотеки или созданные сотрудниками без кода.</div>
     </div>
     <div class="feat-card">
       <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-      <div class="feat-title">Скиллы и онбординг команды</div>
-      <div class="feat-desc">Готовые шаблоны и собственные навыки под повторяющиеся задачи, плюс материалы, чтобы люди быстро перешли от «спросить AI» к рабочим сценариям.</div>
+      <div class="feat-title">Каталог агентов + выявление рутины</div>
+      <div class="feat-desc">Готовые роли (разборщик почты, помощник по задачам и др.) и агент, который сам находит повторяющиеся операции и предлагает, что автоматизировать дальше.</div>
     </div>
     <div class="feat-card">
       <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M5 8v3a7 7 0 0014 0V8M12 16v-5"/></svg></div>
-      <div class="feat-title">Процессы, а не только ответы</div>
-      <div class="feat-desc">Визуально собирайте цепочки: несколько шагов, роли агентов, проверки — чтобы автоматизировать поток работы, а не получать разовый текст в чате.</div>
+      <div class="feat-title">Графы: процессы, а не разовые ответы</div>
+      <div class="feat-desc">Связывайте шаги в цепочки: письмо → задача → черновик ответа → уведомление. AI выполняет сценарий по правилам и с нужным уровнем подтверждения.</div>
     </div>
     <div class="feat-card">
       <div class="feat-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-      <div class="feat-title">Аудит и контроль для enterprise</div>
-      <div class="feat-desc">Запуски, токены, задержки и качество — в одном месте. Прозрачность для IT и руководства: что делает AI, с какими данными и в каком контуре.</div>
+      <div class="feat-title">Безопасность, аудит и управление моделями</div>
+      <div class="feat-desc">Роли, права, логи, лимиты, маршрутизация моделей и прозрачность действий AI. IT управляет контуром, бизнес видит эффект и масштабирует лучшие сценарии.</div>
+    </div>
+  </div>
+</section>
+
+<section class="long-section" id="value">
+  <div class="section-label">// ПРОДУКТОВАЯ ЦЕННОСТЬ</div>
+  <div class="section-title">CoreAI — это не набор фич,<br/>а операционная модель AI-работы.</div>
+  <p class="long-intro">Главная логика продукта: от хаотичного использования AI к системной самооцифровке процессов. Сотрудник получает личную пользу, IT — безопасность и управляемость, руководство — прозрачность и метрики, собственник — постоянный механизм повышения эффективности.</p>
+  <div class="formula-box">
+    <div class="formula-chain">Единая AI-среда компании → личный AI-помощник сотрудника → выявление рутины → обучение → скиллы / агенты / графы → автоматизация действий → измерение эффекта → масштабирование между подразделениями.</div>
+    <div class="check-list">
+      <div class="check-item">Для сотрудника: меньше ручной работы, быстрее выполнение задач, понятный путь от «запроса в чат» к готовому сценарию.</div>
+      <div class="check-item">Для IT: роли, доступы, аудит, ограничения по данным, контроль моделей и единая политика безопасности.</div>
+      <div class="check-item">Для руководителя: видимость по процессам команды, карте автоматизации и потенциалу масштабирования.</div>
+      <div class="check-item">Для собственника: не разовый AI-пилот, а долгосрочный контур роста эффективности и управляемости.</div>
     </div>
   </div>
 </section>
 
 <section class="audience-section" id="audience">
   <div class="section-label">// ДЛЯ КОГО</div>
-  <div class="section-title">Один продукт — разные<br/>обещания для ролей.</div>
-  <p class="audience-intro">Технически ORDO — единая AI-среда. Для сотрудника это снятие рутины, для IT — контроль и интеграции, для руководителя — видимость эффекта, для собственника — снижение издержек без «вечного пилота».</p>
+  <div class="section-title">Один продукт — разные<br/>выгоды для ролей.</div>
+  <p class="audience-intro">CoreAI объясняется разным аудиториям на их языке: сотруднику — личная польза, IT — контроль, руководителю — управляемость, собственнику — постоянный рост эффективности.</p>
   <div class="audience-grid">
     <div class="audience-card">
       <div class="audience-role">СОТРУДНИК</div>
       <div class="audience-title">Меньше рутины</div>
-      <div class="audience-desc">Письма, задачи, отчёты, поиск по данным компании — в одной среде. Фокус на «что снять с себя», а не на жаргон про агентов.</div>
+      <div class="audience-desc">Личный AI-помощник снимает рутину: почта, задачи, документы, отчёты. Вы сами выбираете, что передавать AI и что оставлять вручную.</div>
     </div>
     <div class="audience-card">
       <div class="audience-role">РУКОВОДИТЕЛЬ</div>
       <div class="audience-title">Управляемый эффект</div>
-      <div class="audience-desc">Понятно, что запущено, сколько стоит и где AI реально разгружает команду — без догадок и Excel вокруг пилота.</div>
+      <div class="audience-desc">Видно, какие процессы автоматизируются, где команда теряет время и какие сценарии дают лучший эффект для масштабирования.</div>
     </div>
     <div class="audience-card">
       <div class="audience-role">IT</div>
       <div class="audience-title">Безопасность и порядок</div>
-      <div class="audience-desc">Один контур вместо десятки теневых чат-ботов: доступы, данные, модели, логи и политика — в одной управляемой плоскости.</div>
+      <div class="audience-desc">Единый контур AI: права, интеграции, модели, аудит и лимиты. Без хаоса, утечек и несанкционированных внешних сервисов.</div>
     </div>
     <div class="audience-card">
       <div class="audience-role">СОБСТВЕННИК</div>
       <div class="audience-title">Механизм, а не фейерверк</div>
-      <div class="audience-desc">AI встраивается в ежедневную работу: измеримый эффект, масштабирование сценариев, а не разовая демонстрация модели.</div>
+      <div class="audience-desc">Не разовый пилот, а механизм: снижение ручного труда, рост прозрачности процессов и управляемая AI-трансформация компании.</div>
+    </div>
+  </div>
+</section>
+
+<section class="long-section" id="security-roi">
+  <div class="section-label">// КОНТРОЛЬ И ЭФФЕКТ</div>
+  <div class="section-title">Безопасность и ROI — не дополнение,<br/>а обязательная часть продукта.</div>
+  <div class="long-grid">
+    <div class="long-card">
+      <h3>Контроль корпоративного контура</h3>
+      <p>Ролевой доступ, отдельные права на чтение/запись, лимиты по моделям и пользователям, журнал действий агентов и графов, а также подтверждение критичных действий человеком.</p>
+    </div>
+    <div class="long-card">
+      <h3>Прозрачная аналитика эффекта</h3>
+      <p>CoreAI считает активность, повторяемость и экономию времени: сколько действий автоматизировано, сколько часов снято с сотрудников и как эффект распределяется по подразделениям.</p>
+    </div>
+    <div class="long-card">
+      <h3>Масштабирование успешных сценариев</h3>
+      <p>Скиллы, агенты и графы, которые дали эффект в одной команде, публикуются и переиспользуются в других отделах как корпоративные лучшие практики.</p>
     </div>
   </div>
 </section>
 
 <section class="models-section" id="models">
   <div class="models-header">
-    <div class="section-label">// ПОДДЕРЖИВАЕМЫЕ МОДЕЛИ</div>
+    <div class="section-label">// MULTI-PROVIDER LLM LAYER</div>
   </div>
   <div class="ticker-wrap">
     <div class="ticker">
@@ -261,27 +333,55 @@
 
 <section class="how-section" id="how">
   <div class="section-label">// КАК ЭТО РАБОТАЕТ</div>
-  <div class="section-title">Первый эффект, потом<br/>масштаб — 4 шага.</div>
+  <div class="section-title">Онбординг: первый результат<br/>за 1 день, затем масштаб.</div>
   <div class="steps">
     <div class="step">
       <div class="step-num">01</div>
-      <div class="step-title">Подключите контекст</div>
-      <div class="step-desc">CRM, ERP, базы и API — через коннекторы. Сотрудники работают с теми же системами, но через единую AI-среду вместо разрозненных инструментов.</div>
+      <div class="step-title">Подключите рабочий контекст</div>
+      <div class="step-desc">Почта, таск-трекер, CRM, документы и базы знаний. Сотрудник начинает с реальных данных, а не с абстрактного «пустого чата».</div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
-      <div class="step-title">Задайте политики данных</div>
-      <div class="step-desc">Один раз настройте правила: анонимизация перед любой моделью, границы данных и ответственность — чтобы IT был спокоен за контур.</div>
+      <div class="step-title">Готовый агент: разборщик почты</div>
+      <div class="step-desc">Быстрая победа: классификация писем, выделение важных, извлечение задач и черновики ответов. Польза видна сразу в ежедневной работе.</div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
-      <div class="step-title">Получите быструю победу</div>
-      <div class="step-desc">Готовый сценарий или первый скилл под вашу рутину — чтобы люди увидели пользу за дни, а не «изучали платформу» неделями.</div>
+      <div class="step-title">Первый скилл под свою рутину</div>
+      <div class="step-desc">Извлечение задач, резюме письма, подготовка ответа — сотрудник настраивает формат результата и сохраняет навык для повторного применения.</div>
     </div>
     <div class="step">
       <div class="step-num">04</div>
-      <div class="step-title">Соберите процессы в графы</div>
-      <div class="step-desc">Когда сценарии повторяются, визуально связывайте шаги и агентов, запускайте в прод, смотрите метрики и итерируйте — без кода и без хаоса.</div>
+      <div class="step-title">Первый граф: письмо → задача → ответ</div>
+      <div class="step-desc">Переход от разового запроса к процессу: шаблон графа, тест, запуск с подтверждением человека и контроль исполнения.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-title">AI находит, что автоматизировать дальше</div>
+      <div class="step-desc">Агент выявления рутины показывает повторяемые действия, частотность и потенциальную экономию времени: что лучше решить скиллом, агентом или графом.</div>
+    </div>
+  </div>
+</section>
+
+<section class="long-section" id="faq">
+  <div class="section-label">// FAQ</div>
+  <div class="section-title">Частые вопросы<br/>о CoreAI Platform.</div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">Вы заменяете CRM, ERP или 1С?</div>
+      <div class="faq-a">Нет. CoreAI работает поверх существующих систем как единая AI-среда: использует контекст, помогает автоматизировать процессы и возвращает эффект в рабочий контур компании.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Это просто корпоративный чат с AI?</div>
+      <div class="faq-a">Нет. Чат — только вход. Основная ценность в скиллах, агентах и графах, которые превращают повторяющиеся действия в управляемые автоматизации с аудитом и правилами безопасности.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Как быстро можно увидеть первый результат?</div>
+      <div class="faq-a">В пилоте цель — первый эффект в течение первых дней: подключение источника, запуск готового агента, первый скилл и первый граф. Дальше система сама подсказывает, что автоматизировать следующим шагом.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Как вы контролируете риски утечек и ошибок?</div>
+      <div class="faq-a">Через политики доступа, анонимизацию, ограничения по данным, аудит всех действий AI, лимиты и режимы подтверждения для критичных операций. IT сохраняет полный контроль над контуром.</div>
     </div>
   </div>
 </section>
@@ -289,8 +389,8 @@
 <section class="cta-section" id="contact">
   <div class="cta-inner">
     <div class="section-label">// СВЯЖИТЕСЬ С НАМИ</div>
-    <div class="cta-title">Готовы к единой<br/><em>AI-среде</em> в компании?</div>
-    <p style="margin-top: 20px; font-size: 15px; color: var(--muted); line-height: 1.7;">Оставьте корпоративный email — обсудим ваш контур, роли и первый сценарий с эффектом, а не «просто демо модели».</p>
+    <div class="cta-title">Готовы запустить<br/><em>CoreAI Platform</em> в компании?</div>
+    <p style="margin-top: 20px; font-size: 15px; color: var(--muted); line-height: 1.7;">Оставьте корпоративный email — покажем сценарий пилота: подключение контура, 3 стартовых кейса, метрики снятой рутины и план масштабирования.</p>
     <div class="cta-form">
       <input class="cta-input" type="email" placeholder="вы@компания.ru" id="lead-email"/>
       <button class="cta-submit" onclick="handleSubmit()">ЗАПРОСИТЬ ДЕМО</button>
@@ -301,8 +401,8 @@
 </section>
 
 <footer>
-  <div class="footer-logo">ORDO<span>.</span>GROUP</div>
-  <p>© 2026 Ordo Group. Все права защищены.</p>
+  <div class="footer-logo">CORE<span>.</span>AI</div>
+  <p>© 2026 CoreAI Platform. Все права защищены.</p>
   <p style="font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--accent);">ЕДИНАЯ СРЕДА AI-РАБОТЫ</p>
 </footer>
 
