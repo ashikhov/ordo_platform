@@ -39,24 +39,33 @@
   .nav-cta { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-weight: 500; transition: background 0.2s, transform 0.15s; }
   .nav-cta:hover { background: #0a9970; transform: translateY(-1px); }
 
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 100px 5vw 60px; position: relative; overflow: hidden; background: var(--white); }
+  .hero { min-height: calc(100vh - 64px); display: flex; flex-direction: column; justify-content: center; padding: 76px 5vw 34px; position: relative; overflow: hidden; background: var(--white); }
   .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; }
   .hero-glow { position: absolute; top: -150px; right: -100px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(10,124,92,0.06) 0%, transparent 70%); pointer-events: none; }
   .hero-glow2 { position: absolute; bottom: -100px; left: -80px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(74,63,191,0.05) 0%, transparent 70%); pointer-events: none; }
-  .hero-label { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; position: relative; }
+  .hero-label { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; position: relative; }
   .hero-label::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--accent); }
-  .hero h1 { font-family: var(--ff-display); font-weight: 800; font-size: clamp(32px, 5.2vw, 64px); line-height: 1.02; letter-spacing: -0.02em; max-width: 720px; position: relative; }
+  .hero h1 { font-family: var(--ff-display); font-weight: 800; font-size: clamp(28px, 4.3vw, 56px); line-height: 1.03; letter-spacing: -0.02em; max-width: 700px; position: relative; }
   .hero h1 em { font-style: normal; color: var(--accent); }
-  .hero-sub { margin-top: 32px; font-size: 17px; line-height: 1.7; color: var(--muted); max-width: 520px; position: relative; }
-  .hero-actions { margin-top: 48px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; position: relative; }
+  .hero-sub { margin-top: 18px; font-size: 16px; line-height: 1.62; color: var(--muted); max-width: 560px; position: relative; }
+  .hero-actions { margin-top: 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; position: relative; }
   .btn-primary { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-weight: 500; transition: background 0.2s, transform 0.15s; }
   .btn-primary:hover { background: #0a9970; transform: translateY(-1px); }
-  .hero-stats { margin-top: 80px; display: flex; gap: 48px; flex-wrap: wrap; position: relative; }
+  .hero-stats { margin-top: 34px; display: flex; gap: 34px; flex-wrap: wrap; position: relative; }
   .stat { display: flex; flex-direction: column; gap: 4px; }
   .stat-num { font-family: var(--ff-display); font-weight: 700; font-size: 32px; color: var(--text); }
   .stat-num span { color: var(--accent); }
   .stat-label { font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
   .stat-divider { width: 0.5px; background: var(--border-dark); align-self: stretch; }
+
+  @media (max-height: 860px) {
+    .hero { padding-top: 70px; padding-bottom: 24px; }
+    .hero h1 { font-size: clamp(26px, 3.9vw, 48px); }
+    .hero-sub { margin-top: 14px; font-size: 15px; line-height: 1.55; }
+    .hero-actions { margin-top: 18px; }
+    .hero-stats { margin-top: 22px; }
+    .stat-num { font-size: 26px; }
+  }
 
   .workspace-section { padding: 72px 5vw 56px; background: #0a0a0a; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; }
   .workspace-wrap { max-width: 1180px; margin: 0 auto; }
