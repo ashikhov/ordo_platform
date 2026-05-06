@@ -36,8 +36,8 @@
   .nav-links { display: flex; gap: 32px; }
   .nav-links a { font-size: 13px; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--text); }
-  .nav-cta { font-family: var(--ff-mono); font-size: 12px; padding: 8px 20px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; letter-spacing: 0.06em; transition: all 0.2s; }
-  .nav-cta:hover { background: var(--accent); color: var(--white); }
+  .nav-cta { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-weight: 500; transition: background 0.2s, transform 0.15s; }
+  .nav-cta:hover { background: #0a9970; transform: translateY(-1px); }
 
   .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 100px 5vw 60px; position: relative; overflow: hidden; background: var(--white); }
   .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; }
@@ -49,10 +49,8 @@
   .hero h1 em { font-style: normal; color: var(--accent); }
   .hero-sub { margin-top: 32px; font-size: 17px; line-height: 1.7; color: var(--muted); max-width: 520px; position: relative; }
   .hero-actions { margin-top: 48px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; position: relative; }
-  .btn-primary { font-family: var(--ff-mono); font-size: 13px; letter-spacing: 0.08em; padding: 14px 36px; background: var(--accent); color: var(--white); border: none; cursor: pointer; font-weight: 500; transition: all 0.2s; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); }
+  .btn-primary { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-weight: 500; transition: background 0.2s, transform 0.15s; }
   .btn-primary:hover { background: #0a9970; transform: translateY(-1px); }
-  .btn-ghost { font-family: var(--ff-mono); font-size: 13px; letter-spacing: 0.06em; padding: 14px 28px; background: transparent; border: 0.5px solid var(--border-dark); color: var(--muted); cursor: pointer; transition: all 0.2s; }
-  .btn-ghost:hover { color: var(--text); border-color: var(--text); }
   .hero-stats { margin-top: 80px; display: flex; gap: 48px; flex-wrap: wrap; position: relative; }
   .stat { display: flex; flex-direction: column; gap: 4px; }
   .stat-num { font-family: var(--ff-display); font-weight: 700; font-size: 32px; color: var(--text); }
@@ -95,14 +93,14 @@
   .section-label { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--accent2); margin-bottom: 16px; }
   .section-title { font-family: var(--ff-display); font-weight: 700; font-size: clamp(28px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.01em; }
 
-  .features-grid { margin-top: 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--border-dark); border: 1px solid var(--border-dark); }
-  .feat-card { background: var(--white); padding: 40px 32px; transition: background 0.25s; cursor: default; position: relative; overflow: hidden; }
-  .feat-card:hover { background: var(--off-white); }
+  .features-grid { margin-top: 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.12); }
+  .feat-card { background: #161616; padding: 40px 32px; transition: background 0.25s; cursor: default; position: relative; overflow: hidden; }
+  .feat-card:hover { background: #1d1d1d; }
   .feat-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: 0; transition: opacity 0.3s; }
   .feat-card:hover::after { opacity: 1; }
-  .feat-title { font-family: var(--ff-display); font-weight: 700; font-size: 17px; margin-bottom: 12px; color: var(--text); }
-  .feat-card--highlight { background: var(--off-white); }
-  .feat-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .feat-title { font-family: var(--ff-display); font-weight: 700; font-size: 17px; margin-bottom: 12px; color: #fff; }
+  .feat-card--highlight { background: #1b1b1b; }
+  .feat-desc { font-size: 14px; color: rgba(255,255,255,0.62); line-height: 1.7; }
 
   .models-section { border-top: 0.5px solid var(--border-dark); border-bottom: 0.5px solid var(--border-dark); padding: 0; overflow: hidden; background: var(--off-white); }
   .models-header { padding: 48px 5vw 24px; }
@@ -121,12 +119,12 @@
   .cta-inner { max-width: 680px; }
   .cta-title { font-family: var(--ff-display); font-weight: 800; font-size: clamp(32px, 5vw, 58px); line-height: 1.05; letter-spacing: -0.02em; }
   .cta-title em { font-style: normal; color: var(--accent); }
-  .cta-form { margin-top: 40px; display: flex; gap: 0; max-width: 480px; }
+  .cta-form { margin-top: 40px; display: flex; gap: 10px; max-width: 560px; }
   .cta-input { flex: 1; padding: 14px 20px; background: var(--off-white); border: 0.5px solid var(--border-dark); color: var(--text); font-family: var(--ff-body); font-size: 14px; outline: none; transition: border-color 0.2s; }
   .cta-input::placeholder { color: var(--muted); }
   .cta-input:focus { border-color: var(--accent); }
-  .cta-submit { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 24px; background: var(--accent); color: var(--white); border: none; cursor: pointer; font-weight: 500; white-space: nowrap; transition: background 0.2s; }
-  .cta-submit:hover { background: #0a9970; }
+  .cta-submit { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-weight: 500; white-space: nowrap; transition: background 0.2s, transform 0.15s; }
+  .cta-submit:hover { background: #0a9970; transform: translateY(-1px); }
   .cta-note { margin-top: 14px; font-size: 12px; color: var(--muted); }
 
   footer { padding: 40px 5vw; border-top: 0.5px solid var(--border-dark); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; background: var(--off-white); }
@@ -134,13 +132,14 @@
   .footer-logo span { color: var(--accent); }
   footer p { font-size: 12px; color: var(--muted); }
 
-  .audience-section { background: var(--white); border-top: 0.5px solid var(--border-dark); }
-  .audience-intro { margin-top: 20px; font-size: 15px; color: var(--muted); line-height: 1.75; max-width: 720px; }
-  .audience-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--border-dark); border: 1px solid var(--border-dark); }
-  .audience-card { background: var(--off-white); padding: 28px 24px; }
-  .audience-role { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent2); margin-bottom: 12px; }
-  .audience-title { font-family: var(--ff-display); font-weight: 700; font-size: 16px; margin-bottom: 10px; color: var(--text); }
-  .audience-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .audience-section { background: #0a0a0a; border-top: 0.5px solid rgba(255,255,255,0.12); }
+  .audience-section .section-title { color: #fff; }
+  .audience-intro { margin-top: 20px; font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.75; max-width: 720px; }
+  .audience-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.12); }
+  .audience-card { background: #151515; padding: 28px 24px; }
+  .audience-role { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 12px; }
+  .audience-title { font-family: var(--ff-display); font-weight: 700; font-size: 16px; margin-bottom: 10px; color: #fff; }
+  .audience-desc { font-size: 13px; color: rgba(255,255,255,0.62); line-height: 1.65; }
 
   .long-section { border-top: 0.5px solid var(--border-dark); background: var(--white); }
   .long-intro { margin-top: 20px; max-width: 820px; font-size: 16px; line-height: 1.8; color: var(--muted); }
@@ -153,11 +152,26 @@
   .manifest-step { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.15em; color: var(--accent2); margin-bottom: 14px; }
   .manifest-name { font-family: var(--ff-display); font-weight: 700; font-size: 16px; margin-bottom: 10px; color: var(--text); }
   .manifest-text { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .dark-section { background: #0a0a0a; border-top: 0.5px solid rgba(255,255,255,0.12); }
+  .dark-section .section-label { color: var(--accent); }
+  .dark-section .section-title { color: #fff; }
+  .dark-section .long-intro { color: rgba(255,255,255,0.65); }
+  .dark-section .manifest-grid { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.12); }
+  .dark-section .manifest-card { background: #151515; }
+  .dark-section .manifest-step { color: var(--accent); }
+  .dark-section .manifest-name { color: #fff; }
+  .dark-section .manifest-text { color: rgba(255,255,255,0.62); }
+  .section-cta-row { margin-top: 30px; display: flex; justify-content: flex-start; }
+  .section-demo-btn { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-weight: 500; transition: background 0.2s, transform 0.15s; }
+  .section-demo-btn:hover { background: #0a9970; transform: translateY(-1px); }
   .problem-symptoms-title { margin-top: 48px; font-family: var(--ff-display); font-weight: 700; font-size: clamp(22px, 3vw, 28px); line-height: 1.15; letter-spacing: -0.01em; }
   .faq-list { margin-top: 34px; display: grid; gap: 1px; background: var(--border-dark); border: 1px solid var(--border-dark); }
-  .faq-item { background: var(--white); padding: 24px; }
-  .faq-q { font-family: var(--ff-display); font-size: 18px; margin-bottom: 8px; }
-  .faq-a { font-size: 14px; line-height: 1.75; color: var(--muted); max-width: 980px; }
+  .faq-item { background: var(--white); padding: 0; }
+  .faq-q { width: 100%; text-align: left; font-family: var(--ff-display); font-size: 18px; padding: 22px 24px; border: none; background: transparent; color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .faq-q::after { content: '+'; font-family: var(--ff-mono); font-size: 16px; color: var(--accent); transition: transform 0.2s ease; }
+  .faq-a { max-height: 0; overflow: hidden; font-size: 14px; line-height: 1.75; color: var(--muted); max-width: 980px; padding: 0 24px; transition: max-height 0.25s ease, padding-bottom 0.25s ease; }
+  .faq-item.open .faq-q::after { content: '−'; }
+  .faq-item.open .faq-a { max-height: 320px; padding-bottom: 22px; }
 
   .why-section { padding: 88px 5vw; background: var(--off-white); border-top: 0.5px solid var(--border-dark); }
   .why-inner { max-width: 1000px; margin: 0 auto; }
@@ -230,10 +244,8 @@
   <div class="nav-links">
     <a href="#problem">Проблема</a>
     <a href="#features">Среда Ordo</a>
-    <a href="#audience">Для кого</a>
     <a href="#value">Ценность</a>
-    <a href="#models">Модели</a>
-    <a href="#how">Как это работает</a>
+    <a href="#audience">Роли в среде</a>
     <a href="#faq">FAQ</a>
     <a href="#contact">Контакты</a>
   </div>
@@ -248,8 +260,7 @@
   <h1>Личный AI<br/>для каждого сотрудника<br/>в едином контуре компании</h1>
   <p class="hero-sub">Ordo Platform — это не «купить AI каждому» и не корпоративный чат. Это рабочая среда, где сотрудники снимают рутину через скиллы, агентов и графы, а IT и бизнес сохраняют контроль над доступами, данными, моделями и интеграциями.</p>
   <div class="hero-actions">
-    <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">НАЧАТЬ →</button>
-    <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">Как это работает</button>
+    <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Запросить демо</button>
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">50<span>+</span></div><div class="stat-label">МОДЕЛЕЙ В КАТАЛОГЕ</div></div>
@@ -265,15 +276,15 @@
     <div class="workspace-frame">
       <div class="workspace-topbar">
         <span><strong>ORDO</strong> <span class="workspace-topbar-dot">·</span> AGENT WORKSPACE</span>
-        <span>trace · #4f81e2</span>
+        <span>трейс · #4f81e2</span>
       </div>
       <div class="workspace-goal-header">
-        <div class="workspace-kicker">User goal</div>
+        <div class="workspace-kicker">Цель пользователя</div>
         <p class="workspace-goal-text">Сравни план-факт из 1С и SQL, проверь сделки без next step в CRM, найди причины отклонений и собери дашборд для руководителя.</p>
       </div>
       <div class="workspace-body">
         <div class="workspace-col">
-          <div class="workspace-kicker">Agents</div>
+          <div class="workspace-kicker">Агенты</div>
           <div class="workspace-agent-card">
             <div class="workspace-agent-row">
               <span class="workspace-accent-dot" aria-hidden="true"></span>
@@ -321,20 +332,20 @@
           </div>
         </div>
         <div class="workspace-col">
-          <div class="workspace-kicker">Pipeline trace</div>
+          <div class="workspace-kicker">Pipeline: трейс</div>
           <div class="workspace-trace-list">
-            <div class="workspace-trace-row"><span class="workspace-trace-num">1</span><span class="workspace-trace-label">Retrieve from 1C</span></div>
-            <div class="workspace-trace-row"><span class="workspace-trace-num">2</span><span class="workspace-trace-label">Query SQL</span></div>
-            <div class="workspace-trace-row"><span class="workspace-trace-num">3</span><span class="workspace-trace-label">Analyze CRM</span></div>
-            <div class="workspace-trace-row"><span class="workspace-trace-num">4</span><span class="workspace-trace-label">Build chart</span></div>
-            <div class="workspace-trace-row"><span class="workspace-trace-num">5</span><span class="workspace-trace-label">Verify sources</span></div>
-            <div class="workspace-trace-row"><span class="workspace-trace-num">6</span><span class="workspace-trace-label">Save to dashboard</span></div>
-            <div class="workspace-trace-row"><span class="workspace-trace-num">7</span><span class="workspace-trace-label">Notify owner</span></div>
-            <div class="workspace-trace-row"><span class="workspace-trace-num">8</span><span class="workspace-trace-label">Log trace</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">1</span><span class="workspace-trace-label">Загрузка данных из 1С</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">2</span><span class="workspace-trace-label">Запрос к SQL</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">3</span><span class="workspace-trace-label">Анализ CRM</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">4</span><span class="workspace-trace-label">Построение графика</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">5</span><span class="workspace-trace-label">Проверка источников</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">6</span><span class="workspace-trace-label">Сохранение в дашборд</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">7</span><span class="workspace-trace-label">Уведомление владельца</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">8</span><span class="workspace-trace-label">Логирование трейса</span></div>
           </div>
         </div>
         <div class="workspace-col">
-          <div class="workspace-kicker">Dashboard result</div>
+          <div class="workspace-kicker">Результат в дашборде</div>
           <div class="workspace-dash-list">
             <div class="workspace-dash-item">Выручка: −7,4% к плану</div>
             <div class="workspace-dash-item">Расходы: +4,1% к плану</div>
@@ -369,9 +380,9 @@
   </div>
 </section>
 
-<section id="features">
+<section id="features" class="dark-section">
   <div class="section-label">// ВОЗМОЖНОСТИ</div>
-  <div class="section-title">Second Brain компании:<br/>контекст, действия и контроль.</div>
+  <div class="section-title">Корпоративный Second Brain:<br/>контекст, действия и контроль.</div>
   <div class="features-grid">
     <div class="feat-card">
       <div class="feat-title">Единая AI-среда поверх систем</div>
@@ -403,7 +414,7 @@
     </div>
     <div class="feat-card">
       <div class="feat-title">Геймификация и трекинг результатов</div>
-      <div class="feat-desc">Бейджи и прогресс за первые шаги, учёт снятой рутины и обмен удачными сценариями в команде; выделение AI-champions — без «рейтингов ради контроля».</div>
+      <div class="feat-desc">Бейджи и прогресс за первые шаги, учёт снятой рутины и обмен удачными сценариями в команде; выделение AI-чемпионов — без «рейтингов ради контроля».</div>
     </div>
   </div>
 </section>
@@ -428,11 +439,14 @@
       <div class="manifest-text">Скиллы, инструменты, пайплайны, оркестрация A2A, согласования и аудит превращают выводы в управляемые действия.</div>
     </div>
   </div>
+  <div class="section-cta-row">
+    <button class="section-demo-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Запросить демо</button>
+  </div>
 </section>
 
 <section class="audience-section" id="audience">
-  <div class="section-label">// ДЛЯ КОГО</div>
-  <div class="section-title">Один продукт — разные<br/>выгоды для ролей.</div>
+  <div class="section-label">// РОЛИ В СРЕДЕ</div>
+  <div class="section-title">Роли в среде Ordo</div>
   <p class="audience-intro">Ordo объясняется разным аудиториям на их языке: сотруднику — личная польза, IT — контроль, руководителю — управляемость, собственнику — постоянный рост эффективности.</p>
   <div class="audience-grid">
     <div class="audience-card">
@@ -455,6 +469,9 @@
       <div class="audience-title">Механизм, а не фейерверк</div>
       <div class="audience-desc">Не разовый пилот, а механизм: снижение ручного труда, рост прозрачности процессов и управляемая AI-трансформация компании.</div>
     </div>
+  </div>
+  <div class="section-cta-row">
+    <button class="section-demo-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Запросить демо</button>
   </div>
 </section>
 
@@ -483,38 +500,46 @@
   </div>
   <div class="ticker-wrap">
     <div class="ticker">
-      <div class="model-tag">GPT-4o</div>
+      <div class="model-tag">GPT-4.1</div>
+      <div class="model-tag highlight">GPT-4o</div>
+      <div class="model-tag">o3</div>
       <div class="model-tag highlight">Claude 3.7 Sonnet</div>
-      <div class="model-tag">Gemini 1.5 Pro</div>
+      <div class="model-tag">Gemini 2.5 Pro</div>
+      <div class="model-tag">Gemini 2.5 Flash</div>
+      <div class="model-tag">Llama 3.3 70B</div>
       <div class="model-tag">Mistral Large</div>
-      <div class="model-tag highlight">LLaMA 3.3</div>
       <div class="model-tag">Command R+</div>
-      <div class="model-tag">Grok 2</div>
-      <div class="model-tag highlight">DeepSeek V3</div>
-      <div class="model-tag">Qwen 2.5</div>
-      <div class="model-tag">Yi 34B</div>
-      <div class="model-tag highlight">Mixtral 8x22B</div>
-      <div class="model-tag">Falcon 180B</div>
-      <div class="model-tag">Phi-3</div>
-      <div class="model-tag highlight">Gemma 2</div>
-      <div class="model-tag">o1-preview</div>
+      <div class="model-tag highlight">Grok 3</div>
       <div class="model-tag">Perplexity Sonar</div>
-      <div class="model-tag">GPT-4o</div>
+      <div class="model-tag highlight">DeepSeek V3</div>
+      <div class="model-tag">DeepSeek R1</div>
+      <div class="model-tag highlight">Qwen2.5-Max</div>
+      <div class="model-tag">Qwen2.5-72B</div>
+      <div class="model-tag">GLM-4.5</div>
+      <div class="model-tag highlight">Kimi K2</div>
+      <div class="model-tag">Hunyuan Turbo</div>
+      <div class="model-tag highlight">GigaChat MAX</div>
+      <div class="model-tag">YandexGPT 5 Pro</div>
+      <div class="model-tag">GPT-4.1</div>
+      <div class="model-tag highlight">GPT-4o</div>
+      <div class="model-tag">o3</div>
       <div class="model-tag highlight">Claude 3.7 Sonnet</div>
-      <div class="model-tag">Gemini 1.5 Pro</div>
+      <div class="model-tag">Gemini 2.5 Pro</div>
+      <div class="model-tag">Gemini 2.5 Flash</div>
+      <div class="model-tag">Llama 3.3 70B</div>
       <div class="model-tag">Mistral Large</div>
-      <div class="model-tag highlight">LLaMA 3.3</div>
       <div class="model-tag">Command R+</div>
-      <div class="model-tag">Grok 2</div>
-      <div class="model-tag highlight">DeepSeek V3</div>
-      <div class="model-tag">Qwen 2.5</div>
-      <div class="model-tag">Yi 34B</div>
-      <div class="model-tag highlight">Mixtral 8x22B</div>
-      <div class="model-tag">Falcon 180B</div>
-      <div class="model-tag">Phi-3</div>
-      <div class="model-tag highlight">Gemma 2</div>
-      <div class="model-tag">o1-preview</div>
+      <div class="model-tag highlight">Grok 3</div>
       <div class="model-tag">Perplexity Sonar</div>
+      <div class="model-tag highlight">DeepSeek V3</div>
+      <div class="model-tag">DeepSeek R1</div>
+      <div class="model-tag highlight">Qwen2.5-Max</div>
+      <div class="model-tag">Qwen2.5-72B</div>
+      <div class="model-tag">GLM-4.5</div>
+      <div class="model-tag highlight">Kimi K2</div>
+      <div class="model-tag">Hunyuan Turbo</div>
+      <div class="model-tag highlight">GigaChat MAX</div>
+      <div class="model-tag">YandexGPT 5 Pro</div>
     </div>
   </div>
 </section>
@@ -523,7 +548,7 @@
   <div class="why-inner">
     <div class="section-label">// ПОДХОД</div>
     <h2 class="why-title">Разработано не ради AI-хайпа, а для рабочих бизнес-процессов</h2>
-    <p class="why-intro">Команда Ordo имеет глубокий опыт в LLM, RAG, agentic systems и создании фундаментальных AI-технологий. Мы проектируем платформу не как демонстрацию возможностей модели, а как управляемый слой для реальных процессов, данных и ответственности внутри компании.</p>
+    <p class="why-intro">Команда Ordo имеет глубокий опыт в LLM, RAG, агентных системах и создании фундаментальных AI-технологий. Мы проектируем платформу не как демонстрацию возможностей модели, а как управляемый слой для реальных процессов, данных и ответственности внутри компании.</p>
     <div class="why-grid">
       <div class="why-card"><span class="why-dot" aria-hidden="true"></span><p>Опыт выходцев из GigaChat и сильных российских AI-команд</p></div>
       <div class="why-card"><span class="why-dot" aria-hidden="true"></span><p>Экспертиза в LLM и applied R&amp;D</p></div>
@@ -540,14 +565,14 @@
       <div class="partners-kicker">• ПАРТНЁРАМ</div>
       <h2 class="partners-title">Для интеграторов: добавьте агентский слой к вашим CRM/ERP-проектам</h2>
       <p class="partners-lead">Усильте вашу экспертизу и предложите клиентам по-настоящему надёжные и прогрессивные AI-решения без разработки платформы с нуля.</p>
-      <p class="partners-body">CRM/ERP-интеграторы уже знают процессы, данные и ограничения клиента. Ordo добавляет то, чего не хватает существующим системам: агентский интерфейс, скиллы, пайплайны, A2A, выбор моделей, логи, approval и on-prem / private cloud deployment.</p>
+      <p class="partners-body">CRM/ERP-интеграторы уже знают процессы, данные и ограничения клиента. Ordo добавляет то, чего не хватает существующим системам: агентский интерфейс, скиллы, пайплайны, A2A, выбор моделей, логи, согласование действий и развёртывание on-prem / private cloud.</p>
     </div>
     <div class="partners-cards">
-      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Demo workspace для партнёров</span></div>
-      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Skill templates</span></div>
+      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Демо-Workspace для партнёров</span></div>
+      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Шаблоны Skill</span></div>
       <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>1С / SQL пилоты</span></div>
       <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Совместный presale</span></div>
-      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Co-brand / white-label options</span></div>
+      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Опции co-brand / white-label</span></div>
       <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Методика ROI</span></div>
       <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Поддержка внедрения</span></div>
       <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Roadmap под отраслевые сценарии</span></div>
@@ -573,7 +598,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q">Что значит Pipeline Builder?</div>
-      <div class="faq-a">Конструктор повторяемых agentic-workflows: запрос → источники → агент → инструмент → проверка → действие → уведомление → дашборд — чтобы стандартизировать сценарий для команды.</div>
+      <div class="faq-a">Конструктор повторяемых agentic-workflow: запрос → источники → агент → инструмент → проверка → действие → уведомление → дашборд — чтобы стандартизировать сценарий для команды.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">Какие коннекторы доступны?</div>
@@ -581,7 +606,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q">Может ли агент записывать данные в 1С?</div>
-      <div class="faq-a">Да, при явных политиках, ролях и режимах approval: критичные write-action проходят подтверждение человека, шаги фиксируются в audit trail и trace.</div>
+      <div class="faq-a">Да, при явных политиках, ролях и режимах согласования: критичные write-action проходят подтверждение человека, шаги фиксируются в audit trail и trace.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">Можно ли развернуть в закрытом контуре?</div>
@@ -589,7 +614,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q">Какие модели поддерживаются?</div>
-      <div class="faq-a">Multi-provider слой: внешние и российские LLM, локальные модели и custom fine-tuned; для сценария настраивается баланс качества, скорости, стоимости и требований безопасности. Конкретный набор провайдеров зависит от политики клиента и модели deployment.</div>
+      <div class="faq-a">Multi-provider слой: внешние и российские LLM, локальные модели и custom fine-tuned; для сценария настраивается баланс качества, скорости, стоимости и требований безопасности. Конкретный набор провайдеров зависит от политики клиента и модели развёртывания.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">Это продукт или консалтинг?</div>
@@ -597,7 +622,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q">Что нужно для пилота?</div>
-      <div class="faq-a">Один процесс, владелец, KPI и безопасный контур. Типичный пилот — 2–4 недели: скоупинг → подключение источников и ролей → тест на реальных задачах → замер эффекта и roadmap масштабирования.</div>
+      <div class="faq-a">Один процесс, владелец, KPI и безопасный контур. Типичный пилот — 2–4 недели: скоупинг → подключение источников и ролей → тест на реальных задачах → замер эффекта и план масштабирования.</div>
     </div>
   </div>
 </section>
@@ -609,7 +634,7 @@
     <div class="pilot-grid">
       <article class="pilot-card">
         <div class="pilot-card-head">
-          <span class="pilot-week">Week 1</span>
+          <span class="pilot-week">Неделя 1</span>
           <span class="pilot-step" aria-hidden="true">01</span>
         </div>
         <h3>Скоупинг</h3>
@@ -617,7 +642,7 @@
       </article>
       <article class="pilot-card">
         <div class="pilot-card-head">
-          <span class="pilot-week">Week 2</span>
+          <span class="pilot-week">Неделя 2</span>
           <span class="pilot-step" aria-hidden="true">02</span>
         </div>
         <h3>Подключение</h3>
@@ -625,19 +650,19 @@
       </article>
       <article class="pilot-card">
         <div class="pilot-card-head">
-          <span class="pilot-week">Week 3</span>
+          <span class="pilot-week">Неделя 3</span>
           <span class="pilot-step" aria-hidden="true">03</span>
         </div>
         <h3>Тестирование</h3>
-        <p>Реальные задачи, графики, дашборды, feedback.</p>
+        <p>Реальные задачи, графики, дашборды, обратная связь.</p>
       </article>
       <article class="pilot-card pilot-card--active">
         <div class="pilot-card-head">
-          <span class="pilot-week">Week 4</span>
+          <span class="pilot-week">Неделя 4</span>
           <span class="pilot-step" aria-hidden="true">04</span>
         </div>
         <h3>Эффект</h3>
-        <p>Измерение KPI, roadmap масштабирования, решение по production.</p>
+        <p>Измерение KPI, план масштабирования, решение по промышленному запуску.</p>
       </article>
     </div>
     <div class="pilot-dots" aria-hidden="true">
@@ -656,9 +681,9 @@
     <p style="margin-top: 20px; font-size: 15px; color: var(--muted); line-height: 1.7;">Оставьте рабочий email — покажем сценарий пилота: подключение контура, стартовые кейсы, метрики снятой рутины и план масштабирования.</p>
     <div class="cta-form">
       <input class="cta-input" type="email" placeholder="вы@компания.ru" id="lead-email"/>
-      <button class="cta-submit" onclick="handleSubmit()">ЗАПРОСИТЬ ДЕМО</button>
+      <button class="cta-submit" onclick="handleSubmit()">Запросить демо</button>
     </div>
-    <p class="cta-note">Никакого спама. Свяжемся только по поводу вашего запроса.</p>
+    <p class="cta-note">Ответим в течение 1 рабочего дня. Никакого спама — свяжемся только по вашему запросу.</p>
     <div id="form-msg" style="margin-top: 16px; font-family: var(--ff-mono); font-size: 13px; color: var(--accent); display: none;"></div>
   </div>
 </section>
@@ -685,7 +710,7 @@
       <div class="closing-card closing-cta">
         <div class="closing-label">Готовы к пилоту?</div>
         <h2 class="closing-cta-title" id="closing-cta-heading">Один процесс, владелец, KPI и безопасный контур. Остальное — на нас.</h2>
-        <button type="button" class="closing-cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); setTimeout(function(){ document.getElementById('lead-email').focus(); }, 400);">Запросить пилот</button>
+        <button type="button" class="closing-cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); setTimeout(function(){ document.getElementById('lead-email').focus(); }, 400);">Запросить демо</button>
       </div>
     </div>
   </div>
@@ -712,6 +737,34 @@ function handleSubmit() {
   msg.style.display = 'block';
   document.getElementById('lead-email').value = '';
 }
+
+document.querySelectorAll('.faq-item').forEach((item, index) => {
+  const question = item.querySelector('.faq-q');
+  if (!question) return;
+  question.setAttribute('role', 'button');
+  question.setAttribute('tabindex', '0');
+  question.setAttribute('aria-expanded', index === 0 ? 'true' : 'false');
+  if (index === 0) item.classList.add('open');
+
+  const toggle = () => {
+    const willOpen = !item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach((openItem) => {
+      openItem.classList.remove('open');
+      const openQuestion = openItem.querySelector('.faq-q');
+      if (openQuestion) openQuestion.setAttribute('aria-expanded', 'false');
+    });
+    if (willOpen) item.classList.add('open');
+    question.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  };
+
+  question.addEventListener('click', toggle);
+  question.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggle();
+    }
+  });
+});
 </script>
 </body>
 </html>
