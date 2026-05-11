@@ -170,6 +170,17 @@
   .section-cta-row { margin-top: 30px; display: flex; justify-content: flex-start; }
   .section-demo-btn { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-weight: 500; transition: background 0.2s, transform 0.15s; }
   .section-demo-btn:hover { background: #0a9970; transform: translateY(-1px); }
+  .examples-section { background: var(--off-white); border-top: 0.5px solid var(--border-dark); }
+  .examples-intro { margin-top: 18px; max-width: 760px; font-size: 15px; line-height: 1.72; color: var(--muted); }
+  .examples-grid { margin-top: 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .examples-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 28px 26px; box-shadow: 0 6px 28px rgba(15,15,14,0.06), 0 1px 3px rgba(15,15,14,0.04); }
+  .examples-type { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .examples-title { font-family: var(--ff-display); font-weight: 700; font-size: 22px; line-height: 1.12; letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px; }
+  .examples-list { display: flex; flex-direction: column; gap: 14px; }
+  .examples-item { padding: 14px 0 0; border-top: 1px solid rgba(15,15,14,0.08); }
+  .examples-item:first-child { padding-top: 0; border-top: none; }
+  .examples-item-name { font-family: var(--ff-display); font-weight: 700; font-size: 16px; line-height: 1.2; color: var(--text); }
+  .examples-item-desc { margin-top: 6px; font-size: 13px; line-height: 1.45; color: var(--muted); }
   .problem-symptoms-title { margin-top: 48px; font-family: var(--ff-display); font-weight: 700; font-size: clamp(22px, 3vw, 28px); line-height: 1.15; letter-spacing: -0.01em; }
   .faq-inner { max-width: 680px; margin: 0; }
   .faq-list { margin-top: 34px; display: flex; flex-direction: column; gap: 10px; background: transparent; border: none; }
@@ -234,6 +245,7 @@
 
   @media (max-width: 900px) {
     .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .examples-grid { grid-template-columns: 1fr; }
     .why-grid { grid-template-columns: 1fr; }
     .partners-inner { grid-template-columns: 1fr; }
     .pilot-grid { grid-template-columns: repeat(2, 1fr); }
@@ -455,6 +467,68 @@
   </div>
 </section>
 
+<section class="examples-section" id="examples">
+  <div class="section-label">// КАК ЭТО ВЫГЛЯДИТ В ПРОДУКТЕ</div>
+  <div class="section-title">Skills, Graphs и полноценный агент</div>
+  <p class="examples-intro">Три уровня системы: skill решает одну точечную задачу, graph связывает шаги в сценарий, агент ведёт полноценную роль в рабочем контуре.</p>
+  <div class="examples-grid">
+    <div class="examples-card">
+      <div class="examples-type">Skill</div>
+      <div class="examples-title">Точечная функция</div>
+      <div class="examples-list">
+        <div class="examples-item">
+          <div class="examples-item-name">Сводка встречи</div>
+          <div class="examples-item-desc">Собирает тезисы разговора</div>
+        </div>
+        <div class="examples-item">
+          <div class="examples-item-name">Проверка договора</div>
+          <div class="examples-item-desc">Ищет риски и правки</div>
+        </div>
+        <div class="examples-item">
+          <div class="examples-item-name">Разбор SQL-таблицы</div>
+          <div class="examples-item-desc">Достаёт нужные показатели</div>
+        </div>
+      </div>
+    </div>
+    <div class="examples-card">
+      <div class="examples-type">Graph</div>
+      <div class="examples-title">Сценарий из шагов</div>
+      <div class="examples-list">
+        <div class="examples-item">
+          <div class="examples-item-name">Согласование расходов</div>
+          <div class="examples-item-desc">Маршрут, апрув, уведомление</div>
+        </div>
+        <div class="examples-item">
+          <div class="examples-item-name">Еженедельный отчёт</div>
+          <div class="examples-item-desc">Запуск по расписанию</div>
+        </div>
+        <div class="examples-item">
+          <div class="examples-item-name">Обработка лидов</div>
+          <div class="examples-item-desc">Проверка, запись, сигнал</div>
+        </div>
+      </div>
+    </div>
+    <div class="examples-card">
+      <div class="examples-type">Агент</div>
+      <div class="examples-title">Полноценная рабочая роль</div>
+      <div class="examples-list">
+        <div class="examples-item">
+          <div class="examples-item-name">Финансовый аналитик</div>
+          <div class="examples-item-desc">Сравнивает план и факт</div>
+        </div>
+        <div class="examples-item">
+          <div class="examples-item-name">Sales-координатор</div>
+          <div class="examples-item-desc">Контролирует pipeline и next step</div>
+        </div>
+        <div class="examples-item">
+          <div class="examples-item-name">Операционный ассистент</div>
+          <div class="examples-item-desc">Следит за SLA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="audience-section" id="audience">
   <div class="section-label">// РОЛИ В СРЕДЕ</div>
   <div class="section-title">Роли в среде Ordo</div>
@@ -599,6 +673,10 @@
     <div class="faq-item">
       <div class="faq-q">Вы заменяете CRM, ERP или 1С?</div>
       <div class="faq-a">Нет. Мы считаем, что CRM, ERP и 1С должны оставаться системами хранения и учёта. Ordo работает поверх них как агентский слой: ищет данные, объясняет выводы, строит пайплайны и помогает запускать действия.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Какая у вас ценовая политика?</div>
+      <div class="faq-a">Стоимость начинается от 4000 рублей в месяц за сотрудника. В эту стоимость уже включены 10 000 токенов, которые обновляются каждый месяц. Дополнительные токены при повышенном потреблении приобретаются отдельно.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">Почему Second Brain, а не просто база знаний?</div>
