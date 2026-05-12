@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ordo — Система продаж</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --accent: #0a7c5c;
+    --accent2: #4a3fbf;
+    --text: #0f0f0e;
+    --muted: rgba(15,15,14,0.45);
+    --border: rgba(0,0,0,0.08);
+    --ff-display: 'Syne', sans-serif;
+    --ff-mono: 'DM Mono', monospace;
+    --ff-body: 'Inter', sans-serif;
+  }
+  body { font-family: var(--ff-body); font-weight: 300; color: var(--text); background: #fff; min-height: 100vh; }
+  header { padding: 24px 5vw; border-bottom: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .logo { font-family: var(--ff-display); font-weight: 800; font-size: 18px; letter-spacing: 0.12em; text-decoration: none; color: var(--text); }
+  .logo span { color: var(--accent); }
+  .back { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .back:hover { color: var(--accent); }
+  main { padding: 72px 5vw 48px; max-width: 720px; }
+  .kicker { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 16px; }
+  h1 { font-family: var(--ff-display); font-weight: 800; font-size: clamp(28px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.02em; }
+  .lead { margin-top: 20px; font-size: 16px; line-height: 1.65; color: var(--muted); }
+  .note { margin-top: 32px; padding: 20px 22px; border-radius: 12px; border: 0.5px solid var(--border); font-size: 14px; color: var(--muted); line-height: 1.6; }
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="../index.html">OR<span>DO</span></a>
+  <a class="back" href="../index.html">← На главную</a>
+</header>
+<main>
+  <div class="kicker">СИСТЕМА ПРОДАЖ</div>
+  <h1>Ordo для коммерческих команд</h1>
+  <p class="lead">Здесь будет лендинг продукта «Система продаж»: сценарии, интеграции, кейсы. Страница-заглушка для разработки в ветке подстраниц.</p>
+  <p class="note">Локально откройте через сервер: <span style="font-family:var(--ff-mono);font-size:12px;">/sales/</span> рядом с главным <span style="font-family:var(--ff-mono);font-size:12px;">index.html</span>.</p>
+</main>
+</body>
+</html>
