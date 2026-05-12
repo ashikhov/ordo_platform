@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ordo Platform — единая корпоративная AI-среда</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --white: #ffffff;
+    --off-white: #f7f7f5;
+    --surface: #f0efe9;
+    --surface2: #e8e7e0;
+    --border: rgba(0,0,0,0.08);
+    --border-dark: rgba(0,0,0,0.18);
+    --accent: #0a7c5c;
+    --accent-light: #e6f5f0;
+    --accent-soft: rgba(10, 124, 92, 0.12);
+    --accent-ring: rgba(10, 124, 92, 0.18);
+    --accent-border-strong: rgba(10, 124, 92, 0.38);
+    --accent-shadow: rgba(10, 124, 92, 0.14);
+    --accent2: #4a3fbf;
+    --text: #0f0f0e;
+    --muted: rgba(15,15,14,0.45);
+    --ff-display: 'Syne', sans-serif;
+    --ff-mono: 'DM Mono', monospace;
+    --ff-body: 'Inter', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--text); font-family: var(--ff-body); font-weight: 300; overflow-x: hidden; }
+
+  /* Навигация: два режима — десктоп (≥1121px) горизонтальная полоса; моб./планшет (≤1120px) бургер + выезжающая панель. */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 5vw; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 0.5px solid var(--border); background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); }
+  .logo { font-family: var(--ff-display); font-weight: 800; font-size: 18px; letter-spacing: 0.12em; color: var(--text); flex-shrink: 0; position: relative; z-index: 2; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; flex: 1; justify-content: center; align-items: center; min-width: 0; }
+  .nav-links a { font-size: 13px; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-side { display: flex; align-items: center; gap: 10px; flex-shrink: 0; position: relative; z-index: 2; }
+  .nav-cta { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-weight: 500; transition: background 0.2s, transform 0.15s; }
+  .nav-cta:hover { background: #0a9970; transform: translateY(-1px); }
+  .nav-backdrop { display: none; position: fixed; inset: 0; top: 64px; background: rgba(15,15,14,0.35); opacity: 0; pointer-events: none; transition: opacity 0.25s ease; z-index: 0; }
+  .nav-burger { display: none; width: 44px; height: 44px; padding: 0; border: none; border-radius: 10px; background: transparent; cursor: pointer; align-items: center; justify-content: center; flex-direction: column; gap: 5px; color: var(--text); transition: background 0.2s; }
+  .nav-burger:hover { background: var(--surface); }
+  .nav-burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .nav-burger span { display: block; width: 20px; height: 2px; background: currentColor; border-radius: 1px; transition: transform 0.25s ease, opacity 0.2s ease; transform-origin: center; }
+  nav.is-menu-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  nav.is-menu-open .nav-burger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  nav.is-menu-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (min-width: 1121px) {
+    .nav-links {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 24px 20px;
+      position: static;
+      width: auto;
+      height: auto;
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      transform: none;
+      visibility: visible;
+      pointer-events: auto;
+      overflow: visible;
+    }
+    .nav-links a {
+      padding: 0;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      border-bottom: none;
+      white-space: nowrap;
+    }
+    .nav-burger { display: none !important; }
+    .nav-backdrop { display: none !important; opacity: 0 !important; pointer-events: none !important; }
+    nav.is-menu-open .nav-links { transform: none; }
+  }
+
+  @media (max-width: 1120px) {
+    .nav-backdrop { display: block; }
+    .nav-burger { display: flex; }
+    .nav-links {
+      position: fixed;
+      top: 64px;
+      right: 0;
+      width: min(320px, 88vw);
+      height: calc(100vh - 64px);
+      height: calc(100dvh - 64px);
+      margin: 0;
+      padding: 20px 22px 28px;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(14px);
+      border-left: 0.5px solid var(--border);
+      box-shadow: -12px 0 48px rgba(15,15,14,0.12);
+      transform: translateX(100%);
+      transition: transform 0.28s ease, visibility 0s linear 0.28s;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      z-index: 3;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .nav-links a {
+      white-space: normal;
+      padding: 16px 4px;
+      font-size: 15px;
+      border-bottom: 0.5px solid var(--border);
+      letter-spacing: 0.02em;
+    }
+    .nav-links a:last-child { border-bottom: none; }
+    nav.is-menu-open .nav-links {
+      transform: translateX(0);
+      visibility: visible;
+      pointer-events: auto;
+      transition: transform 0.28s ease, visibility 0s linear 0s;
+    }
+    nav.is-menu-open .nav-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 1;
+    }
+  }
+  @media (max-width: 420px) {
+    .nav-cta { padding: 10px 16px; font-size: 11px; letter-spacing: 0.06em; }
+  }
+
+  .hero { min-height: calc(100vh - 64px); display: flex; flex-direction: column; justify-content: center; padding: 76px 5vw 34px; position: relative; overflow: hidden; background: var(--white); }
+  .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; }
+  .hero-glow { position: absolute; top: -150px; right: -100px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(10,124,92,0.06) 0%, transparent 70%); pointer-events: none; }
+  .hero-glow2 { position: absolute; bottom: -100px; left: -80px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(74,63,191,0.05) 0%, transparent 70%); pointer-events: none; }
+  .hero-label { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; position: relative; }
+  .hero-label::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--accent); }
+  .hero h1 { font-family: var(--ff-display); font-weight: 800; font-size: clamp(28px, 4.3vw, 56px); line-height: 1.03; letter-spacing: -0.02em; max-width: 700px; position: relative; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-sub { margin-top: 18px; font-size: 16px; line-height: 1.62; color: var(--muted); max-width: 560px; position: relative; }
+  .hero-actions { margin-top: 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; position: relative; }
+  .btn-primary { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-weight: 500; transition: background 0.2s, transform 0.15s; }
+  .btn-primary:hover { background: #0a9970; transform: translateY(-1px); }
+  .hero-stats { margin-top: 34px; display: flex; gap: 34px; flex-wrap: wrap; position: relative; }
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+  .stat-num { font-family: var(--ff-display); font-weight: 700; font-size: 32px; color: var(--text); }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+  .stat-divider { width: 0.5px; background: var(--border-dark); align-self: stretch; }
+
+  @media (max-height: 860px) {
+    .hero { padding-top: 70px; padding-bottom: 24px; }
+    .hero h1 { font-size: clamp(26px, 3.9vw, 48px); }
+    .hero-sub { margin-top: 14px; font-size: 15px; line-height: 1.55; }
+    .hero-actions { margin-top: 18px; }
+    .hero-stats { margin-top: 22px; }
+    .stat-num { font-size: 26px; }
+  }
+
+  .workspace-section { padding: 72px 5vw 56px; background: var(--white); border-top: 0.5px solid var(--border-dark); border-bottom: 0.5px solid var(--border-dark); position: relative; }
+  .workspace-wrap { max-width: 1180px; margin: 0 auto; }
+  .workspace-frame { background: transparent; border: none; border-radius: 0; overflow: visible; box-shadow: none; }
+  .workspace-insert { background: #121212; border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; overflow: hidden; box-shadow: 0 24px 64px rgba(15,15,14,0.14), 0 4px 16px rgba(15,15,14,0.06); }
+  .workspace-topbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 14px 22px; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.42); }
+  .workspace-topbar strong { color: #fff; font-weight: 600; }
+  .workspace-topbar-dot { color: var(--accent); font-weight: 700; }
+  .workspace-goal-header { padding: 28px 22px 32px; border-bottom: none; }
+  .workspace-kicker { font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.2em; color: rgba(255,255,255,0.45); text-transform: uppercase; margin-bottom: 14px; }
+  .workspace-goal-text { font-family: var(--ff-body); font-size: clamp(15px, 2.1vw, 19px); font-weight: 400; line-height: 1.55; color: #fff; max-width: 960px; margin: 0; }
+  .workspace-body { display: grid; grid-template-columns: minmax(200px, 1fr) minmax(220px, 1.1fr) minmax(200px, 1fr); gap: 14px; align-items: stretch; margin-top: 14px; }
+  .workspace-col { padding: 20px 18px; border-right: none; display: flex; flex-direction: column; gap: 10px; background: #161616; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; box-shadow: 0 16px 40px rgba(15,15,14,0.12), 0 2px 8px rgba(15,15,14,0.05); }
+  .workspace-agent-card { background: #1e1e1e; border-radius: 10px; padding: 14px 16px; border: 1px solid rgba(255,255,255,0.06); }
+  .workspace-agent-row { display: flex; align-items: flex-start; gap: 12px; }
+  .workspace-accent-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; box-shadow: 0 0 0 3px var(--accent-ring); }
+  .workspace-agent-name { font-family: var(--ff-display); font-weight: 700; font-size: 13px; color: #fff; line-height: 1.25; }
+  .workspace-agent-sub { font-size: 12px; color: rgba(255,255,255,0.52); margin-top: 6px; line-height: 1.45; }
+  .workspace-trace-list { display: flex; flex-direction: column; gap: 4px; }
+  .workspace-trace-row { display: flex; align-items: center; gap: 12px; padding: 6px 0; }
+  .workspace-trace-num { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-family: var(--ff-mono); font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .workspace-trace-label { font-size: 13px; color: #fff; }
+  .workspace-dash-list { display: flex; flex-direction: column; gap: 10px; }
+  .workspace-dash-item { background: #1e1e1e; border-radius: 10px; padding: 14px 16px; font-size: 13px; color: #fff; line-height: 1.45; border: 1px solid rgba(255,255,255,0.06); }
+  .workspace-dash-item--accent { color: var(--accent); font-weight: 600; }
+
+  @media (max-width: 960px) {
+    .workspace-body { grid-template-columns: 1fr; margin-top: 12px; gap: 12px; }
+  }
+
+  section { padding: 100px 5vw; position: relative; }
+  .section-label { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--accent2); margin-bottom: 16px; }
+  .section-title { font-family: var(--ff-display); font-weight: 700; font-size: clamp(28px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.01em; }
+
+  .features-grid { margin-top: 64px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; background: transparent; border: none; }
+  .feat-card { background: #141414; padding: 32px 28px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 16px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2); transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease; cursor: default; position: relative; overflow: hidden; }
+  .feat-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.14); box-shadow: 0 22px 56px rgba(0,0,0,0.45), 0 4px 14px rgba(0,0,0,0.25); }
+  .feat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: 0; transition: opacity 0.3s; border-radius: 14px 14px 0 0; }
+  .feat-card:hover::before { opacity: 1; }
+  .feat-title { font-family: var(--ff-display); font-weight: 700; font-size: 17px; margin-bottom: 12px; color: #fff; letter-spacing: -0.01em; }
+  .feat-card--highlight { background: #181818; box-shadow: 0 16px 48px rgba(0,0,0,0.35), 0 0 0 1px rgba(10,124,92,0.22); }
+  .feat-desc { font-size: 14px; color: rgba(255,255,255,0.66); line-height: 1.72; }
+
+  .models-section { border-top: 0.5px solid var(--border-dark); border-bottom: 0.5px solid var(--border-dark); padding: 0; overflow: hidden; background: var(--off-white); }
+  .models-header { padding: 48px 5vw 24px; }
+  .ticker-wrap { overflow: hidden; position: relative; padding: 20px 0; }
+  .ticker-wrap::before, .ticker-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; }
+  .ticker-wrap::before { left: 0; background: linear-gradient(90deg, var(--off-white), transparent); }
+  .ticker-wrap::after { right: 0; background: linear-gradient(-90deg, var(--off-white), transparent); }
+  .ticker { display: flex; gap: 12px; animation: ticker 28s linear infinite; width: max-content; }
+  .ticker:hover { animation-play-state: paused; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .model-tag { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.06em; padding: 8px 16px; border: 0.5px solid var(--border-dark); color: var(--muted); white-space: nowrap; transition: all 0.2s; background: var(--white); }
+  .model-tag:hover { color: var(--accent); border-color: var(--accent); }
+  .model-tag.highlight { color: var(--accent2); border-color: var(--accent2); background: var(--white); }
+
+  .cta-section { background: var(--white); border-top: 0.5px solid var(--border-dark); }
+  .cta-inner { max-width: 680px; }
+  .cta-title { font-family: var(--ff-display); font-weight: 800; font-size: clamp(32px, 5vw, 58px); line-height: 1.05; letter-spacing: -0.02em; }
+  .cta-title em { font-style: normal; color: var(--accent); }
+  .cta-form { margin-top: 40px; display: flex; gap: 10px; max-width: 560px; }
+  .cta-input { flex: 1; padding: 14px 20px; background: var(--off-white); border: 0.5px solid var(--border-dark); color: var(--text); font-family: var(--ff-body); font-size: 14px; outline: none; transition: border-color 0.2s; }
+  .cta-input::placeholder { color: var(--muted); }
+  .cta-input:focus { border-color: var(--accent); }
+  .cta-submit { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-weight: 500; white-space: nowrap; transition: background 0.2s, transform 0.15s; }
+  .cta-submit:hover { background: #0a9970; transform: translateY(-1px); }
+  .cta-note { margin-top: 14px; font-size: 12px; color: var(--muted); }
+
+  footer { padding: 40px 5vw; border-top: 0.5px solid var(--border-dark); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; background: var(--off-white); }
+  .footer-logo { font-family: var(--ff-display); font-weight: 800; font-size: 15px; letter-spacing: 0.12em; color: var(--text); }
+  .footer-logo span { color: var(--accent); }
+  footer p { font-size: 12px; color: var(--muted); }
+
+  .audience-section { background: var(--white); border-top: 0.5px solid var(--border-dark); }
+  .audience-section .section-title { color: var(--text); }
+  .audience-intro { margin-top: 20px; font-size: 15px; color: var(--muted); line-height: 1.75; max-width: 720px; }
+  .audience-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; background: transparent; border: none; }
+  .audience-card { background: #121212; padding: 28px 24px; border-radius: 14px; border: 1px solid rgba(0,0,0,0.12); box-shadow: 0 20px 50px rgba(15,15,14,0.12), 0 4px 16px rgba(15,15,14,0.06); transition: transform 0.22s ease, box-shadow 0.22s ease; }
+  .audience-card:hover { transform: translateY(-2px); box-shadow: 0 26px 60px rgba(15,15,14,0.16), 0 6px 20px rgba(15,15,14,0.08); }
+  .audience-role { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 12px; }
+  .audience-title { font-family: var(--ff-display); font-weight: 700; font-size: 17px; margin-bottom: 12px; color: #fff; letter-spacing: -0.01em; }
+  .audience-desc { font-size: 14px; color: rgba(255,255,255,0.66); line-height: 1.68; }
+
+  .long-section { border-top: 0.5px solid var(--border-dark); background: var(--white); }
+  .long-intro { margin-top: 20px; max-width: 820px; font-size: 16px; line-height: 1.8; color: var(--muted); }
+  .long-grid { margin-top: 42px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; background: transparent; border: none; }
+  .long-card { background: var(--white); padding: 28px 26px; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 4px 28px rgba(15,15,14,0.06), 0 1px 3px rgba(15,15,14,0.04); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+  .long-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(15,15,14,0.09), 0 2px 8px rgba(15,15,14,0.05); border-color: rgba(10,124,92,0.18); }
+  .long-card h3 { font-family: var(--ff-display); font-size: 18px; margin-bottom: 12px; letter-spacing: -0.01em; }
+  .long-card p { font-size: 14px; line-height: 1.72; color: var(--muted); }
+  .manifest-grid { margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; background: transparent; border: none; }
+  .manifest-card { background: var(--white); padding: 28px 26px; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 4px 28px rgba(15,15,14,0.06), 0 1px 3px rgba(15,15,14,0.04); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; position: relative; overflow: hidden; }
+  .manifest-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--accent), var(--accent2)); opacity: 0.85; border-radius: 14px 0 0 14px; }
+  .manifest-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(15,15,14,0.09), 0 2px 8px rgba(15,15,14,0.05); border-color: rgba(10,124,92,0.2); }
+  .manifest-step { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 14px; padding-left: 8px; }
+  .manifest-name { font-family: var(--ff-display); font-weight: 700; font-size: 17px; margin-bottom: 10px; color: var(--text); letter-spacing: -0.01em; padding-left: 8px; }
+  .manifest-text { font-size: 14px; color: var(--muted); line-height: 1.68; padding-left: 8px; }
+  .dark-section { background: #0a0a0a; border-top: 0.5px solid rgba(255,255,255,0.12); }
+  .dark-section .section-label { color: var(--accent); }
+  .dark-section .section-title { color: #fff; }
+  .dark-section .long-intro { color: rgba(255,255,255,0.65); }
+  .section-cta-row { margin-top: 30px; display: flex; justify-content: flex-start; }
+  .section-demo-btn { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-weight: 500; transition: background 0.2s, transform 0.15s; }
+  .section-demo-btn:hover { background: #0a9970; transform: translateY(-1px); }
+  .examples-section { background: var(--off-white); border-top: 0.5px solid var(--border-dark); }
+  .examples-intro { margin-top: 18px; max-width: 760px; font-size: 15px; line-height: 1.72; color: var(--muted); }
+  .examples-grid { margin-top: 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .examples-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 28px 26px; box-shadow: 0 6px 28px rgba(15,15,14,0.06), 0 1px 3px rgba(15,15,14,0.04); }
+  .examples-type { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .examples-title { font-family: var(--ff-display); font-weight: 700; font-size: 22px; line-height: 1.12; letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px; }
+  .examples-list { display: flex; flex-direction: column; gap: 14px; }
+  .examples-item { padding: 14px 0 0; border-top: 1px solid rgba(15,15,14,0.08); }
+  .examples-item:first-child { padding-top: 0; border-top: none; }
+  .examples-item-name { font-family: var(--ff-display); font-weight: 700; font-size: 16px; line-height: 1.2; color: var(--text); }
+  .examples-item-desc { margin-top: 6px; font-size: 13px; line-height: 1.45; color: var(--muted); }
+  .problem-symptoms-title { margin-top: 48px; font-family: var(--ff-display); font-weight: 700; font-size: clamp(22px, 3vw, 28px); line-height: 1.15; letter-spacing: -0.01em; }
+  .faq-inner { max-width: 680px; margin: 0; }
+  .faq-list { margin-top: 34px; display: flex; flex-direction: column; gap: 10px; background: transparent; border: none; }
+  .faq-item { background: var(--white); padding: 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 2px 16px rgba(15,15,14,0.04); overflow: hidden; }
+  .faq-q { width: 100%; text-align: left; font-family: var(--ff-display); font-size: 18px; padding: 22px 24px; border: none; background: transparent; color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .faq-q::after { content: '+'; font-family: var(--ff-mono); font-size: 16px; color: var(--accent); transition: transform 0.2s ease; flex-shrink: 0; }
+  .faq-a { max-height: 0; overflow: hidden; font-size: 14px; line-height: 1.75; color: var(--muted); padding: 0 24px; transition: max-height 0.3s ease, padding-bottom 0.3s ease; }
+  .faq-item.open .faq-q::after { content: '−'; }
+  .faq-item.open .faq-a { max-height: 560px; padding-bottom: 22px; }
+
+  .why-section { padding: 88px 5vw; background: var(--off-white); border-top: 0.5px solid var(--border-dark); }
+  .why-inner { max-width: 1000px; margin: 0 auto; }
+  .why-title { font-family: var(--ff-display); font-weight: 700; font-size: clamp(24px, 3.8vw, 36px); line-height: 1.12; letter-spacing: -0.02em; color: var(--text); max-width: 920px; }
+  .why-intro { margin-top: 22px; font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 900px; }
+  .why-grid { margin-top: 36px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .why-card { background: var(--white); border: 0.5px solid var(--border-dark); border-radius: 12px; padding: 18px 18px 18px 20px; display: flex; align-items: flex-start; gap: 14px; box-shadow: 0 8px 24px rgba(15,15,14,0.04); }
+  .why-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 4px; box-shadow: 0 0 0 3px var(--accent-ring); }
+  .why-card p { font-size: 14px; line-height: 1.55; color: var(--text); font-weight: 400; }
+
+  .partners-section { padding: 88px 5vw; background: #0a0a0a; border-top: 1px solid rgba(255,255,255,0.06); color: #fff; }
+  .partners-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.05fr); gap: 48px; align-items: start; }
+  .partners-kicker { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+  .partners-title { font-family: var(--ff-display); font-weight: 700; font-size: clamp(22px, 3.2vw, 32px); line-height: 1.15; letter-spacing: -0.02em; color: #fff; }
+  .partners-lead { margin-top: 18px; font-size: 16px; line-height: 1.65; color: rgba(255,255,255,0.62); }
+  .partners-body { margin-top: 16px; font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.52); }
+  .partners-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .partners-card { background: #1a1a1a; border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 14px 16px; font-size: 13px; line-height: 1.45; color: rgba(255,255,255,0.92); display: flex; align-items: flex-start; gap: 12px; }
+  .partners-check { color: var(--accent); font-weight: 700; flex-shrink: 0; font-size: 14px; line-height: 1.2; }
+
+  .pilot-section { padding: 88px 5vw 96px; background: var(--off-white); border-top: 0.5px solid var(--border-dark); }
+  .pilot-inner { max-width: 1180px; margin: 0 auto; }
+  .pilot-title { font-family: var(--ff-display); font-weight: 700; font-size: clamp(22px, 3.2vw, 32px); line-height: 1.15; letter-spacing: -0.02em; color: var(--text); max-width: 920px; }
+  .pilot-grid { margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: stretch; }
+  .pilot-card { background: var(--white); border: 0.5px solid var(--border-dark); border-radius: 14px; padding: 20px 18px 22px; box-shadow: 0 10px 32px rgba(15,15,14,0.06); display: flex; flex-direction: column; min-height: 200px; position: relative; overflow: hidden; transition: box-shadow 0.2s, border-color 0.2s; }
+  .pilot-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 18px; }
+  .pilot-week { font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .pilot-step { font-family: var(--ff-mono); font-size: 12px; color: var(--muted); opacity: 0.85; }
+  .pilot-card h3 { font-family: var(--ff-display); font-weight: 700; font-size: 17px; margin-bottom: 10px; color: var(--text); letter-spacing: -0.01em; }
+  .pilot-card p { font-size: 13px; line-height: 1.6; color: var(--muted); flex: 1; }
+  .pilot-card--active { border-color: var(--accent-border-strong); box-shadow: 0 14px 40px var(--accent-shadow); }
+  .pilot-card--active .pilot-week { background: var(--accent); color: #fff; }
+  .pilot-card--active::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--accent); border-radius: 0 0 12px 12px; }
+  .pilot-dots { margin-top: 32px; display: flex; justify-content: center; align-items: center; gap: 10px; }
+  .pilot-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(15,15,14,0.18); flex-shrink: 0; }
+  .pilot-dot--active { width: 32px; height: 8px; border-radius: 999px; background: var(--accent); }
+
+  .closing-section { background: var(--off-white); border-top: 0.5px solid var(--border-dark); padding-top: 72px; padding-bottom: 72px; }
+  .closing-inner { max-width: 1180px; margin: 0 auto; }
+  .closing-grid { display: grid; grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr); gap: 16px; align-items: stretch; }
+  .closing-card { border-radius: 14px; padding: 28px 26px; min-height: 100%; display: flex; flex-direction: column; }
+  .closing-kpi { background: var(--white); border: 0.5px solid var(--border-dark); box-shadow: 0 10px 32px rgba(15,15,14,0.05); }
+  .closing-label { font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+  .closing-kpi-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 28px; flex: 1; }
+  .closing-kpi-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.5; color: var(--text); }
+  .closing-kpi-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; box-shadow: 0 0 0 3px var(--accent-ring); }
+  .closing-cta { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.08); color: #fff; box-shadow: 0 20px 48px rgba(0,0,0,0.12); }
+  .closing-cta .closing-label { color: rgba(255,255,255,0.45); }
+  .closing-cta-title { font-family: var(--ff-display); font-weight: 700; font-size: clamp(20px, 2.6vw, 26px); line-height: 1.2; letter-spacing: -0.02em; color: #fff; flex: 1; }
+  .closing-cta-btn { margin-top: 28px; align-self: flex-start; font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-weight: 500; transition: background 0.2s, transform 0.15s; }
+  .closing-cta-btn:hover { background: #0a9970; transform: translateY(-1px); }
+  .closing-cta-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+  @media (max-width: 900px) {
+    .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .examples-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .partners-inner { grid-template-columns: 1fr; }
+    .pilot-grid { grid-template-columns: repeat(2, 1fr); }
+    .closing-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .features-grid { grid-template-columns: 1fr; }
+    .pilot-grid { grid-template-columns: 1fr; }
+    .closing-kpi-cols { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="site-nav">
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+  <div class="logo">ORDO</div>
+  <div class="nav-links" id="nav-links">
+    <a href="#features">Среда Ordo</a>
+    <a href="#" data-ordo-sub="sales">Система продаж</a>
+    <a href="#" data-ordo-sub="search">Система поиска</a>
+    <a href="#" data-ordo-sub="finance">Система финансов</a>
+    <a href="#" data-ordo-sub="custom">Индивидуальная разработка</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Контакты</a>
+  </div>
+  <div class="nav-side">
+    <button type="button" class="nav-cta" id="nav-cta-demo">Запросить демо</button>
+    <button type="button" class="nav-burger" id="nav-burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-label">ORDO PLATFORM — ЕДИНАЯ КОРПОРАТИВНАЯ AI-СРЕДА</div>
+  <h1>Личный AI<br/>для каждого сотрудника<br/>в едином контуре компании</h1>
+  <p class="hero-sub">Ordo Platform — это не «купить AI каждому» и не корпоративный чат. Это рабочая среда, где сотрудники снимают рутину через скиллы, агентов и графы, а IT и бизнес сохраняют контроль над доступами, данными, моделями и интеграциями.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Запросить демо</button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">50<span>+</span></div><div class="stat-label">МОДЕЛЕЙ В КАТАЛОГЕ</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num">1</div><div class="stat-label">СРЕДА ДЛЯ КОМПАНИИ</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">АВТОМАТИЗАЦИЙ В ГРАФАХ</div></div>
+  </div>
+</section>
+
+<section class="workspace-section" aria-label="Пример рабочего пространства агента">
+  <div class="workspace-wrap">
+    <div class="workspace-frame">
+      <div class="workspace-insert">
+        <div class="workspace-topbar">
+          <span><strong>ORDO</strong> <span class="workspace-topbar-dot">·</span> AGENT WORKSPACE</span>
+          <span>трейс · #4f81e2</span>
+        </div>
+        <div class="workspace-goal-header">
+          <div class="workspace-kicker">Цель пользователя</div>
+          <p class="workspace-goal-text">Сравни план-факт из 1С и SQL, проверь сделки без next step в CRM, найди причины отклонений и собери дашборд для руководителя.</p>
+        </div>
+      </div>
+      <div class="workspace-body">
+        <div class="workspace-col">
+          <div class="workspace-kicker">Агенты</div>
+          <div class="workspace-agent-card">
+            <div class="workspace-agent-row">
+              <span class="workspace-accent-dot" aria-hidden="true"></span>
+              <div>
+                <div class="workspace-agent-name">Coordinator Agent</div>
+                <div class="workspace-agent-sub">Планирует и распределяет</div>
+              </div>
+            </div>
+          </div>
+          <div class="workspace-agent-card">
+            <div class="workspace-agent-row">
+              <span class="workspace-accent-dot" aria-hidden="true"></span>
+              <div>
+                <div class="workspace-agent-name">Data Agent</div>
+                <div class="workspace-agent-sub">1С · SQL · CRM</div>
+              </div>
+            </div>
+          </div>
+          <div class="workspace-agent-card">
+            <div class="workspace-agent-row">
+              <span class="workspace-accent-dot" aria-hidden="true"></span>
+              <div>
+                <div class="workspace-agent-name">Finance Analyst</div>
+                <div class="workspace-agent-sub">План-факт, маржа</div>
+              </div>
+            </div>
+          </div>
+          <div class="workspace-agent-card">
+            <div class="workspace-agent-row">
+              <span class="workspace-accent-dot" aria-hidden="true"></span>
+              <div>
+                <div class="workspace-agent-name">Sales Agent</div>
+                <div class="workspace-agent-sub">Воронка, next step</div>
+              </div>
+            </div>
+          </div>
+          <div class="workspace-agent-card">
+            <div class="workspace-agent-row">
+              <span class="workspace-accent-dot" aria-hidden="true"></span>
+              <div>
+                <div class="workspace-agent-name">Report Agent</div>
+                <div class="workspace-agent-sub">График и дашборд</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="workspace-col">
+          <div class="workspace-kicker">Pipeline: трейс</div>
+          <div class="workspace-trace-list">
+            <div class="workspace-trace-row"><span class="workspace-trace-num">1</span><span class="workspace-trace-label">Загрузка данных из 1С</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">2</span><span class="workspace-trace-label">Запрос к SQL</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">3</span><span class="workspace-trace-label">Анализ CRM</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">4</span><span class="workspace-trace-label">Построение графика</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">5</span><span class="workspace-trace-label">Проверка источников</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">6</span><span class="workspace-trace-label">Сохранение в дашборд</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">7</span><span class="workspace-trace-label">Уведомление владельца</span></div>
+            <div class="workspace-trace-row"><span class="workspace-trace-num">8</span><span class="workspace-trace-label">Логирование трейса</span></div>
+          </div>
+        </div>
+        <div class="workspace-col">
+          <div class="workspace-kicker">Результат в дашборде</div>
+          <div class="workspace-dash-list">
+            <div class="workspace-dash-item">Выручка: −7,4% к плану</div>
+            <div class="workspace-dash-item">Расходы: +4,1% к плану</div>
+            <div class="workspace-dash-item">Сделки без next step: 18</div>
+            <div class="workspace-dash-item workspace-dash-item--accent">Риск по марже: высокий</div>
+            <div class="workspace-dash-item">График добавлен в CEO Dashboard</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="long-section" id="problem">
+  <div class="section-label">// ПРОБЛЕМА, КОТОРУЮ РЕШАЕТ ORDO</div>
+  <div class="section-title">Не заменяем CRM и ERP.<br/>Возвращаем им правильную роль.</div>
+  <p class="long-intro">CRM, ERP, 1С, SQL и DWH должны оставаться надёжными системами хранения фактов, клиентов, сделок, заказов, остатков, документов и транзакций. Но бизнесу нужен слой выше: тот, который понимает цель, собирает контекст, объясняет отклонения, координирует агентов и запускает действия. <strong style="font-weight:500;color:var(--text)">Ordo</strong> — этот слой. Без него данные и процессы остаются разрозненными, эффект от AI — фрагментарным, а ручная рутина съедает ценность — ниже типичные симптомы, с которыми мы работаем.</p>
+  <div class="problem-symptoms-title">Симптомы, которые мешают масштабу</div>
+  <div class="long-grid">
+    <div class="long-card">
+      <h3>Разрозненные инструменты</h3>
+      <p>Когда каждый отдел использует свой AI-инструмент, теряются стандарты качества, растут риски утечки данных и исчезает общая картина внедрения.</p>
+    </div>
+    <div class="long-card">
+      <h3>Ручная повторяемость</h3>
+      <p>Одни и те же действия повторяются в разных системах и ручных циклах согласований. Без системного подхода сотрудники перегружены рутиной и не успевают фокусироваться на важном.</p>
+    </div>
+    <div class="long-card">
+      <h3>Пилоты без масштаба</h3>
+      <p>Большинство AI-инициатив остаются локальными экспериментами, потому что нет механизма, который переводит единичный успех в корпоративный стандарт.</p>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="dark-section">
+  <div class="section-label">// ВОЗМОЖНОСТИ</div>
+  <div class="section-title">Корпоративный Second Brain:<br/>контекст, действия и контроль.</div>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-title">Единая AI-среда поверх систем</div>
+      <div class="feat-desc">CRM, 1С/ERP, задачи, документы и знания — один контур без теневого AI.</div>
+    </div>
+    <div class="feat-card feat-card--highlight">
+      <div class="feat-title">Автоматизация рутины</div>
+      <div class="feat-desc">Отдельный слой анализа: система находит повторяющиеся действия в контексте работы, показывает частоту и экономию времени и предлагает, что закрыть скиллом, агентом или графом.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-title">Графы: процессы, а не разовые ответы</div>
+      <div class="feat-desc">Связывайте шаги в цепочки: событие → действие → согласование → фиксация результата. AI выполняет сценарий по правилам и с нужным уровнем подтверждения.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-title">Скиллы: повторяемые AI-навыки</div>
+      <div class="feat-desc">Сводки и разбор данных, извлечение сущностей, подготовка черновиков, проверка по чек-листу и другие навыки из библиотеки или созданные сотрудниками без кода.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-title">ИИ-агенты</div>
+      <div class="feat-desc">Подготовленные агенты для ключевых подразделений компании — подключаете и получаете исполнителя под свою систему, без сборки с нуля.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-title">Безопасность, аудит и управление моделями</div>
+      <div class="feat-desc">Роли, права, логи, лимиты, маршрутизация моделей и прозрачность действий AI. IT управляет контуром, бизнес видит эффект и масштабирует лучшие сценарии.</div>
+    </div>
+    <div class="feat-card" id="how">
+      <div class="feat-title">Онбординг до первого результата</div>
+      <div class="feat-desc">Не лекция про термины, а интерактивное пошаговое обучение, которое обучит сотрудника любого возраста и с любым уровнем компетенций работать с ИИ-инструментами.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-title">Геймификация и трекинг результатов</div>
+      <div class="feat-desc">Бейджи и прогресс за первые шаги, учёт снятой рутины и обмен удачными сценариями в команде; выделение AI-чемпионов — без «рейтингов ради контроля».</div>
+    </div>
+  </div>
+</section>
+
+<section class="long-section" id="value">
+  <div class="section-label">// ПРОДУКТОВАЯ ЦЕННОСТЬ</div>
+  <div class="section-title">Ordo — это не набор фич,<br/>а операционная модель AI-работы.</div>
+  <div class="manifest-grid">
+    <div class="manifest-card">
+      <div class="manifest-step">01</div>
+      <div class="manifest-name">Systems of Record</div>
+      <div class="manifest-text">1С, CRM, ERP, SQL, DWH и документы хранят факты, транзакции и историю.</div>
+    </div>
+    <div class="manifest-card">
+      <div class="manifest-step">02</div>
+      <div class="manifest-name">Systems of Intelligence</div>
+      <div class="manifest-text">LLM, RAG, управление контекстом и reasoning помогают понимать данные, искать связи и объяснять выводы.</div>
+    </div>
+    <div class="manifest-card">
+      <div class="manifest-step">03</div>
+      <div class="manifest-name">Systems of Action</div>
+      <div class="manifest-text">Скиллы, инструменты, пайплайны, оркестрация A2A, согласования и аудит превращают выводы в управляемые действия.</div>
+    </div>
+  </div>
+  <div class="section-cta-row">
+    <button class="section-demo-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Запросить демо</button>
+  </div>
+</section>
+
+<section class="examples-section" id="examples">
+  <div class="section-label">// КАК ЭТО ВЫГЛЯДИТ В ПРОДУКТЕ</div>
+  <div class="section-title">Skills, Graphs и полноценный агент</div>
+  <p class="examples-intro">Три уровня системы: skill решает одну точечную задачу, graph связывает шаги в сценарий, агент ведёт полноценную роль в рабочем контуре.</p>
+  <div class="examples-grid">
+    <div class="examples-card">
+      <div class="examples-type">Skill</div>
+      <div class="examples-title">Точечная функция</div>
+      <div class="examples-list">
+        <div class="examples-item">
+          <div class="examples-item-name">Сводка встречи</div>
+          <div class="examples-item-desc">Собирает тезисы разговора</div>
+        </div>
+        <div class="examples-item">
+          <div class="examples-item-name">Проверка договора</div>
+          <div class="examples-item-desc">Ищет риски и правки</div>
+        </div>
+        <div class="examples-item">
+          <div class="examples-item-name">Разбор SQL-таблицы</div>
+          <div class="examples-item-desc">Достаёт нужные показатели</div>
+        </div>
+      </div>
+    </div>
+    <div class="examples-card">
+      <div class="examples-type">Graph</div>
+      <div class="examples-title">Сценарий из шагов</div>
+      <div class="examples-list">
+        <div class="examples-item">
+          <div class="examples-item-name">Согласование расходов</div>
+          <div class="examples-item-desc">Маршрут, апрув, уведомление</div>
+        </div>
+        <div class="examples-item">
+          <div class="examples-item-name">Еженедельный отчёт</div>
+          <div class="examples-item-desc">Запуск по расписанию</div>
+        </div>
+        <div class="examples-item">
+          <div class="examples-item-name">Обработка лидов</div>
+          <div class="examples-item-desc">Проверка, запись, сигнал</div>
+        </div>
+      </div>
+    </div>
+    <div class="examples-card">
+      <div class="examples-type">Агент</div>
+      <div class="examples-title">Полноценная рабочая роль</div>
+      <div class="examples-list">
+        <div class="examples-item">
+          <div class="examples-item-name">Финансовый аналитик</div>
+          <div class="examples-item-desc">Сравнивает план и факт</div>
+        </div>
+        <div class="examples-item">
+          <div class="examples-item-name">Sales-координатор</div>
+          <div class="examples-item-desc">Контролирует pipeline и next step</div>
+        </div>
+        <div class="examples-item">
+          <div class="examples-item-name">Операционный ассистент</div>
+          <div class="examples-item-desc">Следит за SLA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="audience-section" id="audience">
+  <div class="section-label">// РОЛИ В СРЕДЕ</div>
+  <div class="section-title">Роли в среде Ordo</div>
+  <p class="audience-intro">Ordo объясняется разным аудиториям на их языке: сотруднику — личная польза, IT — контроль, руководителю — управляемость, собственнику — постоянный рост эффективности.</p>
+  <div class="audience-grid">
+    <div class="audience-card">
+      <div class="audience-role">СОТРУДНИК</div>
+      <div class="audience-title">Меньше рутины</div>
+      <div class="audience-desc">AI-слой снимает рутину вокруг задач, документов, отчётности и операционных циклов. Вы сами выбираете, что передавать AI и что оставлять вручную.</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-role">РУКОВОДИТЕЛЬ</div>
+      <div class="audience-title">Управляемый эффект</div>
+      <div class="audience-desc">Видно, какие процессы автоматизируются, где команда теряет время и какие сценарии дают лучший эффект для масштабирования.</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-role">IT</div>
+      <div class="audience-title">Безопасность и порядок</div>
+      <div class="audience-desc">Единый контур AI: права, интеграции, модели, аудит и лимиты. Без хаоса, утечек и несанкционированных внешних сервисов.</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-role">СОБСТВЕННИК</div>
+      <div class="audience-title">Механизм, а не фейерверк</div>
+      <div class="audience-desc">Не разовый пилот, а механизм: снижение ручного труда, рост прозрачности процессов и управляемая AI-трансформация компании.</div>
+    </div>
+  </div>
+  <div class="section-cta-row">
+    <button class="section-demo-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Запросить демо</button>
+  </div>
+</section>
+
+<section class="long-section" id="security-roi">
+  <div class="section-label">// КОНТРОЛЬ И ЭФФЕКТ</div>
+  <div class="section-title">Безопасность и ROI — не дополнение,<br/>а обязательная часть продукта.</div>
+  <div class="long-grid">
+    <div class="long-card">
+      <h3>Контроль корпоративного контура</h3>
+      <p>Ролевой доступ, отдельные права на чтение/запись, лимиты по моделям и пользователям, журнал действий агентов и графов, а также подтверждение критичных действий человеком.</p>
+    </div>
+    <div class="long-card">
+      <h3>Прозрачная аналитика эффекта</h3>
+      <p>Ordo считает активность, повторяемость и экономию времени: сколько действий автоматизировано, сколько часов снято с сотрудников и как эффект распределяется по подразделениям.</p>
+    </div>
+    <div class="long-card">
+      <h3>Масштабирование успешных сценариев</h3>
+      <p>Скиллы, агенты и графы, которые дали эффект в одной команде, публикуются и переиспользуются в других отделах как корпоративные лучшие практики.</p>
+    </div>
+  </div>
+</section>
+
+<section class="models-section" id="models">
+  <div class="models-header">
+    <div class="section-label">// MULTI-PROVIDER LLM LAYER</div>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <div class="model-tag">GPT-4.1</div>
+      <div class="model-tag highlight">GPT-4o</div>
+      <div class="model-tag">o3</div>
+      <div class="model-tag highlight">Claude 3.7 Sonnet</div>
+      <div class="model-tag">Gemini 2.5 Pro</div>
+      <div class="model-tag">Gemini 2.5 Flash</div>
+      <div class="model-tag">Llama 3.3 70B</div>
+      <div class="model-tag">Mistral Large</div>
+      <div class="model-tag">Command R+</div>
+      <div class="model-tag highlight">Grok 3</div>
+      <div class="model-tag">Perplexity Sonar</div>
+      <div class="model-tag highlight">DeepSeek V3</div>
+      <div class="model-tag">DeepSeek R1</div>
+      <div class="model-tag highlight">Qwen2.5-Max</div>
+      <div class="model-tag">Qwen2.5-72B</div>
+      <div class="model-tag">GLM-4.5</div>
+      <div class="model-tag highlight">Kimi K2</div>
+      <div class="model-tag">Hunyuan Turbo</div>
+      <div class="model-tag highlight">GigaChat MAX</div>
+      <div class="model-tag">YandexGPT 5 Pro</div>
+      <div class="model-tag">GPT-4.1</div>
+      <div class="model-tag highlight">GPT-4o</div>
+      <div class="model-tag">o3</div>
+      <div class="model-tag highlight">Claude 3.7 Sonnet</div>
+      <div class="model-tag">Gemini 2.5 Pro</div>
+      <div class="model-tag">Gemini 2.5 Flash</div>
+      <div class="model-tag">Llama 3.3 70B</div>
+      <div class="model-tag">Mistral Large</div>
+      <div class="model-tag">Command R+</div>
+      <div class="model-tag highlight">Grok 3</div>
+      <div class="model-tag">Perplexity Sonar</div>
+      <div class="model-tag highlight">DeepSeek V3</div>
+      <div class="model-tag">DeepSeek R1</div>
+      <div class="model-tag highlight">Qwen2.5-Max</div>
+      <div class="model-tag">Qwen2.5-72B</div>
+      <div class="model-tag">GLM-4.5</div>
+      <div class="model-tag highlight">Kimi K2</div>
+      <div class="model-tag">Hunyuan Turbo</div>
+      <div class="model-tag highlight">GigaChat MAX</div>
+      <div class="model-tag">YandexGPT 5 Pro</div>
+    </div>
+  </div>
+</section>
+
+<section class="why-section" id="why">
+  <div class="why-inner">
+    <div class="section-label">// ПОДХОД</div>
+    <h2 class="why-title">Разработано не ради AI-хайпа, а для рабочих бизнес-процессов</h2>
+    <p class="why-intro">Команда Ordo имеет глубокий опыт в LLM, RAG, агентных системах и создании фундаментальных AI-технологий. Мы проектируем платформу не как демонстрацию возможностей модели, а как управляемый слой для реальных процессов, данных и ответственности внутри компании.</p>
+    <div class="why-grid">
+      <div class="why-card"><span class="why-dot" aria-hidden="true"></span><p>Опыт выходцев из GigaChat и сильных российских AI-команд</p></div>
+      <div class="why-card"><span class="why-dot" aria-hidden="true"></span><p>Экспертиза в LLM и applied R&amp;D</p></div>
+      <div class="why-card"><span class="why-dot" aria-hidden="true"></span><p>Продуктовый слой + enterprise delivery</p></div>
+      <div class="why-card"><span class="why-dot" aria-hidden="true"></span><p>Фокус на измеримом эффекте</p></div>
+      <div class="why-card" style="grid-column: 1 / -1; max-width: 100%;"><span class="why-dot" aria-hidden="true"></span><p>Не только чат: контекст, действия, логи и интеграции</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="partners-section" id="partners">
+  <div class="partners-inner">
+    <div class="partners-copy">
+      <div class="partners-kicker">• ПАРТНЁРАМ</div>
+      <h2 class="partners-title">Для интеграторов: добавьте агентский слой к вашим CRM/ERP-проектам</h2>
+      <p class="partners-lead">Усильте вашу экспертизу и предложите клиентам по-настоящему надёжные и прогрессивные AI-решения без разработки платформы с нуля.</p>
+      <p class="partners-body">CRM/ERP-интеграторы уже знают процессы, данные и ограничения клиента. Ordo добавляет то, чего не хватает существующим системам: агентский интерфейс, скиллы, пайплайны, A2A, выбор моделей, логи, согласование действий и развёртывание on-prem / private cloud.</p>
+    </div>
+    <div class="partners-cards">
+      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Демо-Workspace для партнёров</span></div>
+      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Шаблоны Skill</span></div>
+      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>1С / SQL пилоты</span></div>
+      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Совместный presale</span></div>
+      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Опции co-brand / white-label</span></div>
+      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Методика ROI</span></div>
+      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Поддержка внедрения</span></div>
+      <div class="partners-card"><span class="partners-check" aria-hidden="true">✓</span><span>Roadmap под отраслевые сценарии</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="long-section" id="faq">
+  <div class="faq-inner">
+  <div class="section-label">// FAQ</div>
+  <div class="section-title">Часто задаваемые вопросы</div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">Вы заменяете CRM, ERP или 1С?</div>
+      <div class="faq-a">Нет. Мы считаем, что CRM, ERP и 1С должны оставаться системами хранения и учёта. Ordo работает поверх них как агентский слой: ищет данные, объясняет выводы, строит пайплайны и помогает запускать действия.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Какая у вас ценовая политика?</div>
+      <div class="faq-a">Стоимость начинается от 4000 рублей в месяц за сотрудника. В эту стоимость уже включены 10 000 токенов, которые обновляются каждый месяц. Дополнительные токены при повышенном потреблении приобретаются отдельно.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Почему Second Brain, а не просто база знаний?</div>
+      <div class="faq-a">Обычная база знаний отвечает на вопросы. Second Brain понимает задачу, находит контекст в корпоративных системах, распределяет работу между агентами, вызывает инструменты, строит графики и дашборды, готовит документы и логирует каждое действие.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Что значит A2A-ready?</div>
+      <div class="faq-a">Agent-to-Agent: платформа умеет разделять сложную задачу между несколькими специализированными агентами (координатор, data, finance, sales, report и др.) и вести общий план исполнения.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Что значит Pipeline Builder?</div>
+      <div class="faq-a">Конструктор повторяемых agentic-workflow: запрос → источники → агент → инструмент → проверка → действие → уведомление → дашборд — чтобы стандартизировать сценарий для команды.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Какие коннекторы доступны?</div>
+      <div class="faq-a">Набор зависит от проекта; в продуктовой линейке заявлены опоры на 1С (в т.ч. УП, бухгалтерия, УТ), Postgres SQL, CRM-коннекторы, документы и внутренние сервисы. Точный перечень согласуется под контур клиента.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Может ли агент записывать данные в 1С?</div>
+      <div class="faq-a">Да, при явных политиках, ролях и режимах согласования: критичные write-action проходят подтверждение человека, шаги фиксируются в audit trail и trace.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Можно ли развернуть в закрытом контуре?</div>
+      <div class="faq-a">Да. Платформа проектируется с учётом on-prem и private cloud — схема развёртывания зависит от требований безопасности и ИТ-ландшафта.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Какие модели поддерживаются?</div>
+      <div class="faq-a">Multi-provider слой: внешние и российские LLM, локальные модели и custom fine-tuned; для сценария настраивается баланс качества, скорости, стоимости и требований безопасности. Конкретный набор провайдеров зависит от политики клиента и модели развёртывания.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Это продукт или консалтинг?</div>
+      <div class="faq-a">Это продуктовая платформа (агентский слой, скиллы, пайплайны, контроль) с enterprise delivery — не разовый консалтинг вместо продукта.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Что нужно для пилота?</div>
+      <div class="faq-a">Один процесс, владелец, KPI и безопасный контур. Типичный пилот — 2–4 недели: скоупинг → подключение источников и ролей → тест на реальных задачах → замер эффекта и план масштабирования.</div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="pilot-section" id="pilot" aria-labelledby="pilot-heading">
+  <div class="pilot-inner">
+    <div class="section-label">// ПИЛОТ</div>
+    <h2 class="pilot-title" id="pilot-heading">Пилот за 2–4 недели: один процесс, один KPI, понятный результат</h2>
+    <div class="pilot-grid">
+      <article class="pilot-card">
+        <div class="pilot-card-head">
+          <span class="pilot-week">Неделя 1</span>
+          <span class="pilot-step" aria-hidden="true">01</span>
+        </div>
+        <h3>Скоупинг</h3>
+        <p>Выбор процесса, данных и KPI.</p>
+      </article>
+      <article class="pilot-card">
+        <div class="pilot-card-head">
+          <span class="pilot-week">Неделя 2</span>
+          <span class="pilot-step" aria-hidden="true">02</span>
+        </div>
+        <h3>Подключение</h3>
+        <p>Интеграция 1С/SQL, роли и базовые скиллы.</p>
+      </article>
+      <article class="pilot-card">
+        <div class="pilot-card-head">
+          <span class="pilot-week">Неделя 3</span>
+          <span class="pilot-step" aria-hidden="true">03</span>
+        </div>
+        <h3>Тестирование</h3>
+        <p>Реальные задачи, графики, дашборды, обратная связь.</p>
+      </article>
+      <article class="pilot-card pilot-card--active">
+        <div class="pilot-card-head">
+          <span class="pilot-week">Неделя 4</span>
+          <span class="pilot-step" aria-hidden="true">04</span>
+        </div>
+        <h3>Эффект</h3>
+        <p>Измерение KPI, план масштабирования, решение по промышленному запуску.</p>
+      </article>
+    </div>
+    <div class="pilot-dots" aria-hidden="true">
+      <span class="pilot-dot"></span>
+      <span class="pilot-dot"></span>
+      <span class="pilot-dot"></span>
+      <span class="pilot-dot pilot-dot--active"></span>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div class="section-label">// СВЯЖИТЕСЬ С НАМИ</div>
+    <div class="cta-title">Готовы запустить<br/><em>Ordo Platform</em> в компании?</div>
+    <p style="margin-top: 20px; font-size: 15px; color: var(--muted); line-height: 1.7;">Оставьте рабочий email — покажем сценарий пилота: подключение контура, стартовые кейсы, метрики снятой рутины и план масштабирования.</p>
+    <div class="cta-form">
+      <input class="cta-input" type="email" placeholder="вы@компания.ru" id="lead-email"/>
+      <button class="cta-submit" onclick="handleSubmit()">Запросить демо</button>
+    </div>
+    <p class="cta-note">Ответим в течение 1 рабочего дня. Никакого спама — свяжемся только по вашему запросу.</p>
+    <div id="form-msg" style="margin-top: 16px; font-family: var(--ff-mono); font-size: 13px; color: var(--accent); display: none;"></div>
+  </div>
+</section>
+
+<section class="closing-section" id="pilot-next" aria-labelledby="closing-cta-heading">
+  <div class="closing-inner">
+    <div class="closing-grid">
+      <div class="closing-card closing-kpi">
+        <div class="closing-label">KPI примеры</div>
+        <div class="closing-kpi-cols">
+          <div>
+            <div class="closing-kpi-item"><span class="closing-kpi-dot" aria-hidden="true"></span><span>время подготовки отчёта</span></div>
+            <div class="closing-kpi-item"><span class="closing-kpi-dot" aria-hidden="true"></span><span>скорость ответа руководителю</span></div>
+            <div class="closing-kpi-item"><span class="closing-kpi-dot" aria-hidden="true"></span><span>ошибки в данных</span></div>
+            <div class="closing-kpi-item"><span class="closing-kpi-dot" aria-hidden="true"></span><span>конверсия / выручка для sales-сценариев</span></div>
+          </div>
+          <div>
+            <div class="closing-kpi-item"><span class="closing-kpi-dot" aria-hidden="true"></span><span>количество ручных операций</span></div>
+            <div class="closing-kpi-item"><span class="closing-kpi-dot" aria-hidden="true"></span><span>число найденных отклонений</span></div>
+            <div class="closing-kpi-item"><span class="closing-kpi-dot" aria-hidden="true"></span><span>SLA по внутренним запросам</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="closing-card closing-cta">
+        <div class="closing-label">Готовы к пилоту?</div>
+        <h2 class="closing-cta-title" id="closing-cta-heading">Один процесс, владелец, KPI и безопасный контур. Остальное — на нас.</h2>
+        <button type="button" class="closing-cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); setTimeout(function(){ document.getElementById('lead-email').focus(); }, 400);">Запросить демо</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">ORDO</div>
+  <p>© 2026 Ordo Platform. Все права защищены.</p>
+  <p style="font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--accent);">ЕДИНАЯ СРЕДА AI-РАБОТЫ</p>
+</footer>
+
+<script>
+(function initOrdoSubdomainNav() {
+  var host = location.hostname;
+  if (!host || /^\d+\.\d+\.\d+\.\d+$/.test(host)) return;
+  var parts = host.split('.');
+  var strip = ['www', 'app', 'sales', 'search', 'finance', 'custom', 'dev', 'platform', 'demo'];
+  while (parts.length > 2 && strip.indexOf(parts[0].toLowerCase()) !== -1) parts.shift();
+  var apex = parts.join('.');
+  var port = location.port ? ':' + location.port : '';
+  var proto = location.protocol;
+  document.querySelectorAll('a[data-ordo-sub]').forEach(function (a) {
+    var sub = a.getAttribute('data-ordo-sub');
+    if (!sub) return;
+    a.href = proto + '//' + sub + '.' + apex + port + '/';
+  });
+})();
+
+(function initMobileNav() {
+  var nav = document.getElementById('site-nav');
+  var burger = document.getElementById('nav-burger');
+  var backdrop = document.getElementById('nav-backdrop');
+  var links = document.getElementById('nav-links');
+  var cta = document.getElementById('nav-cta-demo');
+  if (!nav || !burger || !backdrop || !links) return;
+
+  function setOpen(open) {
+    nav.classList.toggle('is-menu-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    backdrop.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  function closeMenu() { setOpen(false); }
+  function toggleMenu() { setOpen(!nav.classList.contains('is-menu-open')); }
+
+  burger.addEventListener('click', toggleMenu);
+  backdrop.addEventListener('click', closeMenu);
+  links.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf('#') === 0) closeMenu();
+    });
+  });
+  if (cta) {
+    cta.addEventListener('click', function () {
+      var contact = document.getElementById('contact');
+      if (contact) contact.scrollIntoView({ behavior: 'smooth' });
+      closeMenu();
+    });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 1120) closeMenu();
+  });
+})();
+
+function handleSubmit() {
+  const email = document.getElementById('lead-email').value.trim();
+  const msg = document.getElementById('form-msg');
+  if (!email || !email.includes('@')) {
+    msg.style.color = '#c0392b';
+    msg.textContent = '// Пожалуйста, введите корректный email.';
+    msg.style.display = 'block';
+    return;
+  }
+  msg.style.color = '#0a7c5c';
+  msg.textContent = '// Заявка принята. Мы свяжемся с вами в ближайшее время.';
+  msg.style.display = 'block';
+  document.getElementById('lead-email').value = '';
+}
+
+document.querySelectorAll('.faq-item').forEach((item, index) => {
+  const question = item.querySelector('.faq-q');
+  if (!question) return;
+  question.setAttribute('role', 'button');
+  question.setAttribute('tabindex', '0');
+  question.setAttribute('aria-expanded', index === 0 ? 'true' : 'false');
+  if (index === 0) item.classList.add('open');
+
+  const toggle = () => {
+    const willOpen = !item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach((openItem) => {
+      openItem.classList.remove('open');
+      const openQuestion = openItem.querySelector('.faq-q');
+      if (openQuestion) openQuestion.setAttribute('aria-expanded', 'false');
+    });
+    if (willOpen) item.classList.add('open');
+    question.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  };
+
+  question.addEventListener('click', toggle);
+  question.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggle();
+    }
+  });
+});
+</script>
+</body>
+</html>
