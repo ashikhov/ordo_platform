@@ -18,9 +18,9 @@
  * Опционально LEADS_SHARED_SECRET на воркере и ORDO_LEADS_SHARED_SECRET здесь —
  * чтобы посторонние не спамили ваш endpoint.
  */
-var ORDO_WEB3FORMS_ACCESS_KEY = '';
-var ORDO_LEADS_WORKER_URL = '';
-var ORDO_LEADS_SHARED_SECRET = '';
+var ORDO_WEB3FORMS_ACCESS_KEY = '4386bd02-2519-4d1f-8cc1-47cdab6a276f';
+var ORDO_LEADS_WORKER_URL = 'https://ordo-leads.shikhoval97.workers.dev';
+var ORDO_LEADS_SHARED_SECRET = 'ordo-leads-2026-secret';
 
 (function (global) {
   function getKey() {
