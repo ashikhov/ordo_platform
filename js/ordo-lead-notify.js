@@ -23,6 +23,8 @@ var ORDO_LEADS_WORKER_URL = 'https://ordo-leads.shikhoval97.workers.dev';
 var ORDO_LEADS_SHARED_SECRET = 'ordo-leads-2026-secret';
 
 (function (global) {
+  var REQUEST_TIMEOUT_MS = 8000;
+
   function getKey() {
     return String(
       (global.ORDO_WEB3FORMS_ACCESS_KEY != null && global.ORDO_WEB3FORMS_ACCESS_KEY) ||
@@ -45,6 +47,54 @@ var ORDO_LEADS_SHARED_SECRET = 'ordo-leads-2026-secret';
         ORDO_LEADS_SHARED_SECRET ||
         ''
     ).trim();
+  }
+
+  function withTimeout(promise, ms, errorCode) {
+    return new Promise(function (resolve, reject) {
+      var settled = false;
+      var timer = setTimeout(function () {
+        if (settled) return;
+        settled = true;
+        reject(new Error(errorCode || 'TIMEOUT'));
+      }, ms);
+
+      promise
+        .then(function (value) {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
+          resolve(value);
+        })
+        .catch(function (error) {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
+          reject(error);
+        });
+    });
+  }
+
+  function firstFulfilled(promises) {
+    return new Promise(function (resolve, reject) {
+      var pending = promises.length;
+      var firstError = null;
+      if (!pending) {
+        reject(new Error('SEND_FAIL'));
+        return;
+      }
+
+      promises.forEach(function (promise) {
+        promise
+          .then(function (value) {
+            resolve(value);
+          })
+          .catch(function (error) {
+            if (!firstError) firstError = error;
+            pending -= 1;
+            if (pending === 0) reject(firstError || new Error('SEND_FAIL'));
+          });
+      });
+    });
   }
 
   function submitWeb3(data) {
@@ -104,24 +154,23 @@ var ORDO_LEADS_SHARED_SECRET = 'ordo-leads-2026-secret';
     if (!useWeb3 && !useWorker) return Promise.reject(new Error('NO_CONFIG'));
 
     var tasks = [];
-    if (useWeb3) tasks.push(submitWeb3(data).catch(function (e) {
-      return Promise.reject(Object.assign(e, { _channel: 'email' }));
-    }));
-    if (useWorker) tasks.push(submitWorker(data).catch(function (e) {
-      return Promise.reject(Object.assign(e, { _channel: 'telegram' }));
-    }));
+    if (useWeb3) {
+      tasks.push(
+        withTimeout(submitWeb3(data), REQUEST_TIMEOUT_MS, 'EMAIL_TIMEOUT').catch(function (e) {
+          return Promise.reject(Object.assign(e, { _channel: 'email' }));
+        })
+      );
+    }
+    if (useWorker) {
+      tasks.push(
+        withTimeout(submitWorker(data), REQUEST_TIMEOUT_MS, 'WORKER_TIMEOUT').catch(function (e) {
+          return Promise.reject(Object.assign(e, { _channel: 'telegram' }));
+        })
+      );
+    }
 
-    return Promise.allSettled(tasks).then(function (results) {
-      var ok = results.filter(function (r) {
-        return r.status === 'fulfilled';
-      });
-      if (ok.length > 0) return { delivered: ok.length, results: results };
-      var first = results[0];
-      var err =
-        first && first.status === 'rejected' && first.reason
-          ? first.reason
-          : new Error('SEND_FAIL');
-      return Promise.reject(err);
+    return firstFulfilled(tasks).then(function (result) {
+      return { delivered: 1, result: result };
     });
   }
 
