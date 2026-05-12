@@ -30,14 +30,106 @@
   html { scroll-behavior: smooth; }
   body { background: var(--white); color: var(--text); font-family: var(--ff-body); font-weight: 300; overflow-x: hidden; }
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 5vw; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); }
-  .logo { font-family: var(--ff-display); font-weight: 800; font-size: 18px; letter-spacing: 0.12em; color: var(--text); }
+  /* Навигация: два режима — десктоп (≥1121px) горизонтальная полоса; моб./планшет (≤1120px) бургер + выезжающая панель. */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 5vw; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 0.5px solid var(--border); background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); }
+  .logo { font-family: var(--ff-display); font-weight: 800; font-size: 18px; letter-spacing: 0.12em; color: var(--text); flex-shrink: 0; position: relative; z-index: 2; }
   .logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 32px; }
-  .nav-links a { font-size: 13px; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links { display: flex; flex: 1; justify-content: center; align-items: center; min-width: 0; }
+  .nav-links a { font-size: 13px; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
   .nav-links a:hover { color: var(--text); }
+  .nav-side { display: flex; align-items: center; gap: 10px; flex-shrink: 0; position: relative; z-index: 2; }
   .nav-cta { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-weight: 500; transition: background 0.2s, transform 0.15s; }
   .nav-cta:hover { background: #0a9970; transform: translateY(-1px); }
+  .nav-backdrop { display: none; position: fixed; inset: 0; top: 64px; background: rgba(15,15,14,0.35); opacity: 0; pointer-events: none; transition: opacity 0.25s ease; z-index: 0; }
+  .nav-burger { display: none; width: 44px; height: 44px; padding: 0; border: none; border-radius: 10px; background: transparent; cursor: pointer; align-items: center; justify-content: center; flex-direction: column; gap: 5px; color: var(--text); transition: background 0.2s; }
+  .nav-burger:hover { background: var(--surface); }
+  .nav-burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .nav-burger span { display: block; width: 20px; height: 2px; background: currentColor; border-radius: 1px; transition: transform 0.25s ease, opacity 0.2s ease; transform-origin: center; }
+  nav.is-menu-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  nav.is-menu-open .nav-burger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  nav.is-menu-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (min-width: 1121px) {
+    .nav-links {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 24px 20px;
+      position: static;
+      width: auto;
+      height: auto;
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      transform: none;
+      visibility: visible;
+      pointer-events: auto;
+      overflow: visible;
+    }
+    .nav-links a {
+      padding: 0;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      border-bottom: none;
+      white-space: nowrap;
+    }
+    .nav-burger { display: none !important; }
+    .nav-backdrop { display: none !important; opacity: 0 !important; pointer-events: none !important; }
+    nav.is-menu-open .nav-links { transform: none; }
+  }
+
+  @media (max-width: 1120px) {
+    .nav-backdrop { display: block; }
+    .nav-burger { display: flex; }
+    .nav-links {
+      position: fixed;
+      top: 64px;
+      right: 0;
+      width: min(320px, 88vw);
+      height: calc(100vh - 64px);
+      height: calc(100dvh - 64px);
+      margin: 0;
+      padding: 20px 22px 28px;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(14px);
+      border-left: 0.5px solid var(--border);
+      box-shadow: -12px 0 48px rgba(15,15,14,0.12);
+      transform: translateX(100%);
+      transition: transform 0.28s ease, visibility 0s linear 0.28s;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      z-index: 3;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .nav-links a {
+      white-space: normal;
+      padding: 16px 4px;
+      font-size: 15px;
+      border-bottom: 0.5px solid var(--border);
+      letter-spacing: 0.02em;
+    }
+    .nav-links a:last-child { border-bottom: none; }
+    nav.is-menu-open .nav-links {
+      transform: translateX(0);
+      visibility: visible;
+      pointer-events: auto;
+      transition: transform 0.28s ease, visibility 0s linear 0s;
+    }
+    nav.is-menu-open .nav-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 1;
+    }
+  }
+  @media (max-width: 420px) {
+    .nav-cta { padding: 10px 16px; font-size: 11px; letter-spacing: 0.06em; }
+  }
 
   .hero { min-height: calc(100vh - 64px); display: flex; flex-direction: column; justify-content: center; padding: 76px 5vw 34px; position: relative; overflow: hidden; background: var(--white); }
   .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; }
@@ -260,17 +352,23 @@
 </head>
 <body>
 
-<nav>
+<nav id="site-nav">
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
   <div class="logo">ORDO</div>
-  <div class="nav-links">
-    <a href="#problem">Проблема</a>
+  <div class="nav-links" id="nav-links">
     <a href="#features">Среда Ordo</a>
-    <a href="#value">Ценность</a>
-    <a href="#audience">Роли в среде</a>
-    <a href="#faq">FAQ</a>
+    <a href="sales/" data-ordo-sub="sales">Система продаж</a>
+    <a href="search/" data-ordo-sub="search">Система поиска</a>
+    <a href="finance/" data-ordo-sub="finance">Система финансов</a>
+    <a href="custom/" data-ordo-sub="custom">Ordo на заказ</a>
     <a href="#contact">Контакты</a>
   </div>
-  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Запросить демо</button>
+  <div class="nav-side">
+    <button type="button" class="nav-cta" id="nav-cta-demo">Запросить демо</button>
+    <button type="button" class="nav-burger" id="nav-burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <section class="hero">
@@ -813,20 +911,119 @@
   <p style="font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--accent);">ЕДИНАЯ СРЕДА AI-РАБОТЫ</p>
 </footer>
 
+<script src="js/ordo-lead-notify.js"></script>
 <script>
-function handleSubmit() {
-  const email = document.getElementById('lead-email').value.trim();
+(function initOrdoSubdomainNav() {
+  var host = location.hostname;
+  if (!host || /^\d+\.\d+\.\d+\.\d+$/.test(host)) return;
+  if (/github\.io$/i.test(host) || /pages\.dev$/i.test(host)) return;
+  var parts = host.split('.');
+  var strip = ['www', 'app', 'sales', 'search', 'finance', 'custom', 'dev', 'platform', 'demo'];
+  while (parts.length > 2 && strip.indexOf(parts[0].toLowerCase()) !== -1) parts.shift();
+  var apex = parts.join('.');
+  var port = location.port ? ':' + location.port : '';
+  var proto = location.protocol;
+  document.querySelectorAll('a[data-ordo-sub]').forEach(function (a) {
+    var sub = a.getAttribute('data-ordo-sub');
+    if (!sub) return;
+    a.href = proto + '//' + sub + '.' + apex + port + '/';
+  });
+})();
+
+(function initMobileNav() {
+  var nav = document.getElementById('site-nav');
+  var burger = document.getElementById('nav-burger');
+  var backdrop = document.getElementById('nav-backdrop');
+  var links = document.getElementById('nav-links');
+  var cta = document.getElementById('nav-cta-demo');
+  if (!nav || !burger || !backdrop || !links) return;
+
+  function setOpen(open) {
+    nav.classList.toggle('is-menu-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    backdrop.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  function closeMenu() { setOpen(false); }
+  function toggleMenu() { setOpen(!nav.classList.contains('is-menu-open')); }
+
+  burger.addEventListener('click', toggleMenu);
+  backdrop.addEventListener('click', closeMenu);
+  links.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf('#') === 0) closeMenu();
+    });
+  });
+  if (cta) {
+    cta.addEventListener('click', function () {
+      var contact = document.getElementById('contact');
+      if (contact) contact.scrollIntoView({ behavior: 'smooth' });
+      closeMenu();
+    });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 1120) closeMenu();
+  });
+})();
+
+async function handleSubmit() {
+  const emailEl = document.getElementById('lead-email');
   const msg = document.getElementById('form-msg');
+  const btn = document.querySelector('#contact .cta-submit');
+  const email = emailEl.value.trim();
   if (!email || !email.includes('@')) {
     msg.style.color = '#c0392b';
     msg.textContent = '// Пожалуйста, введите корректный email.';
     msg.style.display = 'block';
     return;
   }
-  msg.style.color = '#0a7c5c';
-  msg.textContent = '// Заявка принята. Мы свяжемся с вами в ближайшее время.';
-  msg.style.display = 'block';
-  document.getElementById('lead-email').value = '';
+  if (!window.OrdoLeads) {
+    msg.style.color = '#c0392b';
+    msg.textContent = '// Не загружен скрипт отправки заявок (js/ordo-lead-notify.js).';
+    msg.style.display = 'block';
+    return;
+  }
+  const prev = btn ? btn.textContent : '';
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Отправка…';
+  }
+  try {
+    await window.OrdoLeads.submit({
+      subject: '[Ordo Platform] Запрос демо',
+      name: email.split('@')[0] || 'Гость',
+      email: email,
+      message:
+        'Запрос демо с главной страницы.\nEmail для связи: ' +
+        email +
+        '\nСтраница: ' +
+        location.href
+    });
+    msg.style.color = '#0a7c5c';
+    msg.textContent = '// Заявка отправлена. Мы свяжемся с вами в ближайшее время.';
+    msg.style.display = 'block';
+    emailEl.value = '';
+  } catch (e) {
+    msg.style.display = 'block';
+    msg.style.color = '#c0392b';
+    if (e && e.message === 'NO_CONFIG') {
+      msg.textContent =
+        '// Отправка не настроена: в js/ordo-lead-notify.js задайте ORDO_WEB3FORMS_ACCESS_KEY (почта) и/или ORDO_LEADS_WORKER_URL (Telegram).';
+    } else {
+      msg.textContent =
+        '// Не удалось отправить заявку. Попробуйте позже или напишите на team@ordo.ru.';
+    }
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = prev;
+    }
+  }
 }
 
 document.querySelectorAll('.faq-item').forEach((item, index) => {
