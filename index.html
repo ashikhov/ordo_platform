@@ -911,6 +911,7 @@
   <p style="font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--accent);">ЕДИНАЯ СРЕДА AI-РАБОТЫ</p>
 </footer>
 
+<script src="js/ordo-lead-notify.js"></script>
 <script>
 (function initOrdoSubdomainNav() {
   var host = location.hostname;
@@ -969,19 +970,59 @@
   });
 })();
 
-function handleSubmit() {
-  const email = document.getElementById('lead-email').value.trim();
+async function handleSubmit() {
+  const emailEl = document.getElementById('lead-email');
   const msg = document.getElementById('form-msg');
+  const btn = document.querySelector('#contact .cta-submit');
+  const email = emailEl.value.trim();
   if (!email || !email.includes('@')) {
     msg.style.color = '#c0392b';
     msg.textContent = '// Пожалуйста, введите корректный email.';
     msg.style.display = 'block';
     return;
   }
-  msg.style.color = '#0a7c5c';
-  msg.textContent = '// Заявка принята. Мы свяжемся с вами в ближайшее время.';
-  msg.style.display = 'block';
-  document.getElementById('lead-email').value = '';
+  if (!window.OrdoLeads) {
+    msg.style.color = '#c0392b';
+    msg.textContent = '// Не загружен скрипт отправки заявок (js/ordo-lead-notify.js).';
+    msg.style.display = 'block';
+    return;
+  }
+  const prev = btn ? btn.textContent : '';
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Отправка…';
+  }
+  try {
+    await window.OrdoLeads.submit({
+      subject: '[Ordo Platform] Запрос демо',
+      name: email.split('@')[0] || 'Гость',
+      email: email,
+      message:
+        'Запрос демо с главной страницы.\nEmail для связи: ' +
+        email +
+        '\nСтраница: ' +
+        location.href
+    });
+    msg.style.color = '#0a7c5c';
+    msg.textContent = '// Заявка отправлена. Мы свяжемся с вами в ближайшее время.';
+    msg.style.display = 'block';
+    emailEl.value = '';
+  } catch (e) {
+    msg.style.display = 'block';
+    msg.style.color = '#c0392b';
+    if (e && e.message === 'NO_CONFIG') {
+      msg.textContent =
+        '// Отправка не настроена: в js/ordo-lead-notify.js задайте ORDO_WEB3FORMS_ACCESS_KEY (почта) и/или ORDO_LEADS_WORKER_URL (Telegram).';
+    } else {
+      msg.textContent =
+        '// Не удалось отправить заявку. Попробуйте позже или напишите на team@ordo.ru.';
+    }
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = prev;
+    }
+  }
 }
 
 document.querySelectorAll('.faq-item').forEach((item, index) => {
