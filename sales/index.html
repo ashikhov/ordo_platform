@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ordo AI — система управления продажами</title>
-<meta name="description" content="Ordo AI Sales System: от первого касания до повторной покупки — управление вертикалью продаж в реальном времени. Три уровня внедрения, интеграции, on-premise."/>
+<title>ORDO CRM — решения по продажам | Ordo AI</title>
+<meta name="description" content="ORDO CRM — решения по продажам: от первого касания до повторной покупки, управление вертикалью в реальном времени. Три уровня внедрения, интеграции, on-premise."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../styles/ordo-fonts.css"/>
+<link rel="stylesheet" href="../styles/ordo-header.css"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -27,48 +28,6 @@
   body { font-family: var(--ff-body); color: var(--text); background: #fff; min-height: 100vh; line-height: 1.5; }
   a { color: inherit; text-decoration: none; }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 32px); }
-  .site-header {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(255,255,255,0.94);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .site-header .inner {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    min-height: 64px; padding: 12px 0; flex-wrap: wrap;
-  }
-  .brand {
-    font-family: var(--ff-display); font-weight: 800; font-size: 0.9375rem;
-    letter-spacing: 0.06em; white-space: nowrap;
-  }
-  .brand span { color: var(--accent); }
-  .nav-desktop { display: none; align-items: center; gap: 2px; flex-wrap: wrap; justify-content: flex-end; }
-  @media (min-width: 1024px) { .nav-desktop { display: flex; flex: 1; } .nav-burger { display: none !important; } }
-  .nav-desktop a, .nav-desktop span[aria-current="page"] {
-    padding: 8px 10px; font-size: 0.8125rem; font-weight: 500; color: var(--muted);
-    border-radius: 8px; transition: color 0.15s, background 0.15s;
-  }
-  .nav-desktop a:hover { color: var(--text); background: var(--surface); }
-  .nav-desktop span[aria-current="page"] { color: var(--text); font-weight: 600; background: var(--surface); }
-  .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-  .btn-primary {
-    display: inline-flex; align-items: center; justify-content: center;
-    padding: 10px 18px; font-size: 0.8125rem; font-weight: 600; color: #fff;
-    background: var(--accent); border: none; border-radius: 999px; cursor: pointer;
-    transition: background 0.2s;
-  }
-  .btn-primary:hover { background: var(--accent-hover); }
-  .nav-burger {
-    display: flex; align-items: center; justify-content: center;
-    width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 10px; background: #fff; cursor: pointer;
-  }
-  .nav-mobile { display: none; flex-direction: column; padding: 0 0 16px; gap: 2px; width: 100%; }
-  .nav-mobile.is-open { display: flex; }
-  .nav-mobile a, .nav-mobile span[aria-current="page"] {
-    padding: 11px 12px; font-size: 0.875rem; font-weight: 500; border-radius: 8px; color: var(--text);
-  }
-  .nav-mobile a:hover { background: var(--surface); }
-  .nav-mobile span[aria-current="page"] { font-weight: 600; background: var(--surface); }
   .hero {
     padding: clamp(40px, 6vw, 80px) 0 clamp(48px, 8vw, 88px);
     background: radial-gradient(ellipse 85% 55% at 50% -25%, rgba(10, 124, 92, 0.11), transparent), linear-gradient(180deg, #fff, #fafbfc);
@@ -219,39 +178,74 @@
 </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="wrap">
-    <div class="inner">
-      <a class="brand" href="../index.html">ORDO<span> AI</span></a>
-      <nav id="os-main-nav" class="nav-desktop" aria-label="Основное">
-        <a href="../index.html#features">Среда Ordo</a>
-        <span aria-current="page">Система продаж</span>
-        <a href="../search/" data-ordo-sub="search">Система поиска</a>
-        <a href="../finance/" data-ordo-sub="finance">Система финансов</a>
+<header class="ordo-header" id="ordo-header">
+  <div class="ordo-header__bar">
+    <a class="ordo-brand" href="../index.html">ORDO<span> AI</span></a>
+    <nav class="ordo-nav" aria-label="Основное">
+      <div class="ordo-nav-item has-mega">
+        <button type="button" class="ordo-nav-trigger" aria-expanded="false" aria-controls="ordo-mega-products">Продукты<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div id="ordo-mega-products" class="ordo-mega" role="region" aria-label="Продукты Ordo">
+          <div class="ordo-mega-grid">
+            <a href="../platform/" class="ordo-mega-card"><span class="ordo-mega-card__visual"><img src="../assets/img/products/platform.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">Ordo Управление</span><span class="ordo-mega-card__desc">Единая платформа для AI-агентов, скиллов и рабочих процессов</span></a>
+            <a href="../sales/" class="ordo-mega-card" data-ordo-sub="sales" aria-current="page"><span class="ordo-mega-card__visual"><img src="../assets/img/products/crm.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">ORDO CRM — решения по продажам</span><span class="ordo-mega-card__desc">Управление вертикалью продаж и действиями команды в реальном времени</span></a>
+            <a href="../search/" class="ordo-mega-card" data-ordo-sub="search"><span class="ordo-mega-card__visual"><img src="../assets/img/products/search.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">Ordo поиск</span><span class="ordo-mega-card__desc">AI-поиск и ассистент для e-commerce и каталогов</span></a>
+            <a href="../finance/" class="ordo-mega-card" data-ordo-sub="finance"><span class="ordo-mega-card__visual"><img src="../assets/img/products/finance.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">ORDO финансы</span><span class="ordo-mega-card__desc">AI-слой для финансовых процессов, контроля и план-факта</span></a>
+            <a href="../custom/" class="ordo-mega-card" data-ordo-sub="custom"><span class="ordo-mega-card__visual"><img src="../assets/img/products/custom.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">Ordo на заказ</span><span class="ordo-mega-card__desc">Кастомные агенты, интеграции и закрытый контур под вашу задачу</span></a>
+          </div>
+        </div>
+      </div>
+      <a class="ordo-nav-link" href="../index.html#industries">Индустрии</a>
+      <a class="ordo-nav-link" href="../index.html#cases">Кейсы</a>
+      <a class="ordo-nav-link" href="../platform/#partners">Партнёрам</a>
+      <div class="ordo-nav-item has-mega">
+        <button type="button" class="ordo-nav-trigger" aria-expanded="false" aria-controls="ordo-mega-about">О компании<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div id="ordo-mega-about" class="ordo-mega ordo-mega--about" role="region" aria-label="О компании">
+          <div class="ordo-mega-grid ordo-mega-grid--about">
+            <a class="ordo-mega-link" href="../platform/">Ordo Управление</a>
+            <a class="ordo-mega-link" href="../platform/#security-roi">Безопасность</a>
+            <a class="ordo-mega-link" href="../platform/#faq">FAQ</a>
+            <a class="ordo-mega-link" href="../index.html#contact">Контакты</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="ordo-header__actions">
+      <a class="ordo-cta" href="../index.html#contact">Запросить демо</a>
+      <button type="button" class="ordo-burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="ordo-mobile-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+  </div>
+  <nav class="ordo-mobile" id="ordo-mobile-nav" aria-label="Мобильное меню">
+    <div class="ordo-mobile-group">
+      <button type="button" class="ordo-mobile-trigger" aria-expanded="false">Продукты<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="ordo-mobile-panel">
+        <a href="../platform/">Ordo Управление</a>
+        <a href="../sales/" data-ordo-sub="sales" aria-current="page">ORDO CRM</a>
+        <a href="../search/" data-ordo-sub="search">Ordo поиск</a>
+        <a href="../finance/" data-ordo-sub="finance">ORDO финансы</a>
         <a href="../custom/" data-ordo-sub="custom">Ordo на заказ</a>
-        <a href="../index.html#contact">Контакты</a>
-      </nav>
-      <div class="nav-actions">
-        <a class="btn-primary" href="../index.html#contact">Запросить демо</a>
-        <button type="button" class="nav-burger" aria-label="Меню" aria-expanded="false" id="nav-burger"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
       </div>
     </div>
-    <nav class="nav-mobile" id="nav-mobile" aria-label="Мобильное меню">
-      <a href="../index.html#features">Среда Ordo</a>
-      <span aria-current="page">Система продаж</span>
-      <a href="../search/" data-ordo-sub="search">Система поиска</a>
-      <a href="../finance/" data-ordo-sub="finance">Система финансов</a>
-      <a href="../custom/" data-ordo-sub="custom">Ordo на заказ</a>
-      <a href="../index.html#contact">Контакты</a>
-      <a class="btn-primary" style="margin-top:8px;text-align:center;" href="../index.html#contact">Запросить демо</a>
-    </nav>
-  </div>
+    <a class="ordo-mobile-link" href="../index.html#industries">Индустрии</a>
+    <a class="ordo-mobile-link" href="../index.html#cases">Кейсы</a>
+    <a class="ordo-mobile-link" href="../platform/#partners">Партнёрам</a>
+    <div class="ordo-mobile-group">
+      <button type="button" class="ordo-mobile-trigger" aria-expanded="false">О компании<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="ordo-mobile-panel">
+        <a href="../platform/">Ordo Управление</a>
+        <a href="../platform/#security-roi">Безопасность</a>
+        <a href="../platform/#faq">FAQ</a>
+        <a href="../index.html#contact">Контакты</a>
+      </div>
+    </div>
+    <a class="ordo-mobile-cta" href="../index.html#contact">Запросить демо</a>
+  </nav>
 </header>
+<div class="ordo-backdrop" aria-hidden="true"></div>
+
 
 <section class="hero">
   <div class="wrap">
-    <p class="kicker">СИСТЕМА УПРАВЛЕНИЯ ПРОДАЖАМИ</p>
-    <h1>Интеллектуальная система управления продажами</h1>
+    <h1>ORDO CRM — решения по продажам</h1>
     <p class="hero-sub">От первого касания до повторной покупки — управление всей вертикалью в реальном времени. Ordo AI дополняет CRM и аналитику: управляет действиями людей и самообучается, а не только фиксирует факты или показывает отчёты.</p>
     <div class="kpi-strip">
       <div class="kpi-item"><strong>+5–18%</strong><span>конверсия в салоне</span></div>
@@ -264,7 +258,7 @@
       <a class="btn-outline" href="#levels">Три уровня внедрения</a>
       <a class="btn-outline" href="#simple">Простой старт</a>
     </div>
-    <p class="deck-ref">Ordo AI · Sales System · 2026</p>
+    <p class="deck-ref">Ordo AI · ORDO CRM · 2026</p>
   </div>
 </section>
 
@@ -273,7 +267,7 @@
     <div class="section-head">
       <div class="section-label">Позиционирование</div>
       <h2>Новая ступень развития продаж</h2>
-      <p>Ordo AI — система управления продажами и операциями через ИИ: не замена CRM, а слой управления поверх неё.</p>
+      <p>ORDO CRM — решения по продажам и операциям через ИИ: не замена CRM, а слой управления поверх неё.</p>
     </div>
     <div class="compare-grid">
       <article class="compare-card">
@@ -355,7 +349,7 @@
           <li>— Первичная квалификация лида</li>
         </ul>
         <div class="effect"><strong>Эффект:</strong> рост CTR и конверсии сайта, снижение нагрузки на менеджеров. Удержание времени на сайте: <strong>+15–35%</strong>.</div>
-        <p class="case-note">Связано с линейкой <a class="link-inline" href="../search/">Ordo Search</a>.</p>
+        <p class="case-note">Связано с линейкой <a class="link-inline" href="../search/">Ordo поиск</a>.</p>
         <div class="offer-meta">
           <div><span>Цена</span><strong>от 100 000 ₽ / мес</strong></div>
           <div><span>Срок</span><strong>от 2 дней</strong></div>
@@ -467,9 +461,9 @@
       </article>
     </div>
     <div class="suite">
-      <a class="is-current" href="index.html">Система продаж</a>
-      <a href="../search/">Система поиска</a>
-      <a href="../finance/">Система финансов</a>
+      <a class="is-current" href="index.html">ORDO CRM</a>
+      <a href="../search/">Ordo поиск</a>
+      <a href="../finance/">ORDO финансы</a>
       <a href="../custom/">Ordo на заказ</a>
     </div>
   </div>
@@ -588,15 +582,15 @@
       <div class="path-step"><strong>03</strong>Архитектура → устойчивый рост</div>
     </div>
     <a class="btn-primary" href="mailto:team@ordo.ru?subject=Ordo%20AI%20Sales%20—%20внедрение">Связаться с нами</a>
-    <p style="margin-top:18px;font-size:0.875rem;color:var(--muted);"><a class="link-inline" href="../index.html#contact">Форма на главной Ordo Platform</a></p>
+    <p style="margin-top:18px;font-size:0.875rem;color:var(--muted);"><a class="link-inline" href="../index.html#contact">Форма на главной</a></p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Ordo AI · Sales System</span>
+    <span>© 2026 Ordo AI · ORDO CRM</span>
     <nav aria-label="Подвал">
-      <a href="../index.html">Платформа</a>
+      <a href="../platform/">Ordo Управление</a>
       <a href="../search/">Поиск</a>
       <a href="../finance/">Финансы</a>
       <a href="#why">О продукте</a>
@@ -621,21 +615,7 @@
     a.href = proto + '//' + sub + '.' + apex + port + '/';
   });
 })();
-(function () {
-  var btn = document.getElementById('nav-burger');
-  var mobile = document.getElementById('nav-mobile');
-  if (!btn || !mobile) return;
-  btn.addEventListener('click', function () {
-    var open = mobile.classList.toggle('is-open');
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  mobile.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      mobile.classList.remove('is-open');
-      btn.setAttribute('aria-expanded', 'false');
-    });
-  });
-})();
 </script>
+<script src="../js/ordo-header.js"></script>
 </body>
 </html>

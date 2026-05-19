@@ -1,0 +1,63 @@
+﻿<header class="ordo-header" id="ordo-header">
+  <div class="ordo-header__bar">
+    <a class="ordo-brand" href="{{BASE}}index.html">ORDO<span> AI</span></a>
+    <nav class="ordo-nav" aria-label="Основное">
+      <div class="ordo-nav-item has-mega">
+        <button type="button" class="ordo-nav-trigger" aria-expanded="false" aria-controls="ordo-mega-products">Продукты<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div id="ordo-mega-products" class="ordo-mega" role="region" aria-label="Продукты Ordo">
+          <div class="ordo-mega-grid">
+            <a href="{{BASE}}platform/" class="ordo-mega-card"{{CURRENT_PLATFORM}}><span class="ordo-mega-card__visual"><img src="{{BASE}}assets/img/products/platform.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">Ordo Управление</span><span class="ordo-mega-card__desc">Единая платформа для AI-агентов, скиллов и рабочих процессов</span></a>
+            <a href="{{BASE}}sales/" class="ordo-mega-card" data-ordo-sub="sales"{{CURRENT_SALES}}><span class="ordo-mega-card__visual"><img src="{{BASE}}assets/img/products/crm.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">ORDO CRM — решения по продажам</span><span class="ordo-mega-card__desc">Управление вертикалью продаж и действиями команды в реальном времени</span></a>
+            <a href="{{BASE}}search/" class="ordo-mega-card" data-ordo-sub="search"{{CURRENT_SEARCH}}><span class="ordo-mega-card__visual"><img src="{{BASE}}assets/img/products/search.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">Ordo поиск</span><span class="ordo-mega-card__desc">AI-поиск и ассистент для e-commerce и каталогов</span></a>
+            <a href="{{BASE}}finance/" class="ordo-mega-card" data-ordo-sub="finance"{{CURRENT_FINANCE}}><span class="ordo-mega-card__visual"><img src="{{BASE}}assets/img/products/finance.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">ORDO финансы</span><span class="ordo-mega-card__desc">AI-слой для финансовых процессов, контроля и план-факта</span></a>
+            <a href="{{BASE}}custom/" class="ordo-mega-card" data-ordo-sub="custom"{{CURRENT_CUSTOM}}><span class="ordo-mega-card__visual"><img src="{{BASE}}assets/img/products/custom.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">Ordo на заказ</span><span class="ordo-mega-card__desc">Кастомные агенты, интеграции и закрытый контур под вашу задачу</span></a>
+          </div>
+        </div>
+      </div>
+      <a class="ordo-nav-link" href="{{BASE}}index.html#audience">Индустрии</a>
+      <a class="ordo-nav-link" href="{{BASE}}index.html#examples">Кейсы</a>
+      <a class="ordo-nav-link" href="{{BASE}}index.html#partners">Партнёрам</a>
+      <div class="ordo-nav-item has-mega">
+        <button type="button" class="ordo-nav-trigger" aria-expanded="false" aria-controls="ordo-mega-about">О компании<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div id="ordo-mega-about" class="ordo-mega ordo-mega--about" role="region" aria-label="О компании">
+          <div class="ordo-mega-grid ordo-mega-grid--about">
+            <a class="ordo-mega-link" href="{{BASE}}platform/">Ordo Управление</a>
+            <a class="ordo-mega-link" href="{{BASE}}platform/#security-roi">Безопасность</a>
+            <a class="ordo-mega-link" href="{{BASE}}platform/#faq">FAQ</a>
+            <a class="ordo-mega-link" href="{{BASE}}index.html#contact">Контакты</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="ordo-header__actions">
+      <a class="ordo-cta" href="{{BASE}}index.html#contact"{{CTA_SCROLL}}>Запросить демо</a>
+      <button type="button" class="ordo-burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="ordo-mobile-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+  </div>
+  <nav class="ordo-mobile" id="ordo-mobile-nav" aria-label="Мобильное меню">
+    <div class="ordo-mobile-group">
+      <button type="button" class="ordo-mobile-trigger" aria-expanded="false">Продукты<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="ordo-mobile-panel">
+        <a href="{{BASE}}platform/"{{CURRENT_PLATFORM}}>Ordo Управление</a>
+        <a href="{{BASE}}sales/" data-ordo-sub="sales"{{CURRENT_SALES}}>ORDO CRM</a>
+        <a href="{{BASE}}search/" data-ordo-sub="search"{{CURRENT_SEARCH}}>Ordo поиск</a>
+        <a href="{{BASE}}finance/" data-ordo-sub="finance"{{CURRENT_FINANCE}}>ORDO финансы</a>
+        <a href="{{BASE}}custom/" data-ordo-sub="custom"{{CURRENT_CUSTOM}}>Ordo на заказ</a>
+      </div>
+    </div>
+    <a class="ordo-mobile-link" href="{{BASE}}index.html#audience">Индустрии</a>
+    <a class="ordo-mobile-link" href="{{BASE}}index.html#examples">Кейсы</a>
+    <a class="ordo-mobile-link" href="{{BASE}}index.html#partners">Партнёрам</a>
+    <div class="ordo-mobile-group">
+      <button type="button" class="ordo-mobile-trigger" aria-expanded="false">О компании<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="ordo-mobile-panel">
+        <a href="{{BASE}}platform/">Ordo Управление</a>
+        <a href="{{BASE}}platform/#security-roi">Безопасность</a>
+        <a href="{{BASE}}platform/#faq">FAQ</a>
+        <a href="{{BASE}}index.html#contact">Контакты</a>
+      </div>
+    </div>
+    <a class="ordo-mobile-cta" href="{{BASE}}index.html#contact">Запросить демо</a>
+  </nav>
+</header>
+<div class="ordo-backdrop" aria-hidden="true"></div>

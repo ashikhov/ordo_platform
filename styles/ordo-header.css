@@ -1,0 +1,354 @@
+/* Ordo — единая шапка сайта */
+.ordo-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+.ordo-header__bar {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 32px);
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ordo-brand {
+  font-family: 'Syne', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 0.9375rem;
+  letter-spacing: 0.06em;
+  color: #0f172a;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.ordo-brand span { color: #0a7c5c; }
+
+.ordo-nav {
+  display: none;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  justify-content: center;
+}
+@media (min-width: 1024px) {
+  .ordo-nav { display: flex; }
+  .ordo-burger { display: none !important; }
+}
+
+.ordo-nav-link,
+.ordo-nav-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #64748b;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.ordo-nav-link:hover,
+.ordo-nav-trigger:hover,
+.ordo-nav-item.is-open .ordo-nav-trigger {
+  color: #0f172a;
+  background: #f8fafc;
+}
+.ordo-nav-trigger svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s;
+}
+.ordo-nav-item.is-open .ordo-nav-trigger svg { transform: rotate(180deg); }
+
+.ordo-nav-item { position: relative; }
+
+/* Mega-menu */
+.ordo-mega {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: min(720px, calc(100vw - 32px));
+  padding: 14px;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+}
+.ordo-nav-item.is-open .ordo-mega { display: block; }
+.ordo-mega--about { min-width: 280px; left: auto; right: 0; transform: none; }
+.ordo-mega-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 860px) {
+  .ordo-mega-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.ordo-mega-grid--about { grid-template-columns: 1fr; }
+
+/* Продукты: на всю ширину экрана, 5 карточек в одну строку */
+@media (min-width: 1024px) {
+  #ordo-mega-products.ordo-mega {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 64px;
+    transform: none;
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 18px clamp(20px, 4vw, 48px) 22px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    box-shadow: 0 16px 48px rgba(15, 23, 42, 0.1);
+  }
+  #ordo-mega-products.ordo-mega::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 0;
+    right: 0;
+    height: 12px;
+  }
+  #ordo-mega-products .ordo-mega-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(10px, 1.2vw, 16px);
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  #ordo-mega-products .ordo-mega-card {
+    padding: 10px 10px 14px;
+    min-height: 100%;
+    background: #fff;
+    gap: 10px;
+  }
+  #ordo-mega-products .ordo-mega-card__title {
+    font-size: 0.8125rem;
+  }
+  #ordo-mega-products .ordo-mega-card__desc {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+  #ordo-mega-products .ordo-mega-card__visual {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.ordo-mega-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: linear-gradient(165deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.ordo-mega-card:hover {
+  border-color: rgba(10, 124, 92, 0.25);
+  box-shadow: 0 8px 24px rgba(10, 124, 92, 0.08);
+  transform: translateY(-1px);
+}
+.ordo-mega-card[aria-current="page"] {
+  border-color: rgba(10, 124, 92, 0.4);
+  background: linear-gradient(165deg, #ecfdf5 0%, #f0fdf9 100%);
+}
+.ordo-mega-card__visual {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(165deg, #f0fdfa 0%, #f1f5f9 100%);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+.ordo-mega-card__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.ordo-mega-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(10, 124, 92, 0.1);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+.ordo-mega-card__title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #0a7c5c;
+  line-height: 1.25;
+}
+.ordo-mega-card__desc {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #64748b;
+}
+.ordo-mega-link {
+  display: block;
+  padding: 10px 14px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #0f172a;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+.ordo-mega-link:hover { background: #f8fafc; }
+
+.ordo-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.ordo-cta {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #fff;
+  background: #0a7c5c;
+  border: none;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.ordo-cta:hover { background: #088f6a; }
+@media (min-width: 640px) {
+  .ordo-cta { display: inline-flex; }
+}
+
+.ordo-burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  color: #0f172a;
+}
+
+/* Mobile panel */
+.ordo-mobile {
+  display: none;
+  flex-direction: column;
+  padding: 0 clamp(16px, 4vw, 32px) 20px;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  max-height: calc(100dvh - 64px);
+  overflow-y: auto;
+}
+.ordo-header.is-mobile-open .ordo-mobile { display: flex; }
+
+.ordo-mobile-group { border-bottom: 1px solid rgba(15, 23, 42, 0.06); }
+.ordo-mobile-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 4px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #0f172a;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.ordo-mobile-trigger svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s;
+}
+.ordo-mobile-group.is-open .ordo-mobile-trigger svg { transform: rotate(180deg); }
+.ordo-mobile-panel {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 0 12px 8px;
+}
+.ordo-mobile-group.is-open .ordo-mobile-panel { display: flex; }
+.ordo-mobile-panel a {
+  padding: 10px 12px;
+  font-size: 0.875rem;
+  color: #64748b;
+  text-decoration: none;
+  border-radius: 8px;
+}
+.ordo-mobile-panel a:hover { background: #f8fafc; color: #0f172a; }
+.ordo-mobile-panel a[aria-current="page"] {
+  color: #0f172a;
+  font-weight: 600;
+  background: #f8fafc;
+}
+.ordo-mobile-link {
+  display: block;
+  padding: 14px 4px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #0f172a;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+.ordo-mobile-cta {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  background: #0a7c5c;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.ordo-backdrop {
+  display: none;
+  position: fixed;
+  inset: 64px 0 0;
+  background: rgba(15, 23, 42, 0.35);
+  z-index: 99;
+}
+body.ordo-nav-open .ordo-backdrop { display: block; }
+
+/* Отступ под sticky-шапку на подстраницах */
+body.has-ordo-header { padding-top: 0; }

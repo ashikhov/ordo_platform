@@ -1,47 +1,279 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ordo — Индивидуальная разработка</title>
+<title>Ordo AI — Ordo на заказ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../styles/ordo-fonts.css"/>
+<link rel="stylesheet" href="../styles/ordo-header.css"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --accent: #0a7c5c;
-    --text: #0f0f0e;
-    --muted: rgba(15,15,14,0.45);
-    --border: rgba(0,0,0,0.08);
-    --ff-display: 'Syne', sans-serif;
+    --accent-hover: #088f6a;
+    --accent2: #4a3fbf;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: rgba(15, 23, 42, 0.08);
+    --surface: #f8fafc;
+    --ff-display: 'Syne', system-ui, sans-serif;
     --ff-mono: 'DM Mono', monospace;
-    --ff-body: 'Inter', sans-serif;
+    --ff-body: 'Inter', system-ui, sans-serif;
   }
-  body { font-family: var(--ff-body); font-weight: 300; color: var(--text); background: #fff; min-height: 100vh; }
-  header { padding: 24px 5vw; border-bottom: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-  .logo { font-family: var(--ff-display); font-weight: 800; font-size: 18px; letter-spacing: 0.12em; text-decoration: none; color: var(--text); }
-  .logo span { color: var(--accent); }
-  .back { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .back:hover { color: var(--accent); }
-  main { padding: 72px 5vw 48px; max-width: 720px; }
-  .kicker { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 16px; }
-  h1 { font-family: var(--ff-display); font-weight: 800; font-size: clamp(28px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.02em; }
-  .lead { margin-top: 20px; font-size: 16px; line-height: 1.65; color: var(--muted); }
-  .note { margin-top: 32px; padding: 20px 22px; border-radius: 12px; border: 0.5px solid var(--border); font-size: 14px; color: var(--muted); line-height: 1.6; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--ff-body); color: var(--text); background: #fff; min-height: 100vh; line-height: 1.5; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 32px); }
+.hero {
+    padding: clamp(40px, 6vw, 80px) 0 clamp(48px, 8vw, 88px);
+    background: radial-gradient(ellipse 85% 55% at 50% -25%, rgba(10, 124, 92, 0.11), transparent), linear-gradient(180deg, #fff, #fafbfc);
+  }
+  .hero h1 { font-family: var(--ff-display); font-weight: 800; font-size: clamp(1.65rem, 3.8vw, 2.65rem); line-height: 1.1; letter-spacing: -0.02em; max-width: 15ch; }
+  .hero-sub { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted); margin-top: 14px; max-width: 40em; }
+  .kicker { font-family: var(--ff-mono); font-size: 0.625rem; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 12px; }
+  .hero-cta { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  section { padding: clamp(52px, 7vw, 84px) 0; scroll-margin-top: 72px; }
+  .section-head { max-width: 720px; margin-bottom: clamp(28px, 4vw, 40px); }
+  .section-head h2 { font-family: var(--ff-display); font-weight: 800; font-size: clamp(1.35rem, 2.6vw, 1.85rem); letter-spacing: -0.02em; }
+  .section-head p { margin-top: 12px; color: var(--muted); font-size: 0.9375rem; }
+  .section-label { font-family: var(--ff-mono); font-size: 0.625rem; letter-spacing: 0.16em; color: var(--accent2); margin-bottom: 10px; text-transform: uppercase; }
+  .grid-2, .grid-3 { display: grid; gap: 16px; }
+  @media (min-width: 860px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+  .card {
+    padding: 22px; border-radius: 14px; border: 1px solid var(--border); background: #fff;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .card h3 { font-size: 1.0625rem; font-weight: 700; }
+  .card p, .card li { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+  .card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .card ul li::before { content: "· "; color: var(--accent); font-weight: 700; }
+  .band { background: linear-gradient(165deg, #0f172a 0%, #1e293b 45%, #0f172a 100%); color: #e2e8f0; }
+  .band .section-head h2 { color: #fff; }
+  .band .section-head p { color: #94a3b8; }
+  .band .card { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
+  .band .card h3 { color: #fff; }
+  .band .card p, .band .card li { color: #cbd5e1; }
+  .suite { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding-top: 8px; }
+  .suite a, .suite span {
+    font-size: 0.8125rem; font-weight: 500; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); background: #fff;
+  }
+  .suite span { color: var(--accent); border-color: rgba(10, 124, 92, 0.4); background: rgba(10, 124, 92, 0.08); }
+  footer { padding: 26px 0 34px; border-top: 1px solid var(--border); font-size: 0.8125rem; color: var(--muted); }
+  footer .wrap { display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center; }
+  @media (min-width: 640px) { footer .wrap { flex-direction: row; justify-content: space-between; text-align: left; } }
+  footer nav { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  @media (min-width: 640px) { footer nav { justify-content: flex-start; } }
+  footer a:hover { color: var(--accent); }
 </style>
 </head>
 <body>
-<header>
-  <a class="logo" href="../index.html">OR<span>DO</span></a>
-  <a class="back" href="../index.html">← На главную</a>
+<header class="ordo-header" id="ordo-header">
+  <div class="ordo-header__bar">
+    <a class="ordo-brand" href="../index.html">ORDO<span> AI</span></a>
+    <nav class="ordo-nav" aria-label="Основное">
+      <div class="ordo-nav-item has-mega">
+        <button type="button" class="ordo-nav-trigger" aria-expanded="false" aria-controls="ordo-mega-products">Продукты<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div id="ordo-mega-products" class="ordo-mega" role="region" aria-label="Продукты Ordo">
+          <div class="ordo-mega-grid">
+            <a href="../platform/" class="ordo-mega-card"><span class="ordo-mega-card__visual"><img src="../assets/img/products/platform.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">Ordo Управление</span><span class="ordo-mega-card__desc">Единая платформа для AI-агентов, скиллов и рабочих процессов</span></a>
+            <a href="../sales/" class="ordo-mega-card" data-ordo-sub="sales"><span class="ordo-mega-card__visual"><img src="../assets/img/products/crm.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">ORDO CRM — решения по продажам</span><span class="ordo-mega-card__desc">Управление вертикалью продаж и действиями команды в реальном времени</span></a>
+            <a href="../search/" class="ordo-mega-card" data-ordo-sub="search"><span class="ordo-mega-card__visual"><img src="../assets/img/products/search.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">Ordo поиск</span><span class="ordo-mega-card__desc">AI-поиск и ассистент для e-commerce и каталогов</span></a>
+            <a href="../finance/" class="ordo-mega-card" data-ordo-sub="finance"><span class="ordo-mega-card__visual"><img src="../assets/img/products/finance.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">ORDO финансы</span><span class="ordo-mega-card__desc">AI-слой для финансовых процессов, контроля и план-факта</span></a>
+            <a href="../custom/" class="ordo-mega-card" data-ordo-sub="custom" aria-current="page"><span class="ordo-mega-card__visual"><img src="../assets/img/products/custom.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">Ordo на заказ</span><span class="ordo-mega-card__desc">Кастомные агенты, интеграции и закрытый контур под вашу задачу</span></a>
+          </div>
+        </div>
+      </div>
+      <a class="ordo-nav-link" href="../index.html#industries">Индустрии</a>
+      <a class="ordo-nav-link" href="../index.html#cases">Кейсы</a>
+      <a class="ordo-nav-link" href="../platform/#partners">Партнёрам</a>
+      <div class="ordo-nav-item has-mega">
+        <button type="button" class="ordo-nav-trigger" aria-expanded="false" aria-controls="ordo-mega-about">О компании<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div id="ordo-mega-about" class="ordo-mega ordo-mega--about" role="region" aria-label="О компании">
+          <div class="ordo-mega-grid ordo-mega-grid--about">
+            <a class="ordo-mega-link" href="../platform/">Ordo Управление</a>
+            <a class="ordo-mega-link" href="../platform/#security-roi">Безопасность</a>
+            <a class="ordo-mega-link" href="../platform/#faq">FAQ</a>
+            <a class="ordo-mega-link" href="../index.html#contact">Контакты</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="ordo-header__actions">
+      <a class="ordo-cta" href="../index.html#contact">Запросить демо</a>
+      <button type="button" class="ordo-burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="ordo-mobile-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+  </div>
+  <nav class="ordo-mobile" id="ordo-mobile-nav" aria-label="Мобильное меню">
+    <div class="ordo-mobile-group">
+      <button type="button" class="ordo-mobile-trigger" aria-expanded="false">Продукты<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="ordo-mobile-panel">
+        <a href="../platform/">Ordo Управление</a>
+        <a href="../sales/" data-ordo-sub="sales">ORDO CRM</a>
+        <a href="../search/" data-ordo-sub="search">Ordo поиск</a>
+        <a href="../finance/" data-ordo-sub="finance">ORDO финансы</a>
+        <a href="../custom/" data-ordo-sub="custom" aria-current="page">Ordo на заказ</a>
+      </div>
+    </div>
+    <a class="ordo-mobile-link" href="../index.html#industries">Индустрии</a>
+    <a class="ordo-mobile-link" href="../index.html#cases">Кейсы</a>
+    <a class="ordo-mobile-link" href="../platform/#partners">Партнёрам</a>
+    <div class="ordo-mobile-group">
+      <button type="button" class="ordo-mobile-trigger" aria-expanded="false">О компании<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="ordo-mobile-panel">
+        <a href="../platform/">Ordo Управление</a>
+        <a href="../platform/#security-roi">Безопасность</a>
+        <a href="../platform/#faq">FAQ</a>
+        <a href="../index.html#contact">Контакты</a>
+      </div>
+    </div>
+    <a class="ordo-mobile-cta" href="../index.html#contact">Запросить демо</a>
+  </nav>
 </header>
-<main>
-  <div class="kicker">ИНДИВИДУАЛЬНАЯ РАЗРАБОТКА</div>
-  <h1>Кастомные решения на базе Ordo</h1>
-  <p class="lead">Здесь будет страница про индивидуальную разработку: процесс, стек, контакты. Страница-заглушка для разработки в ветке подстраниц.</p>
-  <p class="note">Локально: <span style="font-family:var(--ff-mono);font-size:12px;">/custom/</span> из корня проекта.</p>
-</main>
+<div class="ordo-backdrop" aria-hidden="true"></div>
+
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">ORDO НА ЗАКАЗ</p>
+    <h1>Кастомные AI-решения под процессы, данные и контур вашей компании</h1>
+    <p class="hero-sub">Когда типовой продуктовой линейки недостаточно, команда Ordo проектирует кастомный слой: интеграции, агенты, workflow, интерфейсы и безопасное развёртывание под конкретный контекст бизнеса.</p>
+    <div class="hero-cta">
+      <a class="btn-primary" href="../index.html#contact">Обсудить задачу</a>
+      <a class="btn-outline" href="#format">Как работаем</a>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Когда нужно</div>
+      <h2>Если сценарий не укладывается в коробку, мы собираем решение поверх вашей инфраструктуры</h2>
+      <p>Это может быть закрытый контур, редкая интеграция, особая логика согласований, кастомный агент или целый операционный слой под отраслевой процесс.</p>
+    </div>
+    <div class="grid-2">
+      <article class="card">
+        <h3>Что чаще всего делаем</h3>
+        <ul>
+          <li>Интеграции с внутренними API, ERP, 1С, CRM и DWH</li>
+          <li>Кастомные агенты под конкретные роли и сценарии</li>
+          <li>Workflow и согласовательные цепочки с контролем действий</li>
+          <li>Интерфейсы, панели, дашборды и внутренние AI-кабинеты</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Для каких кейсов это подходит</h3>
+        <ul>
+          <li>Закрытый корпоративный контур и повышенные требования к безопасности</li>
+          <li>Нестандартная логика процесса или отраслевой сценарий</li>
+          <li>Комбинация нескольких источников данных и правил принятия решений</li>
+          <li>Пилот, который должен быстро перейти в промышленный контур</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="format" style="background:var(--surface);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Формат работы</div>
+      <h2>От discovery до production: с понятным владельцем, scope и архитектурой</h2>
+      <p>Мы не продаём абстрактный R&D. Для каждого проекта фиксируем ожидаемый эффект, контур, ограничения и этапы реализации.</p>
+    </div>
+    <div class="grid-3">
+      <article class="card">
+        <h3>01 · Discovery</h3>
+        <p>Разбираем процесс, роли, источники данных, ограничения и желаемый эффект. Формируем map сценария и объём проекта.</p>
+      </article>
+      <article class="card">
+        <h3>02 · Архитектура</h3>
+        <p>Проектируем модели данных, интеграции, workflow, права доступа и логику агента или AI-слоя.</p>
+      </article>
+      <article class="card">
+        <h3>03 · Delivery</h3>
+        <p>Делаем MVP, тестируем на живом процессе, доводим до промышленного использования и масштабируем внутри контура.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Что можно собрать</div>
+      <h2>От точечного агента до полноценного AI-слоя для функции или продукта</h2>
+      <p>Визуально эта страница теперь входит в ту же систему продуктовых лендингов, а содержательно служит точкой входа для кастомных запросов.</p>
+    </div>
+    <div class="grid-3">
+      <article class="card">
+        <h3>Кастомный агент</h3>
+        <p>Под роль в продажах, финансах, операциях, поддержке, закупках или внутренней аналитике.</p>
+      </article>
+      <article class="card">
+        <h3>Внутренний AI-кабинет</h3>
+        <p>Интерфейс для команды с контекстом, правами, интеграциями и прозрачной логикой выполнения действий.</p>
+      </article>
+      <article class="card">
+        <h3>Закрытый workflow</h3>
+        <p>Цепочка действий с подтверждениями, логами, уведомлениями и сохранением результата в корпоративных системах.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="wrap">
+    <div class="section-head" style="margin:0 auto 28px;text-align:center;">
+      <div class="section-label">Следующий шаг</div>
+      <h2>Если у вас особый сценарий, разберём его отдельно и предложим рабочую архитектуру</h2>
+      <p>Соберём вводные, определим границы проекта и покажем, как это можно реализовать в рамках Ordo без лишнего оверхеда.</p>
+    </div>
+    <div class="suite">
+      <a href="../sales/">ORDO CRM</a>
+      <a href="../search/">Ordo поиск</a>
+      <a href="../finance/">ORDO финансы</a>
+      <span>Ordo на заказ</span>
+    </div>
+    <div style="display:flex;justify-content:center;margin-top:28px;">
+      <a class="btn-primary" href="../index.html#contact">Оставить заявку</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Ordo AI · Custom Solutions</span>
+    <nav aria-label="Подвал">
+      <a href="../platform/">Ordo Управление</a>
+      <a href="../sales/">Продажи</a>
+      <a href="../search/">Поиск</a>
+      <a href="../finance/">Финансы</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function initOrdoSubdomainNav() {
+  var host = location.hostname;
+  if (!host || /^\d+\.\d+\.\d+\.\d+$/.test(host)) return;
+  if (/github\.io$/i.test(host) || /pages\.dev$/i.test(host)) return;
+  var parts = host.split('.');
+  var strip = ['www', 'app', 'sales', 'search', 'finance', 'custom', 'dev', 'platform', 'demo'];
+  while (parts.length > 2 && strip.indexOf(parts[0].toLowerCase()) !== -1) parts.shift();
+  var apex = parts.join('.');
+  var port = location.port ? ':' + location.port : '';
+  var proto = location.protocol;
+  document.querySelectorAll('a[data-ordo-sub]').forEach(function (a) {
+    var sub = a.getAttribute('data-ordo-sub');
+    if (!sub) return;
+    a.href = proto + '//' + sub + '.' + apex + port + '/';
+  });
+})();
+</script>
+<script src="../js/ordo-header.js"></script>
 </body>
 </html>
