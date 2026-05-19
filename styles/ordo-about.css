@@ -1,0 +1,38 @@
+.about-hero {
+  padding: clamp(48px, 8vw, 72px) 0 clamp(40px, 6vw, 56px);
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(10, 124, 92, 0.1), transparent);
+}
+.about-hero h1 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: var(--type-heading-weight);
+  line-height: 1.12;
+  max-width: 20ch;
+}
+.about-hero p {
+  margin-top: 16px;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 42rem;
+}
+.about-links {
+  margin-top: 40px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) { .about-links { grid-template-columns: repeat(2, 1fr); } }
+.about-link-card {
+  display: block;
+  padding: 22px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.about-link-card:hover {
+  border-color: rgba(10, 124, 92, 0.35);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+.about-link-card h2 { font-size: 1.0625rem; font-weight: 600; margin-bottom: 8px; }
+.about-link-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.5; }
