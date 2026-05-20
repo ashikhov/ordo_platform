@@ -33,7 +33,9 @@ jobs:
           local-dir: ./
           log-level: standard
           exclude: |
-            **/.git*
+            .git/**
+            .git
+            **/.git/**
             **/.github/**
             **/scripts/**
             **/snippets/**
