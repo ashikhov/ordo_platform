@@ -1,0 +1,39 @@
+# Автодеплой статического сайта на reg.ru при push в subpages.
+# Секреты: Settings → Secrets and variables → Actions
+#   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, FTP_SERVER_DIR (например /www/)
+
+name: Deploy to REG.RU
+
+on:
+  push:
+    branches:
+      - subpages
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-reg-ru
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: ./
+          log-level: minimal
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/scripts/**
+            **/snippets/**
+            **/workers/**
+            .ftp-deploy-sync-state.json
