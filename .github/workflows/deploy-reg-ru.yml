@@ -1,6 +1,10 @@
-# Автодеплой статического сайта на reg.ru при push в subpages.
-# Секреты: Settings → Secrets and variables → Actions
-#   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, FTP_SERVER_DIR (например /www/)
+# Автодеплой на два хостинга reg.ru при push в subpages.
+#
+# Хостинг 1 (u3297708 — ordo-group.online, ordogroup.ru …):
+#   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, FTP_SERVER_DIR
+#
+# Хостинг 2 (u3293886 — ordai.ru …):
+#   FTP2_SERVER, FTP2_USERNAME, FTP2_PASSWORD, FTP2_SERVER_DIR
 
 name: Deploy to REG.RU
 
@@ -15,11 +19,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  deploy-host-1:
+    name: Host u3297708
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
@@ -30,6 +34,33 @@ jobs:
           port: 21
           protocol: ftps
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: ./
+          log-level: standard
+          exclude: |
+            .git/**
+            .git
+            **/.git/**
+            **/.github/**
+            **/scripts/**
+            **/snippets/**
+            **/workers/**
+            .ftp-deploy-sync-state.json
+
+  deploy-host-2:
+    name: Host u3293886
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP2_SERVER }}
+          username: ${{ secrets.FTP2_USERNAME }}
+          password: ${{ secrets.FTP2_PASSWORD }}
+          port: 21
+          protocol: ftps
+          server-dir: ${{ secrets.FTP2_SERVER_DIR }}
           local-dir: ./
           log-level: standard
           exclude: |
