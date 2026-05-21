@@ -247,24 +247,6 @@
   </div>
 </footer>
 
-<script>
-(function initOrdoSubdomainNav() {
-  var host = location.hostname;
-  if (!host || /^\d+\.\d+\.\d+\.\d+$/.test(host)) return;
-  if (/github\.io$/i.test(host) || /pages\.dev$/i.test(host)) return;
-  var parts = host.split('.');
-  var strip = ['www', 'app', 'sales', 'search', 'finance', 'custom', 'dev', 'platform', 'demo'];
-  while (parts.length > 2 && strip.indexOf(parts[0].toLowerCase()) !== -1) parts.shift();
-  var apex = parts.join('.');
-  var port = location.port ? ':' + location.port : '';
-  var proto = location.protocol;
-  document.querySelectorAll('a[data-ordo-sub]').forEach(function (a) {
-    var sub = a.getAttribute('data-ordo-sub');
-    if (!sub) return;
-    a.href = proto + '//' + sub + '.' + apex + port + '/';
-  });
-})();
-</script>
 <script src="../js/ordo-header.js"></script>
 </body>
 </html>

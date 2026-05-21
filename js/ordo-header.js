@@ -3,8 +3,12 @@
     var host = location.hostname;
     if (!host || /^\d+\.\d+\.\d+\.\d+$/.test(host)) return;
     if (/github\.io$/i.test(host) || /pages\.dev$/i.test(host)) return;
+    var productSubs = ['sales', 'search', 'finance', 'custom', 'platform'];
+    var firstLabel = host.split('.')[0].toLowerCase();
+    // На основном домене (ordo-ai.ru) — пути /sales/, /finance/ … без поддоменов.
+    if (productSubs.indexOf(firstLabel) === -1) return;
     var parts = host.split('.');
-    var strip = ['www', 'app', 'sales', 'search', 'finance', 'custom', 'dev', 'platform', 'demo'];
+    var strip = ['www', 'app'].concat(productSubs, ['dev', 'demo']);
     while (parts.length > 2 && strip.indexOf(parts[0].toLowerCase()) !== -1) parts.shift();
     var apex = parts.join('.');
     var port = location.port ? ':' + location.port : '';
