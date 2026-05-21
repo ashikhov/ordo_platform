@@ -3,6 +3,24 @@ Options -Indexes
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
+
+# sales.ordo-ai.ru → /sales/, finance.* → /finance/ и т.д.
+RewriteCond %{HTTP_HOST} ^sales\. [NC]
+RewriteRule ^(.*)$ /sales/$1 [L]
+
+RewriteCond %{HTTP_HOST} ^search\. [NC]
+RewriteRule ^(.*)$ /search/$1 [L]
+
+RewriteCond %{HTTP_HOST} ^finance\. [NC]
+RewriteRule ^(.*)$ /finance/$1 [L]
+
+RewriteCond %{HTTP_HOST} ^custom\. [NC]
+RewriteRule ^(.*)$ /custom/$1 [L]
+
+RewriteCond %{HTTP_HOST} ^platform\. [NC]
+RewriteRule ^(.*)$ /platform/$1 [L]
+
+# Обычные пути: отдавать существующие файлы и папки
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
