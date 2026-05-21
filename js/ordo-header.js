@@ -1,11 +1,14 @@
 (function () {
+  // false = ссылки /sales/, /finance/ … (сейчас). true = sales.ordo-ai.ru … (после DNS).
+  var ORDO_USE_SUBDOMAIN_NAV = false;
+
   function initOrdoSubdomainNav() {
+    if (!ORDO_USE_SUBDOMAIN_NAV) return;
     var host = location.hostname;
     if (!host || /^\d+\.\d+\.\d+\.\d+$/.test(host)) return;
     if (/github\.io$/i.test(host) || /pages\.dev$/i.test(host)) return;
     var productSubs = ['sales', 'search', 'finance', 'custom', 'platform'];
     var firstLabel = host.split('.')[0].toLowerCase();
-    // На основном домене (ordo-ai.ru) — пути /sales/, /finance/ … без поддоменов.
     if (productSubs.indexOf(firstLabel) === -1) return;
     var parts = host.split('.');
     var strip = ['www', 'app'].concat(productSubs, ['dev', 'demo']);
