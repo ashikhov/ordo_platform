@@ -14,7 +14,7 @@ function buildGrid(base, current) {
     ["platform/", "platform.png", "Ordo AI Контур", "Единая платформа для AI-трансформации вашей компании", ""],
     ["sales/", "crm.png", "ORDO CRM — решения по продажам", "Система практических решений для роста выручки", ' data-ordo-sub="sales"'],
     ["search/", "search.png", "Ordo поиск", "AI-поиск и ассистент для e-commerce и каталогов", ' data-ordo-sub="search"'],
-    ["finance/", "finance.png", "ORDO финансы", "AI-слой для финансовых процессов, контроля и план-факта", ' data-ordo-sub="finance"'],
+    ["finance/", "finance.png", "ORDO финансы", "Решения для автоматизации управленческого учёта и глубокой аналитики", ' data-ordo-sub="finance"'],
     ["custom/", "custom.png", "Ordo на заказ", "Кастомные агенты, интеграции и закрытый контур под вашу задачу", ' data-ordo-sub="custom"'],
   ];
   const cards = items.map(([href, img, title, desc, extra]) => {
