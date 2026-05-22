@@ -18,7 +18,7 @@ function buildGrid(base, current) {
     { type: "visual", href: "sales/", img: "crm.png", title: "ORDO CRM — решения по продажам", desc: "Система практических решений для роста выручки", extra: ' data-ordo-sub="sales"', key: "sales" },
     { type: "icon", href: "search/", img: "search.png", title: "Ordo поиск", desc: "AI-поиск и ассистент для e-commerce и каталогов", extra: ' data-ordo-sub="search"', key: "search" },
     { type: "visual", href: "finance/", img: "finance.png", title: "ORDO финансы", desc: "Решения для автоматизации управленческого учёта и глубокой аналитики", extra: ' data-ordo-sub="finance"', key: "finance" },
-    { type: "visual", href: "custom/", img: "custom.png", title: "Ordo на заказ", desc: "Кастомные агенты, интеграции и закрытый контур под вашу задачу", extra: ' data-ordo-sub="custom"', key: "custom" },
+    { type: "visual", href: "custom/", img: "custom.png", title: "Ordo на заказ", desc: "Разработка AI решений для вашего уникального кейса", extra: ' data-ordo-sub="custom"', key: "custom" },
   ];
   const cards = items.map((item) => {
     let h = item.href;
