@@ -15,7 +15,7 @@ function iconVisualCard(base, href, img, title, desc, extra = "") {
 function buildGrid(base, current) {
   const items = [
     { type: "icon", href: "platform/", img: "platform.png", title: "Ordo AI Контур", desc: "Единая платформа для AI-трансформации вашей компании", extra: "", key: "platform" },
-    { type: "visual", href: "sales/", img: "crm.png", title: "ORDO CRM — решения по продажам", desc: "Управление вертикалью продаж и действиями команды в реальном времени", extra: ' data-ordo-sub="sales"', key: "sales" },
+    { type: "visual", href: "sales/", img: "crm.png", title: "ORDO CRM — решения по продажам", desc: "Система практических решений для роста выручки", extra: ' data-ordo-sub="sales"', key: "sales" },
     { type: "icon", href: "search/", img: "search.png", title: "Ordo поиск", desc: "AI-поиск и ассистент для e-commerce и каталогов", extra: ' data-ordo-sub="search"', key: "search" },
     { type: "visual", href: "finance/", img: "finance.png", title: "ORDO финансы", desc: "AI-слой для финансовых процессов, контроля и план-факта", extra: ' data-ordo-sub="finance"', key: "finance" },
     { type: "visual", href: "custom/", img: "custom.png", title: "Ordo на заказ", desc: "Кастомные агенты, интеграции и закрытый контур под вашу задачу", extra: ' data-ordo-sub="custom"', key: "custom" },
