@@ -51,7 +51,7 @@ const footer = `</main>
 <footer class="home-footer">
   <div class="home-footer__logo">ORDO<span> AI</span></div>
   <nav aria-label="Подвал">
-    <a href="../platform/">Ordo Управление</a>
+    <a href="../platform/">Ordo AI Контур</a>
     <a href="../sales/">ORDO CRM</a>
     <a href="../search/">Ordo поиск</a>
     <a href="../finance/">ORDO финансы</a>
@@ -148,7 +148,7 @@ const aboutMain = `<section class="about-hero">
     <h1>ORDO AI — AI-слой для продаж, финансов и операций</h1>
     <p>Ordo — продуктовая платформа агентов, скиллов и рабочих процессов поверх CRM, ERP и 1С. On-prem, контроль данных, пилот за 2–4 недели.</p>
     <div class="about-links">
-      <a class="about-link-card" href="../platform/"><h2>Ordo Управление</h2><p>Платформа, архитектура, примеры и пилот</p></a>
+      <a class="about-link-card" href="../platform/"><h2>Ordo AI Контур</h2><p>Платформа, архитектура, примеры и пилот</p></a>
       <a class="about-link-card" href="../platform/#security-roi"><h2>Безопасность и ROI</h2><p>On-prem, аудит, роли и экономика внедрения</p></a>
       <a class="about-link-card" href="../platform/#faq"><h2>FAQ</h2><p>Ответы о продукте, интеграциях и пилоте</p></a>
       <a class="about-link-card" href="#contact"><h2>Контакты</h2><p>Запросить демо или написать на team@ordo.ru</p></a>

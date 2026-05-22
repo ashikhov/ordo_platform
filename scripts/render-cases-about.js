@@ -47,7 +47,7 @@ const casesMain = `
         <article class="case-study">
           <p class="case-study__tag">Платформа · холдинг</p>
           <h3>Несколько агентов — один trace</h3>
-          <p>Ordo Управление: координатор, data, finance — сценарий «заявка → остатки → согласование → уведомление».</p>
+          <p>Ordo AI Контур: координатор, data, finance — сценарий «заявка → остатки → согласование → уведомление».</p>
           <a class="case-study__link" href="../platform/">Платформа →</a>
         </article>
         <article class="case-study">
@@ -126,7 +126,7 @@ const aboutMain = `
     ${o("home-wrap")}
       <h2>Линейка продуктов</h2>
       ${o("about-links")}
-        <a class="about-link-card" href="../platform/"><h2>Ordo Управление</h2><p>Агенты, Skills, A2A, LLM</p></a>
+        <a class="about-link-card" href="../platform/"><h2>Ordo AI Контур</h2><p>Агенты, Skills, A2A, LLM</p></a>
         <a class="about-link-card" href="../sales/"><h2>ORDO CRM</h2><p>Вертикаль продаж</p></a>
         <a class="about-link-card" href="../search/"><h2>Ordo поиск</h2><p>Каталоги и спрос</p></a>
         <a class="about-link-card" href="../finance/"><h2>ORDO финансы</h2><p>План-факт и контроль</p></a>

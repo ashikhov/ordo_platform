@@ -1,4 +1,4 @@
-﻿import fs from "fs";
+import fs from "fs";
 import path from "path";
 
 const root = path.resolve(".");
@@ -14,7 +14,7 @@ function iconVisualCard(base, href, img, title, desc, extra = "") {
 
 function buildGrid(base, current) {
   const items = [
-    { type: "icon", href: "platform/", img: "platform.png", title: "Ordo Управление", desc: "Единая платформа для AI-агентов, скиллов и рабочих процессов", extra: "", key: "platform" },
+    { type: "icon", href: "platform/", img: "platform.png", title: "Ordo AI Контур", desc: "Единая платформа для AI-трансформации вашей компании", extra: "", key: "platform" },
     { type: "visual", href: "sales/", img: "crm.png", title: "ORDO CRM — решения по продажам", desc: "Управление вертикалью продаж и действиями команды в реальном времени", extra: ' data-ordo-sub="sales"', key: "sales" },
     { type: "icon", href: "search/", img: "search.png", title: "Ordo поиск", desc: "AI-поиск и ассистент для e-commerce и каталогов", extra: ' data-ordo-sub="search"', key: "search" },
     { type: "visual", href: "finance/", img: "finance.png", title: "ORDO финансы", desc: "AI-слой для финансовых процессов, контроля и план-факта", extra: ' data-ordo-sub="finance"', key: "finance" },

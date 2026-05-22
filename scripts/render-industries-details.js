@@ -46,7 +46,7 @@ const block = `
   <section class="home-cta">
     ${open("home-wrap")}
       <h2>Не нашли свою отрасль?</h2>
-      <p class="home-section__lead">Соберём пилот на Ordo Управление или Ordo на заказ — под ваш стек и KPI.</p>
+      <p class="home-section__lead">Соберём пилот на Ordo AI Контур или Ordo на заказ — под ваш стек и KPI.</p>
       ${open("page-hero__actions")}
         <a class="btn-primary" href="../about/#contact">Запросить демо</a>
         <a class="btn-ghost" href="../platform/#pilot">Как устроен пилот</a>

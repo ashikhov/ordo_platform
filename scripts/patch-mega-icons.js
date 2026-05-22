@@ -11,7 +11,7 @@ function iconCard(base, href, img, title, desc, extra = "") {
 
 function buildGrid(base, current) {
   const items = [
-    ["platform/", "platform.png", "Ordo Управление", "Единая платформа для AI-агентов, скиллов и рабочих процессов", ""],
+    ["platform/", "platform.png", "Ordo AI Контур", "Единая платформа для AI-трансформации вашей компании", ""],
     ["sales/", "crm.png", "ORDO CRM — решения по продажам", "Управление вертикалью продаж и действиями команды в реальном времени", ' data-ordo-sub="sales"'],
     ["search/", "search.png", "Ordo поиск", "AI-поиск и ассистент для e-commerce и каталогов", ' data-ordo-sub="search"'],
     ["finance/", "finance.png", "ORDO финансы", "AI-слой для финансовых процессов, контроля и план-факта", ' data-ordo-sub="finance"'],
