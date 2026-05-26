@@ -42,11 +42,10 @@
     font-family: var(--ff-display); font-weight: 800;
     font-size: clamp(1.65rem, 3.8vw, 2.65rem); line-height: 1.1; letter-spacing: -0.02em;
   }
-  .hero-sub { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted); margin-top: 14px; max-width: 36em; }
   .kicker { font-family: var(--ff-mono); font-size: 0.625rem; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 12px; }
   .deck-ref { font-family: var(--ff-mono); font-size: 0.6875rem; color: var(--muted); margin-top: 16px; letter-spacing: 0.04em; }
   .kpi-strip {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 28px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px;
   }
   @media (min-width: 720px) { .kpi-strip { grid-template-columns: repeat(4, 1fr); } }
   .kpi-item {
@@ -76,20 +75,6 @@
   }
   .band .section-head h2 { color: #fff; }
   .band .section-head p { color: #94a3b8; }
-  .compare-grid {
-    display: grid; gap: 14px;
-  }
-  @media (min-width: 768px) { .compare-grid { grid-template-columns: repeat(3, 1fr); } }
-  .compare-card {
-    padding: 20px; border-radius: 14px; border: 1px solid var(--border); background: #fff;
-  }
-  .compare-card h3 { font-size: 0.9375rem; font-weight: 700; margin-bottom: 8px; color: var(--text); }
-  .compare-card p { font-size: 0.8125rem; color: var(--muted); line-height: 1.55; }
-  .compare-card.is-ordo { border-color: rgba(10, 124, 92, 0.35); box-shadow: 0 12px 36px -20px rgba(10, 124, 92, 0.25); }
-  .compare-card.is-ordo h3 { color: var(--accent); }
-  .list-dot { list-style: none; font-size: 0.875rem; color: var(--muted); }
-  .list-dot li { padding: 6px 0 6px 1.1em; position: relative; }
-  .list-dot li::before { content: "·"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
   .levels-grid {
     display: grid; gap: 16px;
   }
@@ -233,7 +218,6 @@
 <section class="hero">
   <div class="wrap">
     <h1>ORDO CRM — решения по продажам</h1>
-    <p class="hero-sub">От первого касания до повторной покупки — управление всей вертикалью в реальном времени. Ordo AI дополняет CRM и аналитику: управляет действиями людей и самообучается, а не только фиксирует факты или показывает отчёты.</p>
     <div class="kpi-strip">
       <div class="kpi-item"><strong>+5–18%</strong><span>конверсия в салоне</span></div>
       <div class="kpi-item"><strong>+2–9%</strong><span>средний чек</span></div>
@@ -246,39 +230,6 @@
       <a class="btn-outline" href="#simple">Простой старт</a>
     </div>
     <p class="deck-ref">Ordo AI · ORDO CRM · 2026</p>
-  </div>
-</section>
-
-<section id="why">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-label">Позиционирование</div>
-      <h2>Новая ступень развития продаж</h2>
-      <p>ORDO CRM — решения по продажам и операциям через ИИ: не замена CRM, а слой управления поверх неё.</p>
-    </div>
-    <div class="compare-grid">
-      <article class="compare-card">
-        <h3>CRM</h3>
-        <p>Фиксирует действия, не управляет ими.</p>
-      </article>
-      <article class="compare-card">
-        <h3>BI / аналитика</h3>
-        <p>Показывает результат, не меняет поведение.</p>
-      </article>
-      <article class="compare-card is-ordo">
-        <h3>Ordo AI</h3>
-        <p>Управляет действиями людей и самообучается в реальном времени.</p>
-      </article>
-    </div>
-    <p style="margin-top:22px;font-weight:600;font-size:0.9rem;">Проблемы, которые закрываем</p>
-    <ul class="list-dot" style="margin-top:10px;columns:1;max-width:52em;">
-      <li>Контроль 100% работы менеджеров</li>
-      <li>Управление работой на местах в режиме real-time</li>
-      <li>Централизация и стандартизация методик продаж</li>
-      <li>Ручные процессы и ошибки учёта</li>
-      <li>Невозможность масштабировать сильные практики</li>
-      <li>Устранение непродуктивного труда</li>
-    </ul>
   </div>
 </section>
 
@@ -382,7 +333,7 @@
         <div class="offer-meta"><div><span>Цена</span><strong>от 200 000 ₽ / мес</strong></div><div><span>Срок</span><strong>от 10 дней</strong></div></div>
       </article>
       <article class="offer">
-        <h3>Копайлот — AI-помощник в реальном времени</h3>
+        <h3>co-pilot менеджера по продажам — AI-помощник в реальном времени</h3>
         <h4>Проблемы</h4>
         <ul><li>— Решения «на ощущениях», потери на финале сделки</li><li>— Нет контроля методологии в живом диалоге</li></ul>
         <h4>Функционал</h4>
@@ -442,8 +393,8 @@
         <h4>Проблемы</h4>
         <ul><li>— Система не улучшается со временем, знания лучших теряются</li><li>— Нет выстроенного A/B тестирования стратегий</li></ul>
         <h4>Функционал</h4>
-        <ul><li>— Контур: сделка → аналитика → улучшение; паттерны потерь</li><li>— Предложения по скриптам, обучение моделей, связка с Копайлотом</li></ul>
-        <div class="effect"><strong>Эффект:</strong> растёт прогнозная точность; A/B скриптов и обновления через Копайлот после ML-циклов.</div>
+        <ul><li>— Контур: сделка → аналитика → улучшение; паттерны потерь</li><li>— Предложения по скриптам, обучение моделей, связка с co-pilot</li></ul>
+        <div class="effect"><strong>Эффект:</strong> растёт прогнозная точность; A/B скриптов и обновления через co-pilot после ML-циклов.</div>
         <div class="offer-meta"><div><span>Цена</span><strong>индивидуально</strong></div><div><span>Срок</span><strong>индивидуально</strong></div></div>
       </article>
     </div>
@@ -580,7 +531,7 @@
       <a href="../platform/">Ordo AI Контур</a>
       <a href="../search/">Поиск</a>
       <a href="../finance/">Финансы</a>
-      <a href="#why">О продукте</a>
+      <a href="#levels">Внедрение</a>
     </nav>
   </div>
 </footer>
