@@ -100,7 +100,7 @@
 }
 .ordo-mega-grid--about { grid-template-columns: 1fr; }
 
-/* Продукты: на всю ширину экрана, 5 карточек в одну строку */
+/* Продукты: на всю ширину экрана, 3 карточки в одну строку */
 @media (min-width: 1024px) {
   #ordo-mega-products.ordo-mega {
     position: fixed;
@@ -129,23 +129,23 @@
   }
   #ordo-mega-products .ordo-mega-grid {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: clamp(10px, 1.2vw, 16px);
-    max-width: 1440px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(12px, 1.4vw, 20px);
+    max-width: 960px;
     margin: 0 auto;
   }
   #ordo-mega-products .ordo-mega-card {
-    padding: 10px 10px 14px;
+    padding: 12px 12px 16px;
     min-height: 100%;
     background: #fff;
     gap: 10px;
   }
   #ordo-mega-products .ordo-mega-card__title {
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
   }
   #ordo-mega-products .ordo-mega-card__desc {
-    font-size: 0.75rem;
-    line-height: 1.4;
+    font-size: 0.8125rem;
+    line-height: 1.45;
   }
   #ordo-mega-products .ordo-mega-card__visual {
     aspect-ratio: 4 / 3;

@@ -7,7 +7,7 @@
     var host = location.hostname;
     if (!host || /^\d+\.\d+\.\d+\.\d+$/.test(host)) return;
     if (/github\.io$/i.test(host) || /pages\.dev$/i.test(host)) return;
-    var productSubs = ['copilot', 'search', 'listening', 'custom'];
+    var productSubs = ['copilot', 'search', 'listening'];
     var parts = host.split('.');
     var strip = ['www', 'app'].concat(productSubs, ['dev', 'demo']);
     while (parts.length > 2 && strip.indexOf(parts[0].toLowerCase()) !== -1) parts.shift();

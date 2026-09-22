@@ -53,8 +53,9 @@
   .hero-lead { font-size: clamp(1rem, 1.8vw, 1.125rem); color: var(--muted); line-height: 1.65; max-width: 42ch; }
   .hero-img {
     border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: var(--surface);
+    display: flex; align-items: center; justify-content: center; aspect-ratio: 16 / 11;
   }
-  .hero-img img { display: block; width: 100%; height: auto; }
+  .hero-img img { display: block; width: 48%; max-width: 220px; height: auto; object-fit: contain; }
   .section-head { max-width: 720px; margin-bottom: clamp(28px, 4vw, 40px); }
   .section-head h2 {
     font-family: var(--ff-display); font-weight: 800; font-size: clamp(1.35rem, 2.6vw, 1.85rem); letter-spacing: -0.02em;
@@ -135,11 +136,10 @@
       <div class="ordo-nav-item has-mega">
         <button type="button" class="ordo-nav-trigger" aria-expanded="false" aria-controls="ordo-mega-products">Продукты<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
         <div id="ordo-mega-products" class="ordo-mega" role="region" aria-label="Продукты Ordo">
-                    <div class="ordo-mega-grid">
-            <a href="../copilot/" class="ordo-mega-card" data-ordo-sub="copilot" aria-current="page"><span class="ordo-mega-card__visual"><img src="../assets/img/products/copilot.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">co-pilot</span><span class="ordo-mega-card__desc">Подсказки менеджеру в момент сделки</span></a>
-            <a href="../search/" class="ordo-mega-card" data-ordo-sub="search"><span class="ordo-mega-card__visual"><img src="../assets/img/products/search.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">ИИ-поиск</span><span class="ordo-mega-card__desc">Поиск и ассистент по каталогу e-commerce</span></a>
-            <a href="../listening/" class="ordo-mega-card" data-ordo-sub="listening"><span class="ordo-mega-card__visual"><img src="../assets/img/products/crm-autofill.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">ИИ-прослушка</span><span class="ordo-mega-card__desc">Транскрибация и контроль качества звонков</span></a>
-            <a href="../custom/" class="ordo-mega-card" data-ordo-sub="custom"><span class="ordo-mega-card__visual"><img src="../assets/img/products/custom.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">Ordo на заказ</span><span class="ordo-mega-card__desc">AI под ваш уникальный процесс</span></a>
+                              <div class="ordo-mega-grid">
+            <a href="../copilot/" class="ordo-mega-card" data-ordo-sub="copilot" aria-current="page"><span class="ordo-mega-card__visual ordo-mega-card__visual--icon"><img src="../assets/img/icons/crm.png" alt="" width="80" height="80" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">co-pilot</span><span class="ordo-mega-card__desc">Подсказки менеджеру в момент сделки</span></a>
+            <a href="../search/" class="ordo-mega-card" data-ordo-sub="search"><span class="ordo-mega-card__visual ordo-mega-card__visual--icon"><img src="../assets/img/icons/search.png" alt="" width="80" height="80" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">ИИ-поиск</span><span class="ordo-mega-card__desc">Поиск и ассистент по каталогу e-commerce</span></a>
+            <a href="../listening/" class="ordo-mega-card" data-ordo-sub="listening"><span class="ordo-mega-card__visual ordo-mega-card__visual--icon"><img src="../assets/img/icons/platform.png" alt="" width="80" height="80" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">ИИ-прослушка</span><span class="ordo-mega-card__desc">Транскрибация и контроль качества звонков</span></a>
           </div></div>
       </div>
       <a class="ordo-nav-link" href="../industries/">Индустрии</a>
@@ -159,7 +159,6 @@
         <a href="../copilot/" aria-current="page">co-pilot</a>
         <a href="../search/">ИИ-поиск</a>
         <a href="../listening/">ИИ-прослушка</a>
-        <a href="../custom/">Ordo на заказ</a>
       </div>
     </div>
     <a class="ordo-mobile-link" href="../industries/">Индустрии</a>
@@ -184,7 +183,7 @@
         </div>
       </div>
       <div class="hero-img">
-        <img src="../assets/img/products/copilot.png" alt="Интерфейс co-pilot менеджера по продажам" width="640" height="400" loading="eager" decoding="async"/>
+        <img src="../assets/img/icons/crm.png" alt="co-pilot — AI-подсказки менеджеру" width="220" height="220" loading="eager" decoding="async"/>
       </div>
     </div>
   </div>
@@ -264,18 +263,16 @@
     <div class="section-head">
       <div class="section-label">Рядом в линейке</div>
       <h2>co-pilot — в момент сделки, остальное — по задаче</h2>
-      <p>После контакта и для QA звонков — ИИ-прослушка. На сайте — ИИ-поиск. Нестандартный контур — Ordo на заказ.</p>
+      <p>После контакта и для QA звонков — ИИ-прослушка. На сайте — ИИ-поиск.</p>
     </div>
     <div class="eco-links">
       <a href="../search/">ИИ-поиск</a>
       <a href="../listening/">ИИ-прослушка</a>
-      <a href="../custom/">Ordo на заказ</a>
     </div>
     <div class="suite">
       <a class="is-current" href="index.html">co-pilot</a>
       <a href="../search/">ИИ-поиск</a>
       <a href="../listening/">ИИ-прослушка</a>
-      <a href="../custom/">Ordo на заказ</a>
     </div>
   </div>
 </section>
@@ -295,7 +292,6 @@
       <a href="index.html">co-pilot</a>
       <a href="../search/">ИИ-поиск</a>
       <a href="../listening/">ИИ-прослушка</a>
-      <a href="../custom/">Ordo на заказ</a>
     </nav>
   </div>
 </footer>
