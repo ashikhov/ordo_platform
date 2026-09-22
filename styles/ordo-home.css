@@ -205,6 +205,20 @@ a { color: inherit; text-decoration: none; }
   object-position: center;
   display: block;
 }
+.home-ready-card__img--icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(165deg, #f0fdfa 0%, #f1f5f9 100%);
+}
+.home-ready-card__img--icon img {
+  width: 52%;
+  height: 52%;
+  max-width: 140px;
+  max-height: 140px;
+  object-fit: contain;
+  object-position: center;
+}
 .home-ready-card__body { padding: 18px 4px 8px; }
 .home-ready-card__title-row {
   display: flex;
