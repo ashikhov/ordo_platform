@@ -1,5 +1,5 @@
 (function () {
-  // false = ссылки /sales/, /custom/ … (сейчас). true = sales.ordo-ai.ru … (после DNS).
+  // false = ссылки /sales/, /finance/ … (сейчас). true = sales.ordo-ai.ru … (после DNS).
   var ORDO_USE_SUBDOMAIN_NAV = false;
 
   function initOrdoSubdomainNav() {
@@ -7,7 +7,7 @@
     var host = location.hostname;
     if (!host || /^\d+\.\d+\.\d+\.\d+$/.test(host)) return;
     if (/github\.io$/i.test(host) || /pages\.dev$/i.test(host)) return;
-    var productSubs = ['copilot', 'search', 'listening'];
+    var productSubs = ['sales', 'search', 'finance', 'custom', 'platform'];
     var parts = host.split('.');
     var strip = ['www', 'app'].concat(productSubs, ['dev', 'demo']);
     while (parts.length > 2 && strip.indexOf(parts[0].toLowerCase()) !== -1) parts.shift();
