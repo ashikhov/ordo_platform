@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="../favicon-48.png" type="image/png" sizes="48x48"/>
+<link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="../apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta name="theme-color" content="#0a7c5c"/>
+<title>co-pilot менеджера по продажам | Ordo AI</title>
+<meta name="description" content="co-pilot Ordo — AI-помощник в реальном времени поверх CRM: транскрибация, светофор сделки, подсказки по методологии. +5–14% к конверсии в пилотах."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../styles/ordo-fonts.css"/>
+<link rel="stylesheet" href="../styles/ordo-header.css"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --accent: #0a7c5c;
+    --accent-hover: #088f6a;
+    --accent2: #4a3fbf;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: rgba(15, 23, 42, 0.08);
+    --surface: #f8fafc;
+    --ff-display: 'Syne', system-ui, sans-serif;
+    --ff-mono: 'DM Mono', monospace;
+    --ff-body: 'Inter', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--ff-body); color: var(--text); background: #fff; min-height: 100vh; line-height: 1.5; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 32px); }
+  .kicker { font-family: var(--ff-mono); font-size: 0.625rem; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 12px; text-transform: uppercase; }
+  section { padding: clamp(52px, 7vw, 84px) 0; scroll-margin-top: 72px; }
+  .levels-main {
+    padding-top: clamp(40px, 6vw, 80px);
+    padding-bottom: clamp(48px, 7vw, 72px);
+    background: #fff;
+  }
+  .hero-split {
+    display: grid; gap: clamp(28px, 4vw, 40px); align-items: center;
+  }
+  @media (min-width: 880px) { .hero-split { grid-template-columns: 1fr 1fr; } }
+  .levels-main h1 {
+    font-family: var(--ff-display); font-weight: 800;
+    font-size: clamp(1.65rem, 3.8vw, 2.65rem); line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .hero-lead { font-size: clamp(1rem, 1.8vw, 1.125rem); color: var(--muted); line-height: 1.65; max-width: 42ch; }
+  .hero-img {
+    border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: var(--surface);
+  }
+  .hero-img img { display: block; width: 100%; height: auto; }
+  .section-head { max-width: 720px; margin-bottom: clamp(28px, 4vw, 40px); }
+  .section-head h2 {
+    font-family: var(--ff-display); font-weight: 800; font-size: clamp(1.35rem, 2.6vw, 1.85rem); letter-spacing: -0.02em;
+  }
+  .section-head p { margin-top: 12px; color: var(--muted); font-size: 0.9375rem; }
+  .section-label {
+    font-family: var(--ff-mono); font-size: 0.625rem; letter-spacing: 0.16em; color: var(--accent2); margin-bottom: 10px; text-transform: uppercase;
+  }
+  .feat-grid { display: grid; gap: 16px; }
+  @media (min-width: 640px) { .feat-grid { grid-template-columns: repeat(2, 1fr); } }
+  .feat-card {
+    padding: 22px; border-radius: 14px; border: 1px solid var(--border); background: var(--surface);
+  }
+  .feat-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .feat-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.55; }
+  .effect-box {
+    padding: 24px; border-radius: 14px; border: 1px solid rgba(10, 124, 92, 0.2);
+    background: rgba(10, 124, 92, 0.06); font-size: 0.9375rem; line-height: 1.6;
+  }
+  .effect-box strong { color: var(--accent); }
+  .kpi-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
+  @media (min-width: 560px) { .kpi-strip { grid-template-columns: repeat(2, 1fr); max-width: 480px; } }
+  .kpi-item {
+    padding: 16px 14px; border-radius: 12px; border: 1px solid var(--border); background: #fff; text-align: center;
+  }
+  .kpi-item strong { display: block; font-family: var(--ff-display); font-size: clamp(1.1rem, 2.2vw, 1.35rem); color: var(--accent); }
+  .kpi-item span { font-size: 0.75rem; color: var(--muted); margin-top: 4px; display: block; line-height: 1.35; }
+  .price-bar {
+    margin-top: 28px; padding: 20px 22px; border-radius: 14px; border: 1px solid var(--border); background: #fff;
+    display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center;
+  }
+  .price-bar div span { display: block; font-size: 0.6875rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .price-bar div strong { font-weight: 600; font-size: 1rem; }
+  .sec-note { font-size: 0.875rem; color: var(--muted); line-height: 1.65; max-width: 65ch; }
+  .sec-note a { color: var(--accent); text-decoration: underline; }
+  .eco-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+  .eco-links a {
+    font-size: 0.875rem; font-weight: 600; padding: 10px 16px; border-radius: 999px;
+    border: 1px solid var(--border); transition: border-color 0.15s, background 0.15s;
+  }
+  .eco-links a:hover { border-color: rgba(10, 124, 92, 0.35); background: rgba(10, 124, 92, 0.06); color: var(--accent); }
+  .cta {
+    text-align: center; padding: clamp(56px, 9vw, 96px) 0;
+    background: radial-gradient(ellipse 75% 55% at 50% 100%, rgba(10, 124, 92, 0.1), transparent);
+  }
+  .cta h2 { font-family: var(--ff-display); font-weight: 800; font-size: clamp(1.4rem, 2.8vw, 1.9rem); max-width: 22ch; margin: 0 auto 14px; }
+  .cta > .wrap > p { color: var(--muted); max-width: 48ch; margin: 0 auto 24px; font-size: 0.9375rem; }
+  .btn-primary {
+    display: inline-flex; align-items: center; font-size: 0.875rem; font-weight: 600;
+    padding: 14px 28px; background: var(--accent); color: #fff; border-radius: 999px;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .suite {
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 28px 0 8px;
+  }
+  .suite a {
+    font-size: 0.8125rem; font-weight: 500; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted);
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .suite a:hover { color: var(--accent); border-color: rgba(10, 124, 92, 0.35); background: rgba(10, 124, 92, 0.06); }
+  .suite a.is-current { color: var(--accent); border-color: rgba(10, 124, 92, 0.4); background: rgba(10, 124, 92, 0.08); pointer-events: none; }
+  footer { padding: 26px 0 34px; border-top: 1px solid var(--border); font-size: 0.8125rem; color: var(--muted); }
+  footer .wrap { display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center; }
+  @media (min-width: 640px) { footer .wrap { flex-direction: row; justify-content: space-between; text-align: left; } }
+  footer nav { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  @media (min-width: 640px) { footer nav { justify-content: flex-start; } }
+  footer a:hover { color: var(--accent); }
+  ul.plain { list-style: none; font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+  ul.plain li { padding-left: 1em; text-indent: -0.6em; }
+</style>
+</head>
+<body>
+<header class="ordo-header" id="ordo-header">
+  <div class="ordo-header__bar">
+    <a class="ordo-brand" href="../index.html">ORDO<span> AI</span></a>
+    <nav class="ordo-nav" aria-label="Основное">
+      <div class="ordo-nav-item has-mega">
+        <button type="button" class="ordo-nav-trigger" aria-expanded="false" aria-controls="ordo-mega-products">Продукты<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div id="ordo-mega-products" class="ordo-mega" role="region" aria-label="Продукты Ordo">
+                    <div class="ordo-mega-grid">
+            <a href="../copilot/" class="ordo-mega-card" data-ordo-sub="copilot" aria-current="page"><span class="ordo-mega-card__visual"><img src="../assets/img/products/copilot.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">co-pilot</span><span class="ordo-mega-card__desc">Подсказки менеджеру в момент сделки</span></a>
+            <a href="../search/" class="ordo-mega-card" data-ordo-sub="search"><span class="ordo-mega-card__visual"><img src="../assets/img/products/search.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">ИИ-поиск</span><span class="ordo-mega-card__desc">Поиск и ассистент по каталогу e-commerce</span></a>
+            <a href="../listening/" class="ordo-mega-card" data-ordo-sub="listening"><span class="ordo-mega-card__visual"><img src="../assets/img/products/crm-autofill.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">ИИ-прослушка</span><span class="ordo-mega-card__desc">Транскрибация и контроль качества звонков</span></a>
+            <a href="../custom/" class="ordo-mega-card" data-ordo-sub="custom"><span class="ordo-mega-card__visual"><img src="../assets/img/products/custom.png" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">Ordo на заказ</span><span class="ordo-mega-card__desc">AI под ваш уникальный процесс</span></a>
+          </div></div>
+      </div>
+      <a class="ordo-nav-link" href="../industries/">Индустрии</a>
+      <a class="ordo-nav-link" href="../cases/">Кейсы</a>
+      <a class="ordo-nav-link" href="../partners/">Партнёрам</a>
+      <a class="ordo-nav-link" href="../about/">О компании</a>
+    </nav>
+    <div class="ordo-header__actions">
+      <a class="ordo-cta" href="../about/#contact">Запросить демо</a>
+      <button type="button" class="ordo-burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="ordo-mobile-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+  </div>
+  <nav class="ordo-mobile" id="ordo-mobile-nav" aria-label="Мобильное меню">
+    <div class="ordo-mobile-group">
+      <button type="button" class="ordo-mobile-trigger" aria-expanded="false">Продукты<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="ordo-mobile-panel">
+        <a href="../copilot/" aria-current="page">co-pilot</a>
+        <a href="../search/">ИИ-поиск</a>
+        <a href="../listening/">ИИ-прослушка</a>
+        <a href="../custom/">Ordo на заказ</a>
+      </div>
+    </div>
+    <a class="ordo-mobile-link" href="../industries/">Индустрии</a>
+    <a class="ordo-mobile-link" href="../cases/">Кейсы</a>
+    <a class="ordo-mobile-link" href="../partners/">Партнёрам</a>
+    <a class="ordo-mobile-link" href="../about/">О компании</a>
+    <a class="ordo-mobile-cta" href="../about/#contact">Запросить демо</a>
+  </nav>
+</header>
+<div class="ordo-backdrop" aria-hidden="true"></div>
+
+<section class="levels-main" id="top">
+  <div class="wrap">
+    <div class="hero-split">
+      <div>
+        <p class="kicker">В момент встречи</p>
+        <h1>co-pilot менеджера по продажам</h1>
+        <p class="hero-lead">Компания видит результат сделки в CRM, но не видит, как она родилась. Встреча с клиентом — «чёрный ящик»: co-pilot открывает её до, во время и после — короткие подсказки в диалоге и линия видимости для руководителя от региона до минуты разговора.</p>
+        <div class="price-bar" style="margin-top:24px;">
+          <div><span>Цена</span><strong>от 300 000 ₽ / мес</strong></div>
+          <div><span>Срок внедрения</span><strong>от 1 месяца</strong></div>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="../assets/img/products/copilot.png" alt="Интерфейс co-pilot менеджера по продажам" width="640" height="400" loading="eager" decoding="async"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problems" style="background:var(--surface);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Проблемы</div>
+      <h2>CRM показывает итог, а не то, как прошла встреча</h2>
+      <p>Руководитель видит «сделка проиграна» или «выиграна», но не видит, где менеджер упустил потребность, цену или следующий шаг. Живая встреча остаётся непрозрачной до отчёта «на следующей неделе».</p>
+    </div>
+    <ul class="plain">
+      <li>— Встреча — чёрный ящик между первым касанием и закрытием</li>
+      <li>— Методология есть на бумаге, в разговоре её не слышно</li>
+      <li>— Регион и салон не могут быстро найти минуту, где «ломается» сделка</li>
+    </ul>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Возможности</div>
+      <h2>До, во время и после встречи — без лишнего шума</h2>
+      <p>Короткие подсказки в такт речи, светофор сделки и контекст для руководителя: регион → салон → дизайнер → минута разговора.</p>
+    </div>
+    <div class="feat-grid">
+      <article class="feat-card">
+        <h3>До встречи</h3>
+        <p>Контекст из CRM: кто клиент, на каком этапе сделка, что важно подтвердить в начале диалога.</p>
+      </article>
+      <article class="feat-card">
+        <h3>Во время — транскрибация и подсказки</h3>
+        <p>Речь в текст, короткие nudges по методологии: потребность, цена, следующий шаг — пока клиент ещё в салоне или на линии.</p>
+      </article>
+      <article class="feat-card">
+        <h3>Светофор сделки</h3>
+        <p>«Готов / сомневается / риск» — менеджер и руководитель видят динамику до закрытия, не постфактум.</p>
+      </article>
+      <article class="feat-card">
+        <h3>После — для руководителя и обучения</h3>
+        <p>Структурированный итог встречи, материал для QA и связка с ИИ-прослушкой там, где нужен контроль после контакта.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="effect" style="background:var(--surface);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Эффект</div>
+      <h2>Измеримый результат в пилотах</h2>
+    </div>
+    <div class="effect-box">
+      <strong>co-pilot</strong> усиливает конверсию и скорость сделки без замены CRM: слой действий поверх учётной системы.
+    </div>
+    <div class="kpi-strip">
+      <div class="kpi-item"><strong>+5–14%</strong><span>к конверсии в салоне</span></div>
+      <div class="kpi-item"><strong>12–20%</strong><span>быстрее закрытие сделки</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="security-note">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Безопасность</div>
+      <h2>Данные в вашем контуре</h2>
+    </div>
+    <p class="sec-note">co-pilot разворачивается on-premise или в private cloud: персональные данные и записи разговоров не уходят в публичное облако без вашей политики. Требования ИБ и суверенитет обсуждаем на этапе пилота — <a href="../about/#contact">свяжитесь с нами</a>.</p>
+  </div>
+</section>
+
+<section id="ecosystem" style="background:var(--surface);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Рядом в линейке</div>
+      <h2>co-pilot — в момент сделки, остальное — по задаче</h2>
+      <p>После контакта и для QA звонков — ИИ-прослушка. На сайте — ИИ-поиск. Нестандартный контур — Ordo на заказ.</p>
+    </div>
+    <div class="eco-links">
+      <a href="../search/">ИИ-поиск</a>
+      <a href="../listening/">ИИ-прослушка</a>
+      <a href="../custom/">Ordo на заказ</a>
+    </div>
+    <div class="suite">
+      <a class="is-current" href="index.html">co-pilot</a>
+      <a href="../search/">ИИ-поиск</a>
+      <a href="../listening/">ИИ-прослушка</a>
+      <a href="../custom/">Ordo на заказ</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="cta">
+  <div class="wrap">
+    <h2>Обсудить пилот co-pilot на ваших звонках</h2>
+    <p>Согласуем CRM, телефонию и KPI — покажем подсказки на реальных диалогах команды.</p>
+    <a class="btn-primary" href="../about/#contact">Запросить демо</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Ordo AI · co-pilot</span>
+    <nav aria-label="Подвал">
+      <a href="index.html">co-pilot</a>
+      <a href="../search/">ИИ-поиск</a>
+      <a href="../listening/">ИИ-прослушка</a>
+      <a href="../custom/">Ordo на заказ</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="../js/ordo-header.js?v=20260520"></script>
+</body>
+</html>

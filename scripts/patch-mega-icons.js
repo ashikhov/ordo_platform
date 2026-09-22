@@ -6,35 +6,27 @@ const DIV_OPEN = "<" + "div";
 const DIV_CLOSE = "</" + "div" + ">";
 
 function iconCard(base, href, img, title, desc, extra = "") {
-  return `<a href="${base}${href}" class="ordo-mega-card"${extra}><span class="ordo-mega-card__icon"><img src="${base}assets/img/icons/${img}" alt="" width="48" height="48" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">${title}</span><span class="ordo-mega-card__desc">${desc}</span></a>`;
+  return `<a href="${base}${href}" class="ordo-mega-card"${extra}><span class="ordo-mega-card__visual"><img src="${base}assets/img/products/${img}" alt="" width="320" height="220" loading="lazy" decoding="async"/></span><span class="ordo-mega-card__title">${title}</span><span class="ordo-mega-card__desc">${desc}</span></a>`;
 }
 
 function buildGrid(base, current) {
   const items = [
-    ["platform/", "platform.png", "Ordo AI Контур", "Единая платформа для AI-трансформации вашей компании", ""],
-    ["sales/", "crm.png", "ORDO CRM — решения по продажам", "Система практических решений для роста выручки", ' data-ordo-sub="sales"'],
-    ["search/", "search.png", "Ordo поиск", "AI-поиск и ассистент для e-commerce и каталогов", ' data-ordo-sub="search"'],
-    ["finance/", "finance.png", "ORDO финансы", "Решения для автоматизации управленческого учёта и глубокой аналитики", ' data-ordo-sub="finance"'],
-    ["custom/", "custom.png", "Ordo на заказ", "Разработка AI решений для вашего уникального кейса", ' data-ordo-sub="custom"'],
+    ["copilot/", "copilot.png", "co-pilot", "Подсказки менеджеру в момент сделки", ' data-ordo-sub="copilot"', "copilot"],
+    ["search/", "search.png", "ИИ-поиск", "Поиск и ассистент по каталогу e-commerce", ' data-ordo-sub="search"', "search"],
+    ["listening/", "crm-autofill.png", "ИИ-прослушка", "Транскрибация и контроль качества звонков", ' data-ordo-sub="listening"', "listening"],
+    ["custom/", "custom.png", "Ordo на заказ", "AI под ваш уникальный процесс", ' data-ordo-sub="custom"', "custom"],
   ];
-  const cards = items.map(([href, img, title, desc, extra]) => {
-    let h = href;
+  const cards = items.map(([href, img, title, desc, extra, key]) => {
     let ex = extra;
-    if (current === "platform" && href === "platform/") {
-      h = "platform/index.html";
-      ex += ' aria-current="page"';
-    } else if (current === "sales" && href === "sales/") ex += ' aria-current="page"';
-    else if (current === "search" && href === "search/") ex += ' aria-current="page"';
-    else if (current === "finance" && href === "finance/") ex += ' aria-current="page"';
-    else if (current === "custom" && href === "custom/") ex += ' aria-current="page"';
-    return iconCard(base, h, img, title, desc, ex);
+    if (current === key) ex += ' aria-current="page"';
+    return iconCard(base, href, img, title, desc, ex);
   });
   return `          ${DIV_OPEN} class="ordo-mega-grid">\n            ${cards.join("\n            ")}\n          ${DIV_CLOSE}`;
 }
 
 const iconsDir = path.join(root, "assets/img/icons");
 fs.mkdirSync(iconsDir, { recursive: true });
-for (const name of ["platform.png", "crm.png", "search.png", "finance.png", "custom.png"]) {
+for (const name of ["platform.png", "crm.png", "search.png", "finance.png", "custom.png", "copilot.png"]) {
   const src = path.join(root, "assets/img/products", name);
   const dest = path.join(iconsDir, name);
   if (fs.existsSync(src)) fs.copyFileSync(src, dest);
@@ -45,15 +37,17 @@ const gridRe =
 
 const configs = [
   ["index.html", "", null],
-  ["sales/index.html", "../", "sales"],
-  ["finance/index.html", "../", "finance"],
-  ["custom/index.html", "../", "custom"],
+  ["copilot/index.html", "../", "copilot"],
   ["search/index.html", "../", "search"],
-  ["platform/index.html", "../", "platform"],
+  ["listening/index.html", "../", "listening"],
+  ["custom/index.html", "../", "custom"],
+  ["sales/index.html", "../", null],
   ["industries/index.html", "../", null],
   ["cases/index.html", "../", null],
   ["about/index.html", "../", null],
   ["partners/index.html", "../", null],
+  ["platform/index.html", "../", null],
+  ["finance/index.html", "../", null],
 ];
 
 for (const [file, base, current] of configs) {
@@ -73,7 +67,7 @@ for (const [file, base, current] of configs) {
 const snPath = path.join(root, "snippets/ordo-header.html");
 if (fs.existsSync(snPath)) {
   let sn = fs.readFileSync(snPath, "utf8");
-  let snGrid = buildGrid("{{BASE}}", null).replace(/assets\/img\/icons/g, "{{BASE}}assets/img/icons");
+  const snGrid = buildGrid("{{BASE}}", null);
   if (gridRe.test(sn)) {
     sn = sn.replace(gridRe, snGrid);
     fs.writeFileSync(snPath, sn);

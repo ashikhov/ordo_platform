@@ -14,17 +14,15 @@ function iconVisualCard(base, href, img, title, desc, extra = "") {
 
 function buildGrid(base, current) {
   const items = [
-    { type: "icon", href: "platform/", img: "platform.png", title: "Ordo AI Контур", desc: "Единая платформа для AI-трансформации вашей компании", extra: "", key: "platform" },
-    { type: "visual", href: "sales/", img: "crm.png", title: "ORDO CRM — решения по продажам", desc: "Система практических решений для роста выручки", extra: ' data-ordo-sub="sales"', key: "sales" },
-    { type: "icon", href: "search/", img: "search.png", title: "Ordo поиск", desc: "AI-поиск и ассистент для e-commerce и каталогов", extra: ' data-ordo-sub="search"', key: "search" },
-    { type: "visual", href: "finance/", img: "finance.png", title: "ORDO финансы", desc: "Решения для автоматизации управленческого учёта и глубокой аналитики", extra: ' data-ordo-sub="finance"', key: "finance" },
-    { type: "visual", href: "custom/", img: "custom.png", title: "Ordo на заказ", desc: "Разработка AI решений для вашего уникального кейса", extra: ' data-ordo-sub="custom"', key: "custom" },
+    { type: "visual", href: "copilot/", img: "copilot.png", title: "co-pilot", desc: "Подсказки менеджеру в момент сделки", extra: ' data-ordo-sub="copilot"', key: "copilot" },
+    { type: "visual", href: "search/", img: "search.png", title: "ИИ-поиск", desc: "Поиск и ассистент по каталогу e-commerce", extra: ' data-ordo-sub="search"', key: "search" },
+    { type: "visual", href: "listening/", img: "crm-autofill.png", title: "ИИ-прослушка", desc: "Транскрибация и контроль качества звонков", extra: ' data-ordo-sub="listening"', key: "listening" },
+    { type: "visual", href: "custom/", img: "custom.png", title: "Ordo на заказ", desc: "AI под ваш уникальный процесс", extra: ' data-ordo-sub="custom"', key: "custom" },
   ];
   const cards = items.map((item) => {
     let h = item.href;
     let ex = item.extra;
     if (current === item.key) {
-      if (current === "platform") h = "platform/index.html";
       ex += ' aria-current="page"';
     }
     return item.type === "icon"
@@ -39,15 +37,17 @@ const gridRe =
 
 const configs = [
   ["index.html", "", null],
-  ["sales/index.html", "../", "sales"],
-  ["finance/index.html", "../", "finance"],
-  ["custom/index.html", "../", "custom"],
+  ["copilot/index.html", "../", "copilot"],
   ["search/index.html", "../", "search"],
-  ["platform/index.html", "../", "platform"],
+  ["listening/index.html", "../", "listening"],
+  ["custom/index.html", "../", "custom"],
+  ["sales/index.html", "../", null],
   ["industries/index.html", "../", null],
   ["cases/index.html", "../", null],
   ["about/index.html", "../", null],
   ["partners/index.html", "../", null],
+  ["platform/index.html", "../", null],
+  ["finance/index.html", "../", null],
 ];
 
 for (const [file, base, current] of configs) {

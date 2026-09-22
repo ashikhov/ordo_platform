@@ -31,26 +31,6 @@ const casesMain = `
           <a class="case-study__link" href="../sales/">ORDO CRM →</a>
         </article>
         <article class="case-study">
-          <p class="case-study__tag">E-commerce</p>
-          <h3>Поиск на языке покупателя</h3>
-          <p>Каталог 180k SKU: пустая выдача на каждом пятом запросе. Ordo поиск в контуре клиента, синонимы от закупки.</p>
-          <p class="case-study__result"><strong>Пилот:</strong> меньше zero-results, рост корзины с поиска; отчёт для матрицы ассортимента.</p>
-          <a class="case-study__link" href="../search/">Ordo поиск →</a>
-        </article>
-        <article class="case-study">
-          <p class="case-study__tag">Финансы · производство</p>
-          <h3>План-факт — вопрос к агенту</h3>
-          <p>ORDO финансы к 1С: «где перерасход по ЦФО», алерты по лимитам, трассировка до первички.</p>
-          <p class="case-study__result"><strong>Пилот:</strong> быстрее управленческая сводка, прозрачные спорные статьи.</p>
-          <a class="case-study__link" href="../finance/">ORDO финансы →</a>
-        </article>
-        <article class="case-study">
-          <p class="case-study__tag">Платформа · холдинг</p>
-          <h3>Несколько агентов — один trace</h3>
-          <p>Ordo AI Контур: координатор, data, finance — сценарий «заявка → остатки → согласование → уведомление».</p>
-          <a class="case-study__link" href="../platform/">Платформа →</a>
-        </article>
-        <article class="case-study">
           <p class="case-study__tag">Интегратор</p>
           <h3>AI-слой в проекте 1С + CRM</h3>
           <p>Демо-workspace, Skill-шаблоны, совместный presale — без платформы с нуля.</p>
@@ -66,7 +46,7 @@ const casesMain = `
       ${o("home-pilot")}
         <h3>Пилот за 2–4 недели: один процесс, один KPI</h3>
         <p>Согласуем владельца, метрику и контур — результат на ваших данных.</p>
-        <a href="../platform/#pilot">Как устроен пилот →</a>
+        <a href="../about/#contact">Обсудить пилот →</a>
       ${c}
     ${c}
   </section>
@@ -88,7 +68,7 @@ const aboutMain = `
     ${o("home-wrap")}
       <p class="home-section__label">О компании</p>
       <h1>ORDO AI — продуктовый AI-слой для enterprise</h1>
-      <p class="page-hero__lead">Платформа агентов, скиллов и процессов поверх CRM, ERP и 1С. Продажи, финансы, поиск и операции — в закрытом контуре, с пилотом от 2 недель.</p>
+      <p class="page-hero__lead">AI-слой поверх CRM, ERP и 1С: готовые модули для продаж и кастомные сценарии — в закрытом контуре, с пилотом от 2 недель.</p>
       ${o("page-hero__meta")}
         <span>Команда с опытом B2B-интеграций</span>
         <span>On-prem / private cloud</span>
@@ -112,7 +92,7 @@ const aboutMain = `
         </article>
         <article class="about-card">
           <h3>Безопасность</h3>
-          <p>On-prem, audit trail, trace шагов. Подробнее — <a href="../platform/#security-roi" style="color:var(--accent);font-weight:600">безопасность и ROI</a>.</p>
+          <p>On-prem, audit trail, trace шагов. Подробнее — <a href="../sales/#security" style="color:var(--accent);font-weight:600">безопасность на ORDO CRM</a>.</p>
         </article>
         <article class="about-card">
           <h3>Измеримый старт</h3>
@@ -126,10 +106,7 @@ const aboutMain = `
     ${o("home-wrap")}
       <h2>Линейка продуктов</h2>
       ${o("about-links")}
-        <a class="about-link-card" href="../platform/"><h2>Ordo AI Контур</h2><p>Агенты, Skills, A2A, LLM</p></a>
         <a class="about-link-card" href="../sales/"><h2>ORDO CRM</h2><p>Вертикаль продаж</p></a>
-        <a class="about-link-card" href="../search/"><h2>Ordo поиск</h2><p>Каталоги и спрос</p></a>
-        <a class="about-link-card" href="../finance/"><h2>ORDO финансы</h2><p>План-факт и контроль</p></a>
         <a class="about-link-card" href="../custom/"><h2>Ordo на заказ</h2><p>Закрытый контур</p></a>
         <a class="about-link-card" href="../industries/"><h2>Отрасли</h2><p>9 рыночных сценариев</p></a>
       ${c}
@@ -145,7 +122,7 @@ const aboutMain = `
         <motion class="about-step"><motion><h4>Пилот</h4><p>2–4 недели на боевых задачах, замер метрики.</p></motion></motion>
         <div class="about-step"><div><h4>Масштаб</h4><p>Отделы, агенты, партнёр-интегратор при необходимости.</p></div></div>
       ${c}
-      <p style="margin-top:24px;font-size:0.875rem;color:var(--muted)"><a href="../platform/#faq" style="color:var(--accent);font-weight:600">FAQ</a> · <a href="../cases/" style="color:var(--accent);font-weight:600">Кейсы</a></p>
+      <p style="margin-top:24px;font-size:0.875rem;color:var(--muted)"><a href="../sales/#faq" style="color:var(--accent);font-weight:600">FAQ</a> · <a href="../cases/" style="color:var(--accent);font-weight:600">Кейсы</a></p>
     ${c}
   </section>
 
