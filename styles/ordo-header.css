@@ -207,9 +207,7 @@
   display: block;
 }
 .ordo-mega-card__visual--icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   background: #fff;
 }
 .ordo-mega-card__visual--icon img {
@@ -219,7 +217,7 @@
   max-height: none;
   object-fit: contain;
   object-position: center;
-  padding: 6px;
+  padding: 8px;
   box-sizing: border-box;
 }
 .ordo-mega-card__title {
